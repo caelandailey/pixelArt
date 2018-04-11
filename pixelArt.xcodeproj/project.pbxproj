@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3812E4F5207EBE84001B5800 /* ViewHolder.swift */; };
 		38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B3F207C15D000A7D488 /* AppDelegate.swift */; };
-		38437B42207C15D000A7D488 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B41207C15D000A7D488 /* ViewController.swift */; };
-		38437B45207C15D000A7D488 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38437B43207C15D000A7D488 /* Main.storyboard */; };
+		38437B42207C15D000A7D488 /* PixelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B41207C15D000A7D488 /* PixelViewController.swift */; };
 		38437B47207C15D300A7D488 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38437B46207C15D300A7D488 /* Assets.xcassets */; };
 		38437B4A207C15D300A7D488 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38437B48207C15D300A7D488 /* LaunchScreen.storyboard */; };
-		38437B55207C15D300A7D488 /* pixelArtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B54207C15D300A7D488 /* pixelArtTests.swift */; };
-		38437B60207C15D300A7D488 /* pixelArtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B5F207C15D300A7D488 /* pixelArtUITests.swift */; };
+		38951A28207E844000A890C4 /* PixelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38951A27207E844000A890C4 /* PixelView.swift */; };
+		38951A2A207E891200A890C4 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38951A29207E891200A890C4 /* Pixel.swift */; };
+		38951A2C207E8BB000A890C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38951A2B207E8BB000A890C4 /* GoogleService-Info.plist */; };
+		38951A2E207E93B300A890C4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38951A2D207E93B300A890C4 /* Default-568h@2x.png */; };
+		F507F8CCE7948B9CB8CFD413 /* Pods_pixelArt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EAF8C05557DBCAB44C04B2 /* Pods_pixelArt.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,19 +37,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		29EAF8C05557DBCAB44C04B2 /* Pods_pixelArt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		352059FFA09E49F597E4A37B /* Pods-pixelArt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixelArt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt.debug.xcconfig"; sourceTree = "<group>"; };
+		3812E4F5207EBE84001B5800 /* ViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHolder.swift; sourceTree = "<group>"; };
 		38437B3C207C15D000A7D488 /* pixelArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pixelArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38437B3F207C15D000A7D488 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		38437B41207C15D000A7D488 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		38437B44207C15D000A7D488 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		38437B41207C15D000A7D488 /* PixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelViewController.swift; sourceTree = "<group>"; };
 		38437B46207C15D300A7D488 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38437B49207C15D300A7D488 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		38437B4B207C15D300A7D488 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38437B50207C15D300A7D488 /* pixelArtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pixelArtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		38437B54207C15D300A7D488 /* pixelArtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pixelArtTests.swift; sourceTree = "<group>"; };
-		38437B56207C15D300A7D488 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38437B5B207C15D300A7D488 /* pixelArtUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pixelArtUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		38437B5F207C15D300A7D488 /* pixelArtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pixelArtUITests.swift; sourceTree = "<group>"; };
-		38437B61207C15D300A7D488 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38951A27207E844000A890C4 /* PixelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelView.swift; sourceTree = "<group>"; };
+		38951A29207E891200A890C4 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		38951A2B207E8BB000A890C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		38951A2D207E93B300A890C4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		67373E901724B2BC6FBB0A89 /* Pods_pixelArtUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D1148CA8929761D33679D70 /* Pods-pixelArt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixelArt.release.xcconfig"; path = "Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt.release.xcconfig"; sourceTree = "<group>"; };
+		A61D16E61C60B6614AFCC270 /* Pods_pixelArtTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F507F8CCE7948B9CB8CFD413 /* Pods_pixelArt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,13 +83,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A8F6CC51C8719E831203408 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29EAF8C05557DBCAB44C04B2 /* Pods_pixelArt.framework */,
+				A61D16E61C60B6614AFCC270 /* Pods_pixelArtTests.framework */,
+				67373E901724B2BC6FBB0A89 /* Pods_pixelArtUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		38437B33207C15D000A7D488 = {
 			isa = PBXGroup;
 			children = (
+				38951A2D207E93B300A890C4 /* Default-568h@2x.png */,
 				38437B3E207C15D000A7D488 /* pixelArt */,
-				38437B53207C15D300A7D488 /* pixelArtTests */,
-				38437B5E207C15D300A7D488 /* pixelArtUITests */,
 				38437B3D207C15D000A7D488 /* Products */,
+				519E85239FE94BBC3812FD7E /* Pods */,
+				2A8F6CC51C8719E831203408 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,31 +118,25 @@
 			isa = PBXGroup;
 			children = (
 				38437B3F207C15D000A7D488 /* AppDelegate.swift */,
-				38437B41207C15D000A7D488 /* ViewController.swift */,
-				38437B43207C15D000A7D488 /* Main.storyboard */,
 				38437B46207C15D300A7D488 /* Assets.xcassets */,
 				38437B48207C15D300A7D488 /* LaunchScreen.storyboard */,
 				38437B4B207C15D300A7D488 /* Info.plist */,
+				38437B41207C15D000A7D488 /* PixelViewController.swift */,
+				38951A27207E844000A890C4 /* PixelView.swift */,
+				38951A29207E891200A890C4 /* Pixel.swift */,
+				38951A2B207E8BB000A890C4 /* GoogleService-Info.plist */,
+				3812E4F5207EBE84001B5800 /* ViewHolder.swift */,
 			);
 			path = pixelArt;
 			sourceTree = "<group>";
 		};
-		38437B53207C15D300A7D488 /* pixelArtTests */ = {
+		519E85239FE94BBC3812FD7E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				38437B54207C15D300A7D488 /* pixelArtTests.swift */,
-				38437B56207C15D300A7D488 /* Info.plist */,
+				352059FFA09E49F597E4A37B /* Pods-pixelArt.debug.xcconfig */,
+				7D1148CA8929761D33679D70 /* Pods-pixelArt.release.xcconfig */,
 			);
-			path = pixelArtTests;
-			sourceTree = "<group>";
-		};
-		38437B5E207C15D300A7D488 /* pixelArtUITests */ = {
-			isa = PBXGroup;
-			children = (
-				38437B5F207C15D300A7D488 /* pixelArtUITests.swift */,
-				38437B61207C15D300A7D488 /* Info.plist */,
-			);
-			path = pixelArtUITests;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38437B64207C15D300A7D488 /* Build configuration list for PBXNativeTarget "pixelArt" */;
 			buildPhases = (
+				4C4FA64FE3B95B24BDE0A432 /* [CP] Check Pods Manifest.lock */,
 				38437B38207C15D000A7D488 /* Sources */,
 				38437B39207C15D000A7D488 /* Frameworks */,
 				38437B3A207C15D000A7D488 /* Resources */,
+				AB691AD4731527D173BC9C83 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -230,8 +246,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				38437B4A207C15D300A7D488 /* LaunchScreen.storyboard in Resources */,
+				38951A2E207E93B300A890C4 /* Default-568h@2x.png in Resources */,
 				38437B47207C15D300A7D488 /* Assets.xcassets in Resources */,
-				38437B45207C15D000A7D488 /* Main.storyboard in Resources */,
+				38951A2C207E8BB000A890C4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +268,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4C4FA64FE3B95B24BDE0A432 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pixelArt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB691AD4731527D173BC9C83 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		38437B38207C15D000A7D488 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38437B42207C15D000A7D488 /* ViewController.swift in Sources */,
+				38951A2A207E891200A890C4 /* Pixel.swift in Sources */,
+				38437B42207C15D000A7D488 /* PixelViewController.swift in Sources */,
+				3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */,
 				38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */,
+				38951A28207E844000A890C4 /* PixelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +328,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38437B55207C15D300A7D488 /* pixelArtTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +335,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38437B60207C15D300A7D488 /* pixelArtUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,14 +354,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		38437B43207C15D000A7D488 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38437B44207C15D000A7D488 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		38437B48207C15D300A7D488 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -428,6 +481,7 @@
 		};
 		38437B65207C15D300A7D488 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 352059FFA09E49F597E4A37B /* Pods-pixelArt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -446,6 +500,7 @@
 		};
 		38437B66207C15D300A7D488 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D1148CA8929761D33679D70 /* Pods-pixelArt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
