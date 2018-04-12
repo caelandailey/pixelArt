@@ -39,8 +39,6 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
        
         viewHolder.pixelView.delegate = self
         
-        //viewHolder.delegate = self
-        //viewHolder.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
     }
     
  
