@@ -32,7 +32,7 @@ class PixelView: UIView {
     
     var currentColor = UIColor.black.cgColor
     
-    private var pixelSize: CGFloat = 5
+    private var pixelSize: CGFloat = 25
     
     weak var delegate: PixelViewDelegate? = nil
     
@@ -57,7 +57,7 @@ class PixelView: UIView {
         // Loop through
         for i in 0..<colorsToDraw.count {
             context.setFillColor(colorsToDraw[i])
-            let frame = CGRect(x: positionsToDraw[i].x, y: positionsToDraw[i].y, width: pixelSize, height: pixelSize)
+            let frame = CGRect(x: positionsToDraw[i].x * pixelSize, y: positionsToDraw[i].y * pixelSize, width: pixelSize, height: pixelSize)
             context.fill(frame)
         }
         
@@ -75,9 +75,9 @@ class PixelView: UIView {
         print("touches began")
 
         let touch: UITouch = touches.first!
-        let position: CGPoint = touch.location(in: self)
-        
-        delegate?.cellTouchesBegan(position, color: currentColor)
+        let pos: CGPoint = touch.location(in: self)
+        let updatedPos = CGPoint(x: pos.x/pixelSize, y: pos.y/pixelSize)
+        delegate?.cellTouchesBegan(updatedPos, color: currentColor)
     }
     
 }

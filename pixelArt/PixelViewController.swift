@@ -23,7 +23,9 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
         
         // Create it
         //view = PixelView()
+        
         view = ViewHolder()
+        
         //view.backgroundColor = UIColor.white
         print("Detail view load")
     }
@@ -34,7 +36,9 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
         // Set delegates
         pixel.delegate = self
         //pixelView.delegate = self
+       
         viewHolder.pixelView.delegate = self
+        
         //viewHolder.delegate = self
         //viewHolder.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
     }
