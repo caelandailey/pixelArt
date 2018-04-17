@@ -22,10 +22,12 @@ class Pixel {
     private var positions: [CGPoint] = []
     private var colors: [CGColor] = []
     
+    private var lastPixelTime = 0
+    
     // Initializer for new games
     init() {
-        
-        loadAllPixels()
+        loadNewPixels()
+        //loadAllPixels()
         //loadNewPixel()
     }
     
@@ -59,59 +61,119 @@ class Pixel {
                 
                 self.positions.append(CGPoint(x: x, y: y))
                 self.colors.append(UIColor.black.cgColor)
-   
+                
             }
             print("Loaded all pixels")
-
+            
             self.delegate?.pixelsLoaded(self.positions, color: self.colors)
             //self.positions.removeAll()
             //self.colors.removeAll()
-                
+            
             
         }){ (error) in
             print(error)
         }
-       
-       
+        
+        
     }
     
+    func loadNewPixels() {
+        
+        let ref = Database.database().reference()
+
+        ref.observe(.childAdded, with: { snapshot in
+            print("loading new pixel")
+            
+            let queryRef = ref.queryOrdered(byChild: "timeline").queryStarting(atValue: self.lastPixelTime+1)
+            
+            queryRef.observeSingleEvent(of: .value, with: { snapshot in
+                for child in snapshot.children {
+                    let snap = child as! DataSnapshot
+                    print(snap.value)
+                    
+                    
+                    var x = 0
+                    var y = 0
+                    let enumerator = snap.children
+                    for cell in enumerator.allObjects as! [DataSnapshot] {
+                        print(cell)
+                        switch cell.key {
+                            
+                        case "x": x = cell.value as! Int
+                        case "y": y = cell.value as! Int
+                        case "timeline": self.lastPixelTime = cell.value as! Int
+                            
+                            
+                        default: break
+                        }
+                    }
+                    print(self.lastPixelTime)
+                    print("loaded new pixel")
+                    
+                    self.positions.append(CGPoint(x:x, y:y))
+                    
+                    self.colors.append(UIColor.black.cgColor)
+                    
+                    self.delegate?.pixelsLoaded(self.positions, color: self.colors)
+                    
+                    //self.positions.removeAll()
+                    //self.colors.removeAll()
+                }
+            })
+            
+        })
+        
+    }
     func loadNewPixel() {
+        
         print("attempting to load new pixel")
         let ref = Database.database().reference()
         
-        ref.queryOrdered(byChild: "timeline").queryLimited(toFirst: 2).observe(.childAdded, with: { snapshot in
+        ref.observe(.childAdded, with: { snapshot in
             print("loading new pixel")
-            let enumerator = snapshot.children
-            print(enumerator.allObjects)
             
-            var x = 0
-            var y = 0
             
-            for cell in enumerator.allObjects as! [DataSnapshot] {
-                print(cell)
-                switch cell.key {
+            let queryRef = ref.queryOrdered(byChild: "timeline").queryLimited(toFirst: 1)
+            
+            queryRef.observeSingleEvent(of: .value, with: { snapshot in
+                for child in snapshot.children {
+                    let snap = child as! DataSnapshot
+                    print(snap.value)
                     
-                case "x": x = cell.value as! Int
-                case "y": y = cell.value as! Int
-                default: break
+                    
+                    var x = 0
+                    var y = 0
+                    let enumerator = snap.children
+                    for cell in enumerator.allObjects as! [DataSnapshot] {
+                        print(cell)
+                        switch cell.key {
+                            
+                        case "x": x = cell.value as! Int
+                        case "y": y = cell.value as! Int
+                        
+                        default: break
+                        }
+                    }
+                    
+                    print("loaded new pixel")
+                    
+                    self.positions.append(CGPoint(x:x, y:y))
+                    
+                    self.colors.append(UIColor.black.cgColor)
+                    
+                    self.delegate?.pixelsLoaded(self.positions, color: self.colors)
+                    
+                    //self.positions.removeAll()
+                    //self.colors.removeAll()
                 }
-            }
+            })
             
-            print("loaded new pixel")
-            
-            self.positions.append(CGPoint(x:x, y:y))
-            print(self.positions)
-            self.colors.append(UIColor.black.cgColor)
-            self.delegate?.pixelsLoaded(self.positions, color: self.colors)
-            
-            //self.positions.removeAll()
-            //self.colors.removeAll()
             
         })
     }
     
     var timestamp: Int {
-        return 0 - Int(NSDate().timeIntervalSince1970 * 1000)
+        return Int(NSDate().timeIntervalSince1970 * 1000)
     }
     
     func uploadNewPixel(pos: CGPoint) {
@@ -119,13 +181,13 @@ class Pixel {
         let x = Int(pos.x)
         let y = Int(pos.y)
         
-        let itemRef = Database.database().reference().child("\(x),\(y)")
+        var itemRef = Database.database().reference().child("\(x),\(y)")
         
         //itemRef.child("hex").setValue(blockColor)
         itemRef.child("x").setValue(x)
         itemRef.child("y").setValue(y)
         itemRef.child("timeline").setValue(timestamp)
         
-        print("uploaded new data")
+        print("uploaded new pixel")
     }
 }

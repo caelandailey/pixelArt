@@ -13,7 +13,7 @@ class ViewHolder: UIScrollView, UIScrollViewDelegate {
     
 
     var pixelViewWidth = UIScreen.main.bounds.width*3
-    var pixelViewHeight = UIScreen.main.bounds.height*4
+    var pixelViewHeight = UIScreen.main.bounds.height*3
     
     let parentView: UIView = {
         let parentView = UIView()

@@ -36,20 +36,20 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
         // Set delegates
         pixel.delegate = self
         //pixelView.delegate = self
-       
+      // pixel.loadNewPixels()
         viewHolder.pixelView.delegate = self
         
     }
-    
- 
     
     func cellTouchesBegan(_ pos: CGPoint, color: CGColor) {
         print("Updating model")
         // Update model
         let position = CGPoint(x: Int(pos.x), y: Int(pos.y))
+        
         pixel.uploadNewPixel(pos: position)
-        //pixel.loadNewPixel()
-        pixel.loadAllPixels()
+  
+        
+        //pixel.loadAllPixels()
     }
     
     func pixelsLoaded(_ pos: [CGPoint], color: [CGColor]) {
