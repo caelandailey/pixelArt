@@ -14,21 +14,13 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
    
     let pixel = Pixel()
     
-    //private var pixelView: ViewHolder {
     private var viewHolder: ViewHolder {
-        //return view as! PixelView
         return view as! ViewHolder
     }
 
     // Loads the view
     override func loadView() {
-        
-        // Create it
-        //view = PixelView()
-        
         view = ViewHolder()
-        view.clearsContextBeforeDrawing = false
-        //view.backgroundColor = UIColor.white
         print("Detail view load")
     }
     
@@ -37,21 +29,19 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
         
         // Set delegates
         pixel.delegate = self
-        //pixelView.delegate = self
-      // pixel.loadNewPixels()
         viewHolder.pixelView.delegate = self
-        
     }
     
     func cellTouchesBegan(_ pos: CGPoint, color: CGColor) {
         print("Updating model")
         // Update model
         let position = CGPoint(x: Int(pos.x), y: Int(pos.y))
+        pixel.positions.append(position)
+        pixel.colors.append(color)
+        viewHolder.pixelView.positionsToDraw = pixel.positions
+        viewHolder.pixelView.colorsToDraw = pixel.colors
         
         pixel.uploadNewPixel(pos: position)
-  
-        
-        //pixel.loadAllPixels()
     }
     
     func pixelsLoaded(_ pos: [CGPoint], color: [CGColor]) {
@@ -64,7 +54,7 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        //Database.database().reference().removeAllObservers()
+        Database.database().reference().removeAllObservers()
     }
     
 }

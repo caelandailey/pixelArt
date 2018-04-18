@@ -19,6 +19,7 @@ class PixelView: UIView {
     {
         didSet {
             print("colorsToDraw updated")
+
             setNeedsDisplay()
         }
     }
@@ -27,7 +28,6 @@ class PixelView: UIView {
         didSet {
             print("positionsToDraw updated")
             setNeedsDisplay()
-           //draw(self.bounds)
         }
     }
     

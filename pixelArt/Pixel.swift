@@ -19,8 +19,8 @@ class Pixel {
     weak var delegate: PixelDelegate? = nil
     var ref: DatabaseReference!
     
-    private var positions: [CGPoint] = []
-    private var colors: [CGColor] = []
+    var positions: [CGPoint] = []
+    var colors: [CGColor] = []
     
     private var lastPixelTime = 0
     
@@ -34,7 +34,7 @@ class Pixel {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+/*
     func loadAllPixels() {
         print("Attempting to load all pixels")
         let ref = Database.database().reference()
@@ -76,7 +76,7 @@ class Pixel {
         
         
     }
-    
+    */
     func loadNewPixels() {
         
         let ref = Database.database().reference()
@@ -109,6 +109,14 @@ class Pixel {
                     }
                     print(self.lastPixelTime)
                     print("loaded new pixel")
+                    let color = UIColor.black.cgColor
+                    if let pixelPos = self.positions.index(of: CGPoint(x:x,y:y)) {
+                        if self.colors[pixelPos] == color {
+                            print("contained pixel returning")
+                            return
+                        }
+                    }
+             
                     
                     self.positions.append(CGPoint(x:x, y:y))
                     
@@ -116,8 +124,8 @@ class Pixel {
                     
                     self.delegate?.pixelsLoaded(self.positions, color: self.colors)
                     
-                    self.positions.removeAll()
-                    self.colors.removeAll()
+                    //self.positions.removeAll()
+                    //self.colors.removeAll()
                 }
             })
             
@@ -125,7 +133,7 @@ class Pixel {
         
     }
     
-    
+    /*
     func loadNewPixel() {
         
         print("attempting to load new pixel")
@@ -159,6 +167,10 @@ class Pixel {
                     
                     print("loaded new pixel")
                     
+                    if (self.positions.contains(CGPoint(x:x, y:y))) {
+                        return
+                    }
+                    
                     self.positions.append(CGPoint(x:x, y:y))
                     
                     self.colors.append(UIColor.black.cgColor)
@@ -173,7 +185,7 @@ class Pixel {
             
         })
     }
-    
+    */
     var timestamp: Int {
         return Int(NSDate().timeIntervalSince1970 * 1000)
     }
