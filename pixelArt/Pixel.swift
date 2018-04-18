@@ -81,7 +81,7 @@ class Pixel {
         
         let ref = Database.database().reference()
 
-        ref.observe(.childAdded, with: { snapshot in
+        ref.observe(.value, with: { snapshot in
             print("loading new pixel")
             
             let queryRef = ref.queryOrdered(byChild: "timeline").queryStarting(atValue: self.lastPixelTime+1)
@@ -116,14 +116,16 @@ class Pixel {
                     
                     self.delegate?.pixelsLoaded(self.positions, color: self.colors)
                     
-                    //self.positions.removeAll()
-                    //self.colors.removeAll()
+                    self.positions.removeAll()
+                    self.colors.removeAll()
                 }
             })
             
         })
         
     }
+    
+    
     func loadNewPixel() {
         
         print("attempting to load new pixel")
@@ -181,12 +183,14 @@ class Pixel {
         let x = Int(pos.x)
         let y = Int(pos.y)
         
-        var itemRef = Database.database().reference().child("\(x),\(y)")
+        let itemRef = Database.database().reference().child("\(x),\(y)")
         
+        let val: [String: Int] = ["x":x, "y": y, "timeline": timestamp]
+        itemRef.setValue(val)
         //itemRef.child("hex").setValue(blockColor)
-        itemRef.child("x").setValue(x)
-        itemRef.child("y").setValue(y)
-        itemRef.child("timeline").setValue(timestamp)
+        //itemRef.child("x").setValue(x)
+        //itemRef.child("y").setValue(y)
+       // itemRef.child("timeline").setValue(timestamp)
         
         print("uploaded new pixel")
     }

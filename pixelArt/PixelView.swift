@@ -27,6 +27,7 @@ class PixelView: UIView {
         didSet {
             print("positionsToDraw updated")
             setNeedsDisplay()
+           //draw(self.bounds)
         }
     }
     
@@ -37,7 +38,9 @@ class PixelView: UIView {
     weak var delegate: PixelViewDelegate? = nil
     
     override func draw(_ rect: CGRect) {
-        super.draw(rect)
+        //super.draw(rect)
+        
+        
         print("Attempting to draw")
         if(colorsToDraw.count == 0) {
             return

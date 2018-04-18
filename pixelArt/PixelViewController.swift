@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
    
@@ -25,7 +27,7 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
         //view = PixelView()
         
         view = ViewHolder()
-        
+        view.clearsContextBeforeDrawing = false
         //view.backgroundColor = UIColor.white
         print("Detail view load")
     }
@@ -59,6 +61,11 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
         viewHolder.pixelView.positionsToDraw = pos
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        //Database.database().reference().removeAllObservers()
+    }
     
 }
 
