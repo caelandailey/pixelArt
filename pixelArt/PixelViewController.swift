@@ -10,8 +10,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
-   
+class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate, ColorPickerControlDelegate {
+    
     let pixel = Pixel()
     
     private var viewHolder: ViewHolder {
@@ -20,7 +20,8 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
 
     // Loads the view
     override func loadView() {
-        view = ViewHolder()
+        view = ViewHolder(frame: UIScreen.main.bounds)
+        
         print("Detail view load")
     }
     
@@ -30,25 +31,36 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate {
         // Set delegates
         pixel.delegate = self
         viewHolder.pixelView.delegate = self
+        viewHolder.colorPickerControl.delegate = self
     }
     
-    func cellTouchesBegan(_ pos: CGPoint, color: CGColor) {
+    func cellTouchesBegan(_ pos: CGPoint) {
         print("Updating model")
         // Update model
         let position = CGPoint(x: Int(pos.x), y: Int(pos.y))
         pixel.positions.append(position)
-        pixel.colors.append(color)
+        pixel.colors.append(pixel.currentColor)
         viewHolder.pixelView.positionsToDraw = pixel.positions
         viewHolder.pixelView.colorsToDraw = pixel.colors
-        
+
         pixel.uploadNewPixel(pos: position)
     }
     
-    func pixelsLoaded(_ pos: [CGPoint], color: [CGColor]) {
+    func cellTouchesEnded() {
+       // viewHolder.isScrollEnabled = true
+    }
+    
+    func pixelsLoaded(_ pos: [CGPoint], color: [UIColor]) {
         print("Updating view")
         //Update view
         viewHolder.pixelView.colorsToDraw = color
         viewHolder.pixelView.positionsToDraw = pos
+    }
+    
+    func colorChosen(_ color: UIColor) {
+        pixel.currentColor = color
+        print("Color chosen!")
+        print(color)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

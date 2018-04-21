@@ -9,16 +9,17 @@
 import Foundation
 import UIKit
 
-class ViewHolder: UIScrollView, UIScrollViewDelegate {
+class ViewHolder: UIView, UIScrollViewDelegate {
     
 
-    var pixelViewWidth = UIScreen.main.bounds.width*3
-    var pixelViewHeight = UIScreen.main.bounds.height*3
+    //var pixelViewWidth = UIScreen.main.bounds.width*5
+    //var pixelViewHeight = UIScreen.main.bounds.height*5
+    let pixelViewSizeFactor: CGFloat = 5
     
-    let parentView: UIView = {
-        let parentView = UIView()
-        parentView.translatesAutoresizingMaskIntoConstraints = false
-        return parentView
+    let colorPickerControl: ColorPickerControl = {
+        let colorPickerControl = ColorPickerControl()
+        colorPickerControl.translatesAutoresizingMaskIntoConstraints = false
+        return colorPickerControl
     }()
     
     let pixelView: PixelView = {
@@ -29,6 +30,19 @@ class ViewHolder: UIScrollView, UIScrollViewDelegate {
         return pixelView
     }()
     
+    let pixelScrollView: UIScrollView = {
+        
+        let pixelScrollView = UIScrollView()
+        pixelScrollView.translatesAutoresizingMaskIntoConstraints = false
+        pixelScrollView.maximumZoomScale = 50
+        pixelScrollView.bouncesZoom = false
+        pixelScrollView.showsHorizontalScrollIndicator = false
+        pixelScrollView.showsVerticalScrollIndicator = false
+        pixelScrollView.bounces = false
+     
+        return pixelScrollView
+    }()
+    
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return pixelView
     }
@@ -37,18 +51,30 @@ class ViewHolder: UIScrollView, UIScrollViewDelegate {
     //ADD SUBVIEWS AND TARGETS
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.maximumZoomScale = 50
         
-        self.minimumZoomScale = (UIScreen.main.bounds.width/pixelViewWidth > UIScreen.main.bounds.height/pixelViewHeight) ? UIScreen.main.bounds.width/pixelViewWidth : UIScreen.main.bounds.height/pixelViewHeight
-        self.zoomScale = 1
-        self.bouncesZoom = false
-        self.showsHorizontalScrollIndicator = false
-        self.showsVerticalScrollIndicator = false
-        self.contentSize = CGSize(width: pixelViewWidth, height: pixelViewHeight)
-        self.bounces = false
-        delegate = self
-        pixelView.frame = CGRect(x: 0, y: 0, width: pixelViewWidth, height: pixelViewHeight)
-        addSubview(pixelView)
+        self.backgroundColor = UIColor.white
+
+        let minZoom:CGFloat = 0.2
+        let colorPickerFrameHeight: CGFloat = 80
+        pixelView.frame = CGRect(x: 0, y: 0, width: frame.width * pixelViewSizeFactor, height: frame.height * pixelViewSizeFactor)
+        colorPickerControl.frame = CGRect(x: 0, y: frame.height - colorPickerFrameHeight, width: frame.width, height: colorPickerFrameHeight)
+        pixelScrollView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height - colorPickerFrameHeight)
+        pixelScrollView.addSubview(pixelView)
+        pixelScrollView.delegate = self
+        pixelScrollView.minimumZoomScale = minZoom
+        pixelScrollView.zoomScale = minZoom
+        pixelScrollView.contentSize = CGSize(width: pixelView.frame.width, height: pixelView.frame.height)
+        
+        addSubview(colorPickerControl)
+        addSubview(pixelScrollView)
+    }
+    
+    private func viewWidth() -> CGFloat {
+        return UIScreen.main.bounds.width*5
+    }
+    
+    private func viewHeight() -> CGFloat {
+        return UIScreen.main.bounds.height*5
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 
 protocol PixelViewDelegate: AnyObject {
-    func cellTouchesBegan(_ pos: CGPoint, color: CGColor)
+    func cellTouchesBegan(_ pos: CGPoint)
+    func cellTouchesEnded()
 }
 
 class PixelView: UIView {
     
-    var colorsToDraw: [CGColor] = []
+    var colorsToDraw: [UIColor] = []
     {
         didSet {
             print("colorsToDraw updated")
@@ -30,8 +31,6 @@ class PixelView: UIView {
             setNeedsDisplay()
         }
     }
-    
-    var currentColor = UIColor.black.cgColor
     
     private var pixelSize: CGFloat = 3
     
@@ -77,7 +76,7 @@ class PixelView: UIView {
  */
         // Loop through
         for i in 0..<colorsToDraw.count {
-            context.setFillColor(colorsToDraw[i])
+            context.setFillColor(colorsToDraw[i].cgColor)
             let frame = CGRect(x: positionsToDraw[i].x * pixelSize, y: positionsToDraw[i].y * pixelSize, width: pixelSize, height: pixelSize)
             context.fill(frame)
         }
@@ -100,7 +99,19 @@ class PixelView: UIView {
         let touch: UITouch = touches.first!
         let pos: CGPoint = touch.location(in: self)
         let updatedPos = CGPoint(x: pos.x/pixelSize, y: pos.y/pixelSize)
-        delegate?.cellTouchesBegan(updatedPos, color: currentColor)
+        
+        
+        
+        delegate?.cellTouchesBegan(updatedPos)
     }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        delegate?.cellTouchesEnded()
+        
+    }
+    
+    
     
 }

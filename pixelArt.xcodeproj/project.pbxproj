@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38070739208BD9BA00CF84AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070738208BD9BA00CF84AB /* Extensions.swift */; };
+		3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073A208BEAAC00CF84AB /* MainNavigationController.swift */; };
+		3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073C208BEB1A00CF84AB /* MainViewController.swift */; };
 		3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3812E4F5207EBE84001B5800 /* ViewHolder.swift */; };
+		383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383678B7208951B500A3D118 /* ColorPickerControl.swift */; };
 		38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B3F207C15D000A7D488 /* AppDelegate.swift */; };
 		38437B42207C15D000A7D488 /* PixelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B41207C15D000A7D488 /* PixelViewController.swift */; };
 		38437B47207C15D300A7D488 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38437B46207C15D300A7D488 /* Assets.xcassets */; };
@@ -39,7 +43,11 @@
 /* Begin PBXFileReference section */
 		29EAF8C05557DBCAB44C04B2 /* Pods_pixelArt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		352059FFA09E49F597E4A37B /* Pods-pixelArt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixelArt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt.debug.xcconfig"; sourceTree = "<group>"; };
+		38070738208BD9BA00CF84AB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3807073A208BEAAC00CF84AB /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		3807073C208BEB1A00CF84AB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3812E4F5207EBE84001B5800 /* ViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHolder.swift; sourceTree = "<group>"; };
+		383678B7208951B500A3D118 /* ColorPickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerControl.swift; sourceTree = "<group>"; };
 		38437B3C207C15D000A7D488 /* pixelArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pixelArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38437B3F207C15D000A7D488 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38437B41207C15D000A7D488 /* PixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +134,10 @@
 				38951A29207E891200A890C4 /* Pixel.swift */,
 				38951A2B207E8BB000A890C4 /* GoogleService-Info.plist */,
 				3812E4F5207EBE84001B5800 /* ViewHolder.swift */,
+				383678B7208951B500A3D118 /* ColorPickerControl.swift */,
+				38070738208BD9BA00CF84AB /* Extensions.swift */,
+				3807073A208BEAAC00CF84AB /* MainNavigationController.swift */,
+				3807073C208BEB1A00CF84AB /* MainViewController.swift */,
 			);
 			path = pixelArt;
 			sourceTree = "<group>";
@@ -317,10 +329,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				38951A2A207E891200A890C4 /* Pixel.swift in Sources */,
+				383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */,
+				3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */,
 				38437B42207C15D000A7D488 /* PixelViewController.swift in Sources */,
 				3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */,
 				38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */,
+				3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */,
 				38951A28207E844000A890C4 /* PixelView.swift in Sources */,
+				38070739208BD9BA00CF84AB /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
