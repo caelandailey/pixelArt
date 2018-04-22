@@ -11,9 +11,6 @@ import UIKit
 
 class ViewHolder: UIView, UIScrollViewDelegate {
     
-
-    //var pixelViewWidth = UIScreen.main.bounds.width*5
-    //var pixelViewHeight = UIScreen.main.bounds.height*5
     let pixelViewSizeFactor: CGFloat = 5
     
     let colorPickerControl: ColorPickerControl = {
@@ -49,24 +46,29 @@ class ViewHolder: UIView, UIScrollViewDelegate {
     
     
     //ADD SUBVIEWS AND TARGETS
-    override init(frame: CGRect) {
+    init(frame: CGRect, sizeFactor: CGFloat) {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.white
 
-        let minZoom:CGFloat = 0.2
         let colorPickerFrameHeight: CGFloat = 80
-        pixelView.frame = CGRect(x: 0, y: 0, width: frame.width * pixelViewSizeFactor, height: frame.height * pixelViewSizeFactor)
+        pixelView.frame = CGRect(x: 0, y: 0, width: frame.width * sizeFactor, height: (frame.height - colorPickerFrameHeight) * sizeFactor)
+        pixelView.pixelSize = 10/sizeFactor
         colorPickerControl.frame = CGRect(x: 0, y: frame.height - colorPickerFrameHeight, width: frame.width, height: colorPickerFrameHeight)
         pixelScrollView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height - colorPickerFrameHeight)
         pixelScrollView.addSubview(pixelView)
         pixelScrollView.delegate = self
-        pixelScrollView.minimumZoomScale = minZoom
-        pixelScrollView.zoomScale = minZoom
+        pixelScrollView.minimumZoomScale = 1/sizeFactor
+        pixelScrollView.zoomScale = 1/sizeFactor
         pixelScrollView.contentSize = CGSize(width: pixelView.frame.width, height: pixelView.frame.height)
         
         addSubview(colorPickerControl)
         addSubview(pixelScrollView)
+    }
+    
+    override func layoutSubviews() {
+        pixelView.setNeedsDisplay()
+        pixelScrollView.setNeedsDisplay()
     }
     
     private func viewWidth() -> CGFloat {

@@ -31,8 +31,9 @@ class PixelView: UIView {
             setNeedsDisplay()
         }
     }
+   
     
-    private var pixelSize: CGFloat = 3
+    var pixelSize: CGFloat = 2
     
     weak var delegate: PixelViewDelegate? = nil
     
@@ -41,9 +42,7 @@ class PixelView: UIView {
         
         
         print("Attempting to draw")
-        if(colorsToDraw.count == 0) {
-            return
-        }
+ 
         
         print("before context")
         guard let context: CGContext = UIGraphicsGetCurrentContext() else {
@@ -56,24 +55,24 @@ class PixelView: UIView {
             return
         }
         // GRIDS
-        /*
-        for i in 0..<Int(self.bounds.width) {
-            if (i & 1 == 0) {
-                continue
+        if (pixelSize > 4) {
+            for i in 0..<Int(self.bounds.width) {
+                if (i % Int(pixelSize) == 0 || i % Int(pixelSize) == Int(pixelSize-1)) {
+                    context.setFillColor(UIColor(red: 240/256, green: 240/256, blue: 240/256, alpha: 1.0).cgColor)
+                    let frame = CGRect(x: i, y: 0, width: 1, height: Int(self.bounds.height))
+                    context.fill(frame)
+                }
+                
             }
-            context.setFillColor(UIColor(red: 250/256, green: 250/256, blue: 250/256, alpha: 1.0).cgColor)
-            let frame = CGRect(x: i, y: 0, width: 1, height: Int(self.bounds.height))
-            context.fill(frame)
-        }
-        for j in 0..<Int(self.bounds.height) {
-            if (j & 1 == 0) {
-                continue
+            for j in 0..<Int(self.bounds.height) {
+                if (j % Int(pixelSize) == 0 || j % Int(pixelSize) == Int(pixelSize-1)) {
+                    context.setFillColor(UIColor(red: 240/256, green: 240/256, blue: 240/256, alpha: 1.0).cgColor)
+                    let frame = CGRect(x: 0, y: j, width: Int(self.bounds.width), height: 1)
+                    context.fill(frame)
+                }
+                
             }
-            context.setFillColor(UIColor(red: 250/256, green: 250/256, blue: 250/256, alpha: 1.0).cgColor)
-            let frame = CGRect(x: 0, y: j, width: Int(self.bounds.width), height: 1)
-            context.fill(frame)
         }
- */
         // Loop through
         for i in 0..<colorsToDraw.count {
             context.setFillColor(colorsToDraw[i].cgColor)

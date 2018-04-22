@@ -19,8 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
+        /*
         window?.backgroundColor = UIColor(red: 245/256, green: 245/256, blue: 245/256, alpha: 1.0)
         window?.rootViewController = PixelViewController()
+ */
+        let mainViewController = MainViewController()
+        window?.rootViewController = MainNavigationController(rootViewController: mainViewController)
         window?.makeKeyAndVisible()
         return true
     }

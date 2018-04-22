@@ -10,6 +10,8 @@
 		38070739208BD9BA00CF84AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070738208BD9BA00CF84AB /* Extensions.swift */; };
 		3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073A208BEAAC00CF84AB /* MainNavigationController.swift */; };
 		3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073C208BEB1A00CF84AB /* MainViewController.swift */; };
+		3807073F208BEF2D00CF84AB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073E208BEF2D00CF84AB /* MainView.swift */; };
+		38070741208C073100CF84AB /* NewPixelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070740208C073100CF84AB /* NewPixelViewController.swift */; };
 		3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3812E4F5207EBE84001B5800 /* ViewHolder.swift */; };
 		383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383678B7208951B500A3D118 /* ColorPickerControl.swift */; };
 		38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B3F207C15D000A7D488 /* AppDelegate.swift */; };
@@ -46,6 +48,8 @@
 		38070738208BD9BA00CF84AB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3807073A208BEAAC00CF84AB /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		3807073C208BEB1A00CF84AB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3807073E208BEF2D00CF84AB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		38070740208C073100CF84AB /* NewPixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPixelViewController.swift; sourceTree = "<group>"; };
 		3812E4F5207EBE84001B5800 /* ViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHolder.swift; sourceTree = "<group>"; };
 		383678B7208951B500A3D118 /* ColorPickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerControl.swift; sourceTree = "<group>"; };
 		38437B3C207C15D000A7D488 /* pixelArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pixelArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +142,8 @@
 				38070738208BD9BA00CF84AB /* Extensions.swift */,
 				3807073A208BEAAC00CF84AB /* MainNavigationController.swift */,
 				3807073C208BEB1A00CF84AB /* MainViewController.swift */,
+				3807073E208BEF2D00CF84AB /* MainView.swift */,
+				38070740208C073100CF84AB /* NewPixelViewController.swift */,
 			);
 			path = pixelArt;
 			sourceTree = "<group>";
@@ -331,12 +337,14 @@
 				38951A2A207E891200A890C4 /* Pixel.swift in Sources */,
 				383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */,
 				3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */,
+				3807073F208BEF2D00CF84AB /* MainView.swift in Sources */,
 				38437B42207C15D000A7D488 /* PixelViewController.swift in Sources */,
 				3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */,
 				38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */,
 				3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */,
 				38951A28207E844000A890C4 /* PixelView.swift in Sources */,
 				38070739208BD9BA00CF84AB /* Extensions.swift in Sources */,
+				38070741208C073100CF84AB /* NewPixelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

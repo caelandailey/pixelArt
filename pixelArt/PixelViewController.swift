@@ -20,7 +20,7 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate, C
 
     // Loads the view
     override func loadView() {
-        view = ViewHolder(frame: UIScreen.main.bounds)
+        view = ViewHolder(frame: UIScreen.main.bounds, sizeFactor: 5)
         
         print("Detail view load")
     }
@@ -30,6 +30,7 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate, C
         
         // Set delegates
         pixel.delegate = self
+ 
         viewHolder.pixelView.delegate = self
         viewHolder.colorPickerControl.delegate = self
     }

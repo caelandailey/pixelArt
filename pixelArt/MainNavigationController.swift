@@ -9,12 +9,16 @@
 import Foundation
 import UIKit
 
-class MainNavigationController: UINavigationController {
+class MainNavigationController: UINavigationController, UINavigationControllerDelegate {
     
     override init(rootViewController: UIViewController) {
         
         super.init(rootViewController: rootViewController)
+
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         
+        print("Create navigation controller")
     }
     
     // Required?
@@ -25,15 +29,6 @@ class MainNavigationController: UINavigationController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
-    /*
-    // Tab bar item
-    let alarmListButton : UITabBarItem = {
-        let alarmListButton = UITabBarItem()
-        alarmListButton.title = "Alarms"
-        alarmListButton.image = UIImage(named: "alarm_icon")
-        
-        return alarmListButton
-    }()
-    */
 }
