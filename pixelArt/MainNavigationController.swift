@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// NOT CURRENTLY USED!???
 class MainNavigationController: UINavigationController, UINavigationControllerDelegate {
     
     override init(rootViewController: UIViewController) {
@@ -17,8 +18,7 @@ class MainNavigationController: UINavigationController, UINavigationControllerDe
 
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        
-        print("Create navigation controller")
+      
     }
     
     // Required?

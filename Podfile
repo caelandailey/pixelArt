@@ -9,7 +9,10 @@ target 'pixelArt' do
 
   pod 'Firebase/Core'
   pod ‘Firebase/Database'
-
+  pod 'Firebase/Auth'
+  pod 'FBSDKLoginKit'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
 
 
 end

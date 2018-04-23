@@ -12,6 +12,11 @@
 		3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073C208BEB1A00CF84AB /* MainViewController.swift */; };
 		3807073F208BEF2D00CF84AB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073E208BEF2D00CF84AB /* MainView.swift */; };
 		38070741208C073100CF84AB /* NewPixelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070740208C073100CF84AB /* NewPixelViewController.swift */; };
+		38070785208D38BA00CF84AB /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070784208D38BA00CF84AB /* ContainerViewController.swift */; };
+		3807078F208D44EF00CF84AB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807078E208D44EF00CF84AB /* MenuViewController.swift */; };
+		38070791208D45D800CF84AB /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070790208D45D800CF84AB /* MenuView.swift */; };
+		38070793208D5E8E00CF84AB /* DrawingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070792208D5E8E00CF84AB /* DrawingsTableViewController.swift */; };
+		38070796208D74FD00CF84AB /* PixelDataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070795208D74FD00CF84AB /* PixelDataset.swift */; };
 		3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3812E4F5207EBE84001B5800 /* ViewHolder.swift */; };
 		383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383678B7208951B500A3D118 /* ColorPickerControl.swift */; };
 		38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B3F207C15D000A7D488 /* AppDelegate.swift */; };
@@ -50,6 +55,12 @@
 		3807073C208BEB1A00CF84AB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3807073E208BEF2D00CF84AB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		38070740208C073100CF84AB /* NewPixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPixelViewController.swift; sourceTree = "<group>"; };
+		38070744208C294300CF84AB /* pixelArt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixelArt-Bridging-Header.h"; sourceTree = "<group>"; };
+		38070784208D38BA00CF84AB /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		3807078E208D44EF00CF84AB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		38070790208D45D800CF84AB /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		38070792208D5E8E00CF84AB /* DrawingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingsTableViewController.swift; sourceTree = "<group>"; };
+		38070795208D74FD00CF84AB /* PixelDataset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelDataset.swift; sourceTree = "<group>"; };
 		3812E4F5207EBE84001B5800 /* ViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHolder.swift; sourceTree = "<group>"; };
 		383678B7208951B500A3D118 /* ColorPickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerControl.swift; sourceTree = "<group>"; };
 		38437B3C207C15D000A7D488 /* pixelArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pixelArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +116,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		38070783208D38A400CF84AB /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				38070784208D38BA00CF84AB /* ContainerViewController.swift */,
+				3807073C208BEB1A00CF84AB /* MainViewController.swift */,
+				3807073E208BEF2D00CF84AB /* MainView.swift */,
+				3807078E208D44EF00CF84AB /* MenuViewController.swift */,
+				38070790208D45D800CF84AB /* MenuView.swift */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		38070794208D654600CF84AB /* Pixel */ = {
+			isa = PBXGroup;
+			children = (
+				38437B41207C15D000A7D488 /* PixelViewController.swift */,
+				38951A27207E844000A890C4 /* PixelView.swift */,
+				38951A29207E891200A890C4 /* Pixel.swift */,
+				38070740208C073100CF84AB /* NewPixelViewController.swift */,
+			);
+			path = Pixel;
+			sourceTree = "<group>";
+		};
 		38437B33207C15D000A7D488 = {
 			isa = PBXGroup;
 			children = (
@@ -129,21 +163,20 @@
 		38437B3E207C15D000A7D488 /* pixelArt */ = {
 			isa = PBXGroup;
 			children = (
+				38070783208D38A400CF84AB /* MainMenu */,
+				38070794208D654600CF84AB /* Pixel */,
 				38437B3F207C15D000A7D488 /* AppDelegate.swift */,
 				38437B46207C15D300A7D488 /* Assets.xcassets */,
 				38437B48207C15D300A7D488 /* LaunchScreen.storyboard */,
 				38437B4B207C15D300A7D488 /* Info.plist */,
-				38437B41207C15D000A7D488 /* PixelViewController.swift */,
-				38951A27207E844000A890C4 /* PixelView.swift */,
-				38951A29207E891200A890C4 /* Pixel.swift */,
 				38951A2B207E8BB000A890C4 /* GoogleService-Info.plist */,
 				3812E4F5207EBE84001B5800 /* ViewHolder.swift */,
 				383678B7208951B500A3D118 /* ColorPickerControl.swift */,
 				38070738208BD9BA00CF84AB /* Extensions.swift */,
 				3807073A208BEAAC00CF84AB /* MainNavigationController.swift */,
-				3807073C208BEB1A00CF84AB /* MainViewController.swift */,
-				3807073E208BEF2D00CF84AB /* MainView.swift */,
-				38070740208C073100CF84AB /* NewPixelViewController.swift */,
+				38070744208C294300CF84AB /* pixelArt-Bridging-Header.h */,
+				38070792208D5E8E00CF84AB /* DrawingsTableViewController.swift */,
+				38070795208D74FD00CF84AB /* PixelDataset.swift */,
 			);
 			path = pixelArt;
 			sourceTree = "<group>";
@@ -227,6 +260,7 @@
 				TargetAttributes = {
 					38437B3B207C15D000A7D488 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 					38437B4F207C15D300A7D488 = {
 						CreatedOnToolsVersion = 9.3;
@@ -312,12 +346,24 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -337,13 +383,18 @@
 				38951A2A207E891200A890C4 /* Pixel.swift in Sources */,
 				383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */,
 				3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */,
+				38070793208D5E8E00CF84AB /* DrawingsTableViewController.swift in Sources */,
 				3807073F208BEF2D00CF84AB /* MainView.swift in Sources */,
+				38070796208D74FD00CF84AB /* PixelDataset.swift in Sources */,
 				38437B42207C15D000A7D488 /* PixelViewController.swift in Sources */,
 				3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */,
 				38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */,
+				38070791208D45D800CF84AB /* MenuView.swift in Sources */,
+				3807078F208D44EF00CF84AB /* MenuViewController.swift in Sources */,
 				3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */,
 				38951A28207E844000A890C4 /* PixelView.swift in Sources */,
 				38070739208BD9BA00CF84AB /* Extensions.swift in Sources */,
+				38070785208D38BA00CF84AB /* ContainerViewController.swift in Sources */,
 				38070741208C073100CF84AB /* NewPixelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,16 +559,19 @@
 			baseConfigurationReference = 352059FFA09E49F597E4A37B /* Pods-pixelArt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N3VBXEQWW6;
 				INFOPLIST_FILE = pixelArt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = csd.pixelArt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "pixelArt/pixelArt-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -528,16 +582,18 @@
 			baseConfigurationReference = 7D1148CA8929761D33679D70 /* Pods-pixelArt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N3VBXEQWW6;
 				INFOPLIST_FILE = pixelArt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = csd.pixelArt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "pixelArt/pixelArt-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
