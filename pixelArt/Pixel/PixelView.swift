@@ -48,6 +48,7 @@ class PixelView: UIView {
         guard let context: CGContext = UIGraphicsGetCurrentContext() else {
             return
         }
+        
     print("Drawing view")
         // Check error
         if (colorsToDraw.count != positionsToDraw.count) {

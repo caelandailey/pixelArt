@@ -49,7 +49,7 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
     }
     
     func cellTouchesEnded() {
-        // viewHolder.isScrollEnabled = true
+        
     }
 
     func colorChosen(_ color: UIColor) {
@@ -58,12 +58,39 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
 
     }
     
- 
-    
     func alertYesButton(action: UIAlertAction) {
         print("SAVE")
+        saveDrawing()
         self.navigationController?.popViewController(animated: true)
 
+    }
+    
+    private func saveDrawing() {
+        let entry = PixelDataset.Entry(
+            pixelPositions: convertCGPointToString(positions),
+            pixelColors: convertColorToInt(colors)
+        )
+        
+       PixelDataset.appendEntry(entry)
+    }
+    
+    private func convertCGPointToString(_ points: [CGPoint]) -> [String] {
+        var newPoints: [String] = []
+        
+        for p in points {
+            newPoints.append(NSStringFromCGPoint(p))
+        }
+        return newPoints
+    }
+    
+    private func convertColorToInt(_ colors: [UIColor]) -> [Int] {
+        var newColors: [Int] = []
+        
+        for c in colors {
+            newColors.append(c.toHexInt())
+        }
+        
+        return newColors
     }
     
     func alertNoButton(action: UIAlertAction) {
@@ -78,6 +105,4 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: alertNoButton))
         self.present(alert, animated: true, completion: nil)
     }
-   
 }
-

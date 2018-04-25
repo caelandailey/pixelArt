@@ -17,6 +17,7 @@
 		38070791208D45D800CF84AB /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070790208D45D800CF84AB /* MenuView.swift */; };
 		38070793208D5E8E00CF84AB /* DrawingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070792208D5E8E00CF84AB /* DrawingsTableViewController.swift */; };
 		38070796208D74FD00CF84AB /* PixelDataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070795208D74FD00CF84AB /* PixelDataset.swift */; };
+		38070798208FB82F00CF84AB /* PixelPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070797208FB82F00CF84AB /* PixelPreview.swift */; };
 		3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3812E4F5207EBE84001B5800 /* ViewHolder.swift */; };
 		383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383678B7208951B500A3D118 /* ColorPickerControl.swift */; };
 		38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38437B3F207C15D000A7D488 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		38070790208D45D800CF84AB /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		38070792208D5E8E00CF84AB /* DrawingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingsTableViewController.swift; sourceTree = "<group>"; };
 		38070795208D74FD00CF84AB /* PixelDataset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelDataset.swift; sourceTree = "<group>"; };
+		38070797208FB82F00CF84AB /* PixelPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelPreview.swift; sourceTree = "<group>"; };
 		3812E4F5207EBE84001B5800 /* ViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHolder.swift; sourceTree = "<group>"; };
 		383678B7208951B500A3D118 /* ColorPickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerControl.swift; sourceTree = "<group>"; };
 		38437B3C207C15D000A7D488 /* pixelArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pixelArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +137,7 @@
 				38951A27207E844000A890C4 /* PixelView.swift */,
 				38951A29207E891200A890C4 /* Pixel.swift */,
 				38070740208C073100CF84AB /* NewPixelViewController.swift */,
+				38070797208FB82F00CF84AB /* PixelPreview.swift */,
 			);
 			path = Pixel;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38070798208FB82F00CF84AB /* PixelPreview.swift in Sources */,
 				38951A2A207E891200A890C4 /* Pixel.swift in Sources */,
 				383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */,
 				3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */,
@@ -563,7 +567,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N3VBXEQWW6;
 				INFOPLIST_FILE = pixelArt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -586,7 +590,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N3VBXEQWW6;
 				INFOPLIST_FILE = pixelArt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

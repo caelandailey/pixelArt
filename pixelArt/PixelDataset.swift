@@ -23,12 +23,11 @@ final class PixelDataset {
             case pixelPositions
             case pixelColors
         }
-        let pixel = CGPointFromString(<#T##string: String##String#>)
         
-        let pixelPositions: [CGPoint]
-        let pixelColors: [UIColor]
+        let pixelPositions: [String]
+        let pixelColors: [Int]
         
-        init(pixelPositions: [CGPoint], pixelColors: [UIColor]) {
+        init(pixelPositions: [String], pixelColors: [Int]) {
 
             self.pixelPositions = pixelPositions
             self.pixelColors = pixelColors
@@ -220,3 +219,4 @@ final class PixelDataset {
     
     
 }
+

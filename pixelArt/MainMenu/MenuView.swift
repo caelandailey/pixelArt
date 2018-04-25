@@ -102,24 +102,54 @@ class MenuView: UIView {
     }
     
     override func layoutSubviews() {
-        let width = self.frame.width + self.frame.origin.x
-        let x = self.frame.origin.x * -1
+        let offSet: CGFloat = 10
+        let width = self.frame.width + self.frame.origin.x + offSet
+        let x = (self.frame.origin.x * -1) - offSet
+        let viewWidth = self.frame.width + self.frame.origin.x
         
-        userView.frame = CGRect(x: x, y: 0, width: width, height: self.frame.height/4)
-        userImage.frame = CGRect(x: userView.frame.width/5, y: userView.frame.width/4, width: userView.frame.width * 3/5, height: userView.frame.width*3/5)
+        userView.frame = CGRect(x: 0, y: 0, width: width, height: self.frame.height/4)
+        userImage.frame = CGRect(x: viewWidth/5 + offSet, y: viewWidth/4, width: viewWidth * 3/5, height: viewWidth*3/5)
     
-        userLabel.frame = CGRect(x: 5, y: userImage.frame.origin.y + userImage.frame.height, width: width - 10, height: userView.frame.height-(userImage.frame.origin.y + userImage.frame.height)-5)
-        drawingsButton.frame = CGRect(x: x, y: userView.frame.height + userView.frame.origin.y, width: width, height: 60)
-        animationsButton.frame = CGRect(x: x, y: drawingsButton.frame.height + drawingsButton.frame.origin.y, width: width, height: 60)
-        friendsButton.frame = CGRect(x: x, y: animationsButton.frame.height + animationsButton.frame.origin.y, width: width, height: 60)
-        settingsButton.frame = CGRect(x: x, y: friendsButton.frame.height + friendsButton.frame.origin.y, width: width, height: 60)
-        logoutButton.frame = CGRect(x: x, y: settingsButton.frame.height + settingsButton.frame.origin.y, width: width, height: 60)
+        userLabel.frame = CGRect(x: 5 + offSet, y: userImage.frame.origin.y + userImage.frame.height, width: width - 10 - offSet, height: userView.frame.height-(userImage.frame.origin.y + userImage.frame.height)-5)
+        drawingsButton.frame = CGRect(x: 0, y: userView.frame.height + userView.frame.origin.y, width: width, height: 60)
+        animationsButton.frame = CGRect(x: 0, y: drawingsButton.frame.height + drawingsButton.frame.origin.y, width: width, height: 60)
+        friendsButton.frame = CGRect(x: 0, y: animationsButton.frame.height + animationsButton.frame.origin.y, width: width, height: 60)
+        settingsButton.frame = CGRect(x: 0, y: friendsButton.frame.height + friendsButton.frame.origin.y, width: width, height: 60)
+            
+            logoutButton.frame = CGRect(x: 0, y: settingsButton.frame.height + settingsButton.frame.origin.y, width: width, height: 60)
+       
+        
         
         drawingsButton.setNeedsDisplay()
         animationsButton.setNeedsDisplay()
         friendsButton.setNeedsDisplay()
         settingsButton.setNeedsDisplay()
         logoutButton.setNeedsDisplay()
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            
+            self.userView.frame = CGRect(x: x, y: 0, width: width, height: self.frame.height/4)
+        })
+        UIView.animate(withDuration: 0.5, delay: 0.05, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            
+            self.drawingsButton.frame = CGRect(x: x, y: self.userView.frame.height + self.userView.frame.origin.y, width: width, height: 60)
+        })
+        UIView.animate(withDuration: 0.5, delay: 0.10, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            
+             self.animationsButton.frame = CGRect(x: x, y: self.drawingsButton.frame.height + self.drawingsButton.frame.origin.y, width: width, height: 60)
+        })
+        UIView.animate(withDuration: 0.5, delay: 0.15, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            
+            self.friendsButton.frame = CGRect(x: x, y: self.animationsButton.frame.height + self.animationsButton.frame.origin.y, width: width, height: 60)
+        })
+        UIView.animate(withDuration: 0.5, delay: 0.20, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            
+            self.settingsButton.frame = CGRect(x: x, y: self.friendsButton.frame.height + self.friendsButton.frame.origin.y, width: width, height: 60)
+        })
+        UIView.animate(withDuration: 0.5, delay: 0.25, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            
+            self.logoutButton.frame = CGRect(x: x, y: self.settingsButton.frame.height + self.settingsButton.frame.origin.y, width: width, height: 60)
+        })
     }
     
     @objc func goToDrawings() {
