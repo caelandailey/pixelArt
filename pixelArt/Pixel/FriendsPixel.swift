@@ -1,8 +1,8 @@
 //
-//  Pixel.swift
+//  FriendsPixel.swift
 //  pixelArt
 //
-//  Created by Caelan Dailey on 4/11/18.
+//  Created by Caelan Dailey on 4/25/18.
 //  Copyright © 2018 Caelan Dailey. All rights reserved.
 //
 
@@ -10,13 +10,14 @@ import Foundation
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
-protocol PixelDelegate: AnyObject {
+protocol FriendsPixelDelegate: AnyObject {
     func pixelsLoaded(_ pos: [CGPoint], color: [UIColor])
 }
-class Pixel {
+class FriendsPixel {
     
-    weak var delegate: PixelDelegate? = nil
+    weak var delegate: FriendsPixelDelegate? = nil
     var ref: DatabaseReference!
     
     var positions: [CGPoint] = []
@@ -34,11 +35,11 @@ class Pixel {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func loadNewPixels() {
+        let id = Auth.auth().currentUser?.uid
+        let ref = Database.database().reference().child("\(id)").child("1")
         
-        let ref = Database.database().reference().child("MainWorld")
-
         ref.observe(.value, with: { snapshot in
             print("loading new pixel")
             
@@ -75,7 +76,7 @@ class Pixel {
                             return
                         }
                     }
-             
+                    
                     
                     self.positions.append(CGPoint(x:x, y:y))
                     
@@ -100,9 +101,12 @@ class Pixel {
         
         let x = Int(pos.x)
         let y = Int(pos.y)
+        guard let id = Auth.auth().currentUser?.uid else {
+            return
+        }
         
-        let itemRef = Database.database().reference().child("MainWorld/\(x),\(y)")
-
+        let itemRef = Database.database().reference().child(id).child("1").child("\(x),\(y)")
+        
         let val: [String: Int] = ["x":x, "y": y, "color" : currentColor.toHexInt(), "timeline": timestamp]
         itemRef.setValue(val)
         

@@ -97,7 +97,8 @@ class MainViewController: UIViewController, MainViewDelegate, LoginButtonDelegat
     
     func goToNewDrawing() {
         print("pushing new drawing")
-        navigationController?.pushViewController(NewPixelViewController(), animated: true)
+        //navigationController?.pushViewController(NewPixelViewController(), animated: true)
+        navigationController?.pushViewController(OnlinePixelViewController(), animated: true)
     }
     
     func goToAnimation() {
