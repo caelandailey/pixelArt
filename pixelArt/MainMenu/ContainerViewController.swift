@@ -11,7 +11,8 @@ import QuartzCore
 
 class ContainerViewController: UIViewController, MainViewControllerDelegate, MenuViewDelegate {
     func goToDrawings() {
-        mainNavigationController.pushViewController(DrawingsTableViewController(), animated: true)
+        //mainNavigationController.pushViewController(DrawingsTableViewController(), animated: true)
+        mainNavigationController.pushViewController(OnlineDrawingsTableViewController(), animated: true)
         animateMenuHandler()
     }
     

@@ -105,7 +105,7 @@ class FriendsPixel {
             return
         }
         
-        let itemRef = Database.database().reference().child(id).child("1").child("\(x),\(y)")
+        let itemRef = Database.database().reference().child(id).child("2").child("\(x),\(y)")
         
         let val: [String: Int] = ["x":x, "y": y, "color" : currentColor.toHexInt(), "timeline": timestamp]
         itemRef.setValue(val)

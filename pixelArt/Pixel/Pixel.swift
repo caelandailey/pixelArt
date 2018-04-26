@@ -45,6 +45,8 @@ class Pixel {
             let queryRef = ref.queryOrdered(byChild: "timeline").queryStarting(atValue: self.lastPixelTime+1)
             
             queryRef.observeSingleEvent(of: .value, with: { snapshot in
+                print("caelandailey")
+                print(snapshot.childrenCount)
                 for child in snapshot.children {
                     let snap = child as! DataSnapshot
                     print(snap.value)

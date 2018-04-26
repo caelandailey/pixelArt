@@ -18,12 +18,27 @@ import Foundation
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
     
     private static var cellReuseIdentifier = "OnlineDrawingsTableViewController.DatasetItemsCellIdentifier"
     
     let delegateID: String = UIDevice.current.identifierForVendor!.uuidString
+    
+    var drawingsColor: [[UIColor]] = [[]] {
+        didSet {
+            datasetUpdated()
+        }
+    }
+    
+    var drawingsPosition: [[CGPoint]] = [[]] {
+        didSet {
+            datasetUpdated()
+        }
+    }
+    
+    var count = 0
     
     // Update on main thread
     func datasetUpdated() {
@@ -41,12 +56,70 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadData()
+        
         PixelDataset.registerDelegate(self)        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: OnlineDrawingsTableViewController.cellReuseIdentifier)
         self.navigationItem.rightBarButtonItem = newGameButton
         self.navigationItem.leftBarButtonItem = refreshListButton
         self.title = "In-progress"
     }
     
+    private func loadData() {
+        
+        guard let id = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let ref = Database.database().reference().child("\(id)")
+        
+        ref.observe(.value, with: { snapshot in
+            print("loading new pixel")
+            self.count = Int(snapshot.childrenCount)
+           //print(snapshot)
+            print(snapshot.childrenCount)
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                
+                print(snap.key)
+                let enumerator = snap.children
+                var colors: [UIColor] = []
+                var positions: [CGPoint] = []
+                
+                for cells in enumerator.allObjects as! [DataSnapshot] {
+                    //print(cell)
+                    
+                    var x = 0
+                    var y = 0
+                    var colorIntVal = 0
+                    
+                    for cell in cells.children.allObjects as! [DataSnapshot] {
+                        print(cell.key)
+                        print(".")
+                        print(cell.value)
+                        
+                        
+                        switch cell.key {
+                            
+                        case "x": x = cell.value as! Int
+                        case "y": y = cell.value as! Int
+                        case "color": colorIntVal = cell.value as! Int
+                            
+                        default: break
+                        }
+                    }
+                    colors.append(UIColor.init(rgb: colorIntVal))
+                    positions.append(CGPoint(x:x,y:y))
+                    
+                }
+                
+                self.drawingsColor.append(colors)
+                self.drawingsPosition.append(positions)
+            }
+        })
+        print("finished loading data")
+        print(drawingsPosition.count)
+        print(drawingsPosition)
+    }
     // Create button
     lazy var newGameButton : UIBarButtonItem = {
         let newGameButton = UIBarButtonItem()
@@ -92,7 +165,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
             return 0
         }
         
-        return PixelDataset.count
+        return count
     }
     
     // THIS CREATES THE CELLS
@@ -104,6 +177,18 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         
         cell.backgroundColor = UIColor.groupTableViewBackground
         
+        
+        // Add preview
+        let pixelPreview = PixelPreview()
+        pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width/2, height: self.tableView.frame.height/2 )
+        pixelPreview.colorsToDraw = drawingsColor[indexPath.row]
+        pixelPreview.positionsToDraw = drawingsPosition[indexPath.row]
+        pixelPreview.backgroundColor = UIColor.white
+        pixelPreview.layer.borderWidth = 1
+        pixelPreview.layer.borderColor = UIColor.black.cgColor
+        cell.addSubview(pixelPreview)
+       
+        /*
         //Add text
         let pixelData = PixelDataset.entry(atIndex: indexPath.row)
         //cell.textLabel?.text = String(pixelData.pixelColors.first!)
@@ -121,7 +206,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         
         //cell.accessoryView = pixelPreview
         cell.addSubview(pixelPreview)
-        
+        */
         return cell
     }
     
