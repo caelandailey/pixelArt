@@ -14,7 +14,7 @@ class DrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
     private static var cellReuseIdentifier = "DrawingsTableViewController.DatasetItemsCellIdentifier"
     
     let delegateID: String = UIDevice.current.identifierForVendor!.uuidString
-    
+
     // Update on main thread
     func datasetUpdated() {
         DispatchQueue.main.async(){
@@ -34,7 +34,7 @@ class DrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: DrawingsTableViewController.cellReuseIdentifier)
         self.navigationItem.rightBarButtonItem = newGameButton
         self.navigationItem.leftBarButtonItem = refreshListButton
-        self.title = "In-progress"
+        
     }
     
     // Create button
@@ -163,6 +163,15 @@ class DrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
         guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count else {
             return
         }
+        
         //navigationController?.pushViewController(ProgressViewController(withIndex: indexPath.row), animated: true)
+        let pixelViewController = ProgressPixelViewController(withIndex: indexPath.row)
+        
+        let pixelData = PixelDataset.entry(atIndex: indexPath.row)
+        //cell.textLabel?.text = String(pixelData.pixelColors.first!)
+        pixelViewController.colors = convertIntToColor(pixelData.pixelColors)
+        pixelViewController.positions = convertStringToCGPoint(pixelData.pixelPositions)
+  
+        navigationController?.pushViewController(pixelViewController, animated: true)
     }
 }

@@ -13,6 +13,7 @@ import FirebaseDatabase
 
 protocol PixelDelegate: AnyObject {
     func pixelsLoaded(_ pos: [CGPoint], color: [UIColor])
+    func userCounted(_ val: Int)
 }
 class Pixel {
     
@@ -29,15 +30,63 @@ class Pixel {
     // Initializer for new games
     init() {
         loadNewPixels()
+        incPlayerCount()
+        watchUserCount()
     }
     
+    func watchUserCount() {
+        
+        let ref = Database.database().reference().child("MainWorld/ActiveUsers")
+        
+        ref.observe(.value, with: { snapshot in
+            print("loading new count")
+            let val = Int(snapshot.childrenCount)
+            self.delegate?.userCounted(val)
+            })
+    }
+    
+    func incPlayerCount() {
+        guard let id = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let ref = Database.database().reference().child("MainWorld/ActiveUsers")
+    
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            
+                let userRef = ref.child(id)
+                userRef.setValue("")
+                userRef.onDisconnectRemoveValue()
+                
+            })
+
+    }
+    
+    func decPlayerCount() {
+        let ref = Database.database().reference().child("MainWorld/Count")
+        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            if let val = currentData.value as? Int {
+                
+                // Set value and report transaction success
+                currentData.value = val - 1
+                
+                return TransactionResult.success(withValue: currentData)
+            }
+            currentData.value = 1
+            return TransactionResult.success(withValue: currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     func loadNewPixels() {
         
-        let ref = Database.database().reference().child("MainWorld")
+        let ref = Database.database().reference().child("MainWorld/Pixels")
 
         ref.observe(.value, with: { snapshot in
             print("loading new pixel")
@@ -85,8 +134,6 @@ class Pixel {
                     
                     self.delegate?.pixelsLoaded(self.positions, color: self.colors)
                     
-                    //self.positions.removeAll()
-                    //self.colors.removeAll()
                 }
             })
             
@@ -103,7 +150,7 @@ class Pixel {
         let x = Int(pos.x)
         let y = Int(pos.y)
         
-        let itemRef = Database.database().reference().child("MainWorld/\(x),\(y)")
+        let itemRef = Database.database().reference().child("MainWorld/Pixels/\(x),\(y)")
 
         let val: [String: Int] = ["x":x, "y": y, "color" : currentColor.toHexInt(), "timeline": timestamp]
         itemRef.setValue(val)

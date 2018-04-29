@@ -31,6 +31,12 @@
 		38A7518B2091059400314382 /* OnlineDrawingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7518A2091059400314382 /* OnlineDrawingsTableViewController.swift */; };
 		38A7518D2091097A00314382 /* FriendsPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7518C2091097A00314382 /* FriendsPixel.swift */; };
 		38A7518F20910F7200314382 /* OnlinePixelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7518E20910F7200314382 /* OnlinePixelViewController.swift */; };
+		38A751912093CA1D00314382 /* DrawingSetupViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751902093CA1D00314382 /* DrawingSetupViewHolder.swift */; };
+		38A751932094FE6E00314382 /* ProgressPixelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751922094FE6E00314382 /* ProgressPixelViewController.swift */; };
+		38A751952095149700314382 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751942095149700314382 /* CountView.swift */; };
+		38A751972095443000314382 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751962095443000314382 /* LoginView.swift */; };
+		38A7519920954FF500314382 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7519820954FF500314382 /* CustomTextField.swift */; };
+		38A7519B20955D5000314382 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7519A20955D5000314382 /* LoginViewController.swift */; };
 		F507F8CCE7948B9CB8CFD413 /* Pods_pixelArt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EAF8C05557DBCAB44C04B2 /* Pods_pixelArt.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +89,12 @@
 		38A7518A2091059400314382 /* OnlineDrawingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineDrawingsTableViewController.swift; sourceTree = "<group>"; };
 		38A7518C2091097A00314382 /* FriendsPixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPixel.swift; sourceTree = "<group>"; };
 		38A7518E20910F7200314382 /* OnlinePixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlinePixelViewController.swift; sourceTree = "<group>"; };
+		38A751902093CA1D00314382 /* DrawingSetupViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingSetupViewHolder.swift; sourceTree = "<group>"; };
+		38A751922094FE6E00314382 /* ProgressPixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPixelViewController.swift; sourceTree = "<group>"; };
+		38A751942095149700314382 /* CountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
+		38A751962095443000314382 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		38A7519820954FF500314382 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		38A7519A20955D5000314382 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		67373E901724B2BC6FBB0A89 /* Pods_pixelArtUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1148CA8929761D33679D70 /* Pods-pixelArt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixelArt.release.xcconfig"; path = "Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt.release.xcconfig"; sourceTree = "<group>"; };
 		A61D16E61C60B6614AFCC270 /* Pods_pixelArtTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +144,10 @@
 				3807073E208BEF2D00CF84AB /* MainView.swift */,
 				3807078E208D44EF00CF84AB /* MenuViewController.swift */,
 				38070790208D45D800CF84AB /* MenuView.swift */,
+				38A751902093CA1D00314382 /* DrawingSetupViewHolder.swift */,
+				38A751962095443000314382 /* LoginView.swift */,
+				38A7519820954FF500314382 /* CustomTextField.swift */,
+				38A7519A20955D5000314382 /* LoginViewController.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -142,10 +158,12 @@
 				38437B41207C15D000A7D488 /* PixelViewController.swift */,
 				38951A27207E844000A890C4 /* PixelView.swift */,
 				38951A29207E891200A890C4 /* Pixel.swift */,
-				38A7518C2091097A00314382 /* FriendsPixel.swift */,
 				38070740208C073100CF84AB /* NewPixelViewController.swift */,
 				38070797208FB82F00CF84AB /* PixelPreview.swift */,
+				38A7518C2091097A00314382 /* FriendsPixel.swift */,
 				38A7518E20910F7200314382 /* OnlinePixelViewController.swift */,
+				38A751922094FE6E00314382 /* ProgressPixelViewController.swift */,
+				38A751942095149700314382 /* CountView.swift */,
 			);
 			path = Pixel;
 			sourceTree = "<group>";
@@ -394,11 +412,14 @@
 			files = (
 				38070798208FB82F00CF84AB /* PixelPreview.swift in Sources */,
 				38951A2A207E891200A890C4 /* Pixel.swift in Sources */,
+				38A751952095149700314382 /* CountView.swift in Sources */,
 				383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */,
 				3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */,
 				38A7518F20910F7200314382 /* OnlinePixelViewController.swift in Sources */,
+				38A751972095443000314382 /* LoginView.swift in Sources */,
 				38070793208D5E8E00CF84AB /* DrawingsTableViewController.swift in Sources */,
 				38A7518B2091059400314382 /* OnlineDrawingsTableViewController.swift in Sources */,
+				38A7519920954FF500314382 /* CustomTextField.swift in Sources */,
 				3807073F208BEF2D00CF84AB /* MainView.swift in Sources */,
 				38070796208D74FD00CF84AB /* PixelDataset.swift in Sources */,
 				38437B42207C15D000A7D488 /* PixelViewController.swift in Sources */,
@@ -408,10 +429,13 @@
 				3807078F208D44EF00CF84AB /* MenuViewController.swift in Sources */,
 				38A7518D2091097A00314382 /* FriendsPixel.swift in Sources */,
 				3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */,
+				38A751932094FE6E00314382 /* ProgressPixelViewController.swift in Sources */,
 				38951A28207E844000A890C4 /* PixelView.swift in Sources */,
 				38070739208BD9BA00CF84AB /* Extensions.swift in Sources */,
 				38070785208D38BA00CF84AB /* ContainerViewController.swift in Sources */,
 				38070741208C073100CF84AB /* NewPixelViewController.swift in Sources */,
+				38A7519B20955D5000314382 /* LoginViewController.swift in Sources */,
+				38A751912093CA1D00314382 /* DrawingSetupViewHolder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

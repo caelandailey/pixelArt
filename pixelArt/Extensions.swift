@@ -8,6 +8,13 @@
 
 import Foundation
 import UIKit
+extension UIImageView {
+    func setImageColor(color: UIColor) {
+        let templateImage = self.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        self.image = templateImage
+        self.tintColor = color
+    }
+}
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {

@@ -10,9 +10,19 @@ import UIKit
 import QuartzCore
 
 class ContainerViewController: UIViewController, MainViewControllerDelegate, MenuViewDelegate {
+    
     func goToDrawings() {
         //mainNavigationController.pushViewController(DrawingsTableViewController(), animated: true)
-        mainNavigationController.pushViewController(OnlineDrawingsTableViewController(), animated: true)
+        let tabBarController = UITabBarController()
+        tabBarController.tabBar.barTintColor = UIColor.white
+        
+        let onlineDrawingsTableViewController = OnlineDrawingsTableViewController()
+        let drawingsTableViewController = DrawingsTableViewController()
+        drawingsTableViewController.title = "Offline"
+        tabBarController.viewControllers = [onlineDrawingsTableViewController, drawingsTableViewController]
+        tabBarController.selectedViewController = onlineDrawingsTableViewController
+        
+        mainNavigationController.pushViewController(tabBarController, animated: true)
         animateMenuHandler()
     }
     

@@ -12,15 +12,45 @@ import FirebaseDatabase
 
 class OnlinePixelViewController: UIViewController, PixelViewDelegate, FriendsPixelDelegate, ColorPickerControlDelegate {
     
+    func userCounted(_ val: Int) {
+        playerCountView.title.text = String(val)
+        playerCountView.setNeedsDisplay()
+    }
+    
+    
     let pixel = FriendsPixel()
+    var ref = ""
+    
+    let playerCountView: CountView = {
+        let view = CountView()
+        view.frame = CGRect(x: -20, y: -20, width: 40, height: 40)
+        let blueColor = UIColor(red: 14/255, green: 122/255, blue: 254/255, alpha: 1.0)
+        view.image.setImageColor(color: blueColor)
+        view.title.textColor = blueColor
+        return view
+    }()
     
     private var viewHolder: ViewHolder {
         return view as! ViewHolder
     }
     
+    init(withRef: String) {
+
+       // drawingRef = withRef
+        super.init(nibName: nil, bundle: nil)
+        pixel.loadRef(withRef)
+        ref = withRef
+        
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // Loads the view
     override func loadView() {
-        view = ViewHolder(frame: UIScreen.main.bounds, sizeFactor: 5)
+        view = ViewHolder(frame: UIScreen.main.bounds, sizeFactor: 1)
         
         print("Detail view load")
     }
@@ -33,6 +63,10 @@ class OnlinePixelViewController: UIViewController, PixelViewDelegate, FriendsPix
         
         viewHolder.pixelView.delegate = self
         viewHolder.colorPickerControl.delegate = self
+        
+        
+        let barButton = UIBarButtonItem.init(customView: playerCountView)
+        self.navigationItem.rightBarButtonItem = barButton
     }
     
     func cellTouchesBegan(_ pos: CGPoint) {
@@ -66,8 +100,14 @@ class OnlinePixelViewController: UIViewController, PixelViewDelegate, FriendsPix
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        guard let id = Auth.auth().currentUser?.uid else {
+            return
+        }
+        print(ref)
+        let userRef = Database.database().reference().child("\(id)/\(ref)/ActiveUsers/\(id)")
+        userRef.removeValue()
         Database.database().reference().removeAllObservers()
+        print("viewWilldissappear from friendspixel")
     }
     
 }

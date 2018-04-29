@@ -1,15 +1,15 @@
 //
-//  NewPixelViewController.swift
+//  ProgressPixelViewController.swift
 //  pixelArt
 //
-//  Created by Caelan Dailey on 4/21/18.
+//  Created by Caelan Dailey on 4/28/18.
 //  Copyright © 2018 Caelan Dailey. All rights reserved.
 //
 
 import UIKit
 
 
-class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerControlDelegate {
+class ProgressPixelViewController: UIViewController, PixelViewDelegate, ColorPickerControlDelegate {
     
     var positions: [CGPoint] = [] {
         didSet {
@@ -26,10 +26,27 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
     
     var currentColor: UIColor = UIColor.blue
     
+    var index = 0
+    
     private var viewHolder: ViewHolder {
         return view as! ViewHolder
     }
     
+    init(withIndex: Int) {
+        // Position in table
+        //index = withIndex
+        
+        //FinishedDataset.sortData(index: FinishedDataset.count-1)
+        
+        index = withIndex
+        super.init(nibName: nil, bundle: nil)
+        
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     // Loads the view
     override func loadView() {
         view = ViewHolder(frame: UIScreen.main.bounds, sizeFactor: 1)
@@ -39,9 +56,9 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
     
     // Load view
     override func viewDidLoad() {
-        self.navigationItem.hidesBackButton = false
+        self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.done, target: self, action: #selector(backHandler))
-  
+        
         viewHolder.pixelView.delegate = self
         viewHolder.colorPickerControl.delegate = self
         
@@ -55,24 +72,24 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
         colors.append(currentColor)
         viewHolder.pixelView.positionsToDraw = positions
         viewHolder.pixelView.colorsToDraw = colors
-
+        
     }
     
     func cellTouchesEnded() {
         
     }
-
+    
     func colorChosen(_ color: UIColor) {
         currentColor = color
         print("Color chosen!")
-
+        
     }
     
     func alertYesButton(action: UIAlertAction) {
         print("SAVE")
         saveDrawing()
         self.navigationController?.popViewController(animated: true)
-
+        
     }
     
     private func saveDrawing() {
@@ -81,7 +98,7 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
             pixelColors: convertColorToInt(colors)
         )
         
-       PixelDataset.appendEntry(entry)
+        PixelDataset.editEntry(atIndex: index, newEntry: entry)
     }
     
     private func convertCGPointToString(_ points: [CGPoint]) -> [String] {
@@ -106,11 +123,11 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
     func alertNoButton(action: UIAlertAction) {
         print("dont save")
         self.navigationController?.popViewController(animated: true)
-
+        
     }
     
     @objc func backHandler() {
-        let alert = UIAlertController(title: "Saving", message: "Do you want to save?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Saving", message: "Do you want to save any changes?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: alertYesButton))
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: alertNoButton))
         self.present(alert, animated: true, completion: nil)

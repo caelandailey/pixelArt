@@ -14,6 +14,7 @@ import FirebaseAuth
 
 protocol FriendsPixelDelegate: AnyObject {
     func pixelsLoaded(_ pos: [CGPoint], color: [UIColor])
+    func userCounted(_ val: Int)
 }
 class FriendsPixel {
     
@@ -27,19 +28,67 @@ class FriendsPixel {
     
     private var lastPixelTime = 0
     
-    // Initializer for new games
-    init() {
+    private var pixelRef: DatabaseReference?
+    
+    
+    
+  
+    
+    func watchUserCount() {
+        guard let ref = pixelRef else {
+       
+            return
+        }
+       
+        
+        ref.child("ActiveUsers").observe(.value, with: { snapshot in
+            print("loading new count")
+            let val = Int(snapshot.childrenCount)
+            self.delegate?.userCounted(val)
+        })
+    }
+    
+    func incPlayerCount() {
+        
+        guard let id = Auth.auth().currentUser?.uid, var ref = pixelRef else {
+            return
+        }
+        
+        ref = ref.child("ActiveUsers")
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            
+            let userRef = ref.child(id)
+            userRef.setValue("")
+            userRef.onDisconnectRemoveValue()
+            
+        })
+        
+    }
+    
+
+    
+    func loadRef(_ ref: String) {
+        guard let id = Auth.auth().currentUser?.uid else {
+            return
+        }
+        if (ref == "") {
+            pixelRef = Database.database().reference().child("\(id)").childByAutoId()
+        } else {
+        pixelRef = Database.database().reference().child("\(id)").child(ref)
+        }
+        
+        incPlayerCount()
+        watchUserCount()
         loadNewPixels()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func loadNewPixels() {
-        let id = Auth.auth().currentUser?.uid
-        let ref = Database.database().reference().child("\(id)").child("1")
-        
+
+        guard var ref = pixelRef else {
+            return
+        }
+        ref = ref.child("Pixels")
         ref.observe(.value, with: { snapshot in
             print("loading new pixel")
             
@@ -101,12 +150,12 @@ class FriendsPixel {
         
         let x = Int(pos.x)
         let y = Int(pos.y)
-        guard let id = Auth.auth().currentUser?.uid else {
+        
+        guard var itemRef = pixelRef else {
             return
         }
         
-        let itemRef = Database.database().reference().child(id).child("2").child("\(x),\(y)")
-        
+        itemRef = itemRef.child("Pixels").child("\(x),\(y)")
         let val: [String: Int] = ["x":x, "y": y, "color" : currentColor.toHexInt(), "timeline": timestamp]
         itemRef.setValue(val)
         

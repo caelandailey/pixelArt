@@ -35,7 +35,8 @@ class PixelPreview: UIView {
         
         
         print("Attempting to draw")
-        
+        print(colorsToDraw)
+        print(positionsToDraw)
         
         print("before context")
         guard let context: CGContext = UIGraphicsGetCurrentContext() else {

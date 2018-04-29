@@ -81,6 +81,8 @@ class MainViewController: UIViewController, MainViewDelegate, LoginButtonDelegat
         loginButton.delegate = self
         //adding it to view
         view.addSubview(loginButton)
+        view.addSubview(LoginView(frame: UIScreen.main.bounds))
+        //self.navigationController?.isToolbarHidden = false
         
         //if the user is already logged in
         if let accessToken = FBSDKAccessToken.current(){
@@ -98,7 +100,7 @@ class MainViewController: UIViewController, MainViewDelegate, LoginButtonDelegat
     func goToNewDrawing() {
         print("pushing new drawing")
         //navigationController?.pushViewController(NewPixelViewController(), animated: true)
-        navigationController?.pushViewController(OnlinePixelViewController(), animated: true)
+        navigationController?.pushViewController(OnlinePixelViewController(withRef: ""), animated: true)
     }
     
     func goToAnimation() {

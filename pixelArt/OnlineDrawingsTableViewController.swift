@@ -26,17 +26,19 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
     
     let delegateID: String = UIDevice.current.identifierForVendor!.uuidString
     
-    var drawingsColor: [[UIColor]] = [[]] {
+    var drawingsColor: [[UIColor]] = [] {
         didSet {
             datasetUpdated()
         }
     }
     
-    var drawingsPosition: [[CGPoint]] = [[]] {
+    var drawingsPosition: [[CGPoint]] = [] {
         didSet {
             datasetUpdated()
         }
     }
+    
+    var drawingsRef: [String] = []
     
     var count = 0
     
@@ -45,12 +47,14 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         DispatchQueue.main.async(){
             self.tableView.reloadData()
             self.tableView.setNeedsDisplay()
+            print("called to update ~!!!!~!~")
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        datasetUpdated()
+        loadData()
+        print("viewdidAppear")
     }
     
     override func viewDidLoad() {
@@ -61,10 +65,13 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         PixelDataset.registerDelegate(self)        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: OnlineDrawingsTableViewController.cellReuseIdentifier)
         self.navigationItem.rightBarButtonItem = newGameButton
         self.navigationItem.leftBarButtonItem = refreshListButton
-        self.title = "In-progress"
+        self.title = "Online"
     }
     
     private func loadData() {
+        
+        drawingsColor.removeAll()
+        drawingsPosition.removeAll()
         
         guard let id = Auth.auth().currentUser?.uid else {
             return
@@ -75,12 +82,14 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         ref.observe(.value, with: { snapshot in
             print("loading new pixel")
             self.count = Int(snapshot.childrenCount)
-           //print(snapshot)
-            print(snapshot.childrenCount)
+           
+       
             for child in snapshot.children {
-                let snap = child as! DataSnapshot
+                var snap = child as! DataSnapshot
+                self.drawingsRef.append(snap.key)
+                snap = snap.childSnapshot(forPath: "Pixels")
                 
-                print(snap.key)
+                
                 let enumerator = snap.children
                 var colors: [UIColor] = []
                 var positions: [CGPoint] = []
@@ -93,9 +102,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
                     var colorIntVal = 0
                     
                     for cell in cells.children.allObjects as! [DataSnapshot] {
-                        print(cell.key)
-                        print(".")
-                        print(cell.value)
+                  
                         
                         
                         switch cell.key {
@@ -112,13 +119,15 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
                     
                 }
                 
+                
                 self.drawingsColor.append(colors)
                 self.drawingsPosition.append(positions)
+                
             }
+
         })
         print("finished loading data")
-        print(drawingsPosition.count)
-        print(drawingsPosition)
+
     }
     // Create button
     lazy var newGameButton : UIBarButtonItem = {
@@ -187,26 +196,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         pixelPreview.layer.borderWidth = 1
         pixelPreview.layer.borderColor = UIColor.black.cgColor
         cell.addSubview(pixelPreview)
-       
-        /*
-        //Add text
-        let pixelData = PixelDataset.entry(atIndex: indexPath.row)
-        //cell.textLabel?.text = String(pixelData.pixelColors.first!)
-        
-        
-        // Add preview
-        let pixelPreview = PixelPreview()
-        //pixelPreview.frame = CGRect(x: 5, y: 5, width: 100, height: 200)
-        pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width/2, height: self.tableView.frame.height/2 )
-        pixelPreview.colorsToDraw = convertIntToColor(pixelData.pixelColors)
-        pixelPreview.positionsToDraw = convertStringToCGPoint(pixelData.pixelPositions)
-        pixelPreview.backgroundColor = UIColor.white
-        pixelPreview.layer.borderWidth = 1
-        pixelPreview.layer.borderColor = UIColor.black.cgColor
-        
-        //cell.accessoryView = pixelPreview
-        cell.addSubview(pixelPreview)
-        */
+    
         return cell
     }
     
@@ -260,63 +250,12 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
             return
         }
         //navigationController?.pushViewController(ProgressViewController(withIndex: indexPath.row), animated: true)
+        let vc: OnlinePixelViewController = OnlinePixelViewController(withRef: drawingsRef[indexPath.row])
+        //vc.pixel.colors = drawingsColor[indexPath.row]
+        //vc.pixel.positions = drawingsPosition[indexPath.row]
+        vc.pixel.loadNewPixels()
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
-    /*
-    
-    func loadNewPixels() -> ([CGPoint], [UIColor]) {
-        
-        let ref = Database.database().reference()
-        let positions: [CGPoint] = []
-        let colors: [UIColor] = []
-        
-        ref.observe(.value, with: { snapshot in
-            print("loading new pixel")
-            
-            let queryRef = ref.queryOrdered(byChild: "timeline").queryStarting(atValue: self.lastPixelTime+1)
-            
-            queryRef.observeSingleEvent(of: .value, with: { snapshot in
-                for child in snapshot.children {
-                    let snap = child as! DataSnapshot
-                    print(snap.value)
-                    
-                    
-                    var x = 0
-                    var y = 0
-                    var colorIntVal = 0
-                    let enumerator = snap.children
-                    for cell in enumerator.allObjects as! [DataSnapshot] {
-                        print(cell)
-                        switch cell.key {
-                            
-                        case "x": x = cell.value as! Int
-                        case "y": y = cell.value as! Int
-                        case "timeline": self.lastPixelTime = cell.value as! Int
-                        case "color": colorIntVal = cell.value as! Int
-                            
-                        default: break
-                        }
-                    }
-                    print(self.lastPixelTime)
-                    print("loaded new pixel")
-                    let color = UIColor.init(rgb: colorIntVal)
-                    if let pixelPos = self.positions.index(of: CGPoint(x:x,y:y)) {
-                        if self.colors[pixelPos] == color {
-                            print("contained pixel returning")
-                            return
-                        }
-                    }
-                    
-                    
-                    positions.append(CGPoint(x:x, y:y))
-                    
-                    colors.append(color)
-                    
-                    return (positions, colors)
-                }
-            })
-            
-        })
-        
-    }
- */
+
 }
