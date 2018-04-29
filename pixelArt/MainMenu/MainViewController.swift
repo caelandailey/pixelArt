@@ -81,7 +81,7 @@ class MainViewController: UIViewController, MainViewDelegate, LoginButtonDelegat
         loginButton.delegate = self
         //adding it to view
         view.addSubview(loginButton)
-        view.addSubview(LoginView(frame: UIScreen.main.bounds))
+        //view.addSubview(LoginView(frame: UIScreen.main.bounds))
         //self.navigationController?.isToolbarHidden = false
         
         //if the user is already logged in

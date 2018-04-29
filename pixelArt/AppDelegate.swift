@@ -22,15 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         FirebaseApp.configure()
         /*
-        window?.backgroundColor = UIColor(red: 245/256, green: 245/256, blue: 245/256, alpha: 1.0)
-        window?.rootViewController = PixelViewController()
- */
-        //let mainViewController = MainViewController()
-        //window?.rootViewController = MainNavigationController(rootViewController: mainViewController)
+        let viewController = ContainerViewController()
+        let navigationController = MainNavigationController(rootViewController: viewController)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        */
+       
+        // CURRENT
+        
         let containerViewController = ContainerViewController()
         
         window!.rootViewController = containerViewController
         window?.makeKeyAndVisible()
+ 
         //return true
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
