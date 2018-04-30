@@ -101,7 +101,7 @@ class DrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
         // Add preview
         let pixelPreview = PixelPreview()
         //pixelPreview.frame = CGRect(x: 5, y: 5, width: 100, height: 200)
-        pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width/2, height: self.tableView.frame.height/2 )
+        pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height )
         pixelPreview.colorsToDraw = convertIntToColor(pixelData.pixelColors)
         pixelPreview.positionsToDraw = convertStringToCGPoint(pixelData.pixelPositions)
         pixelPreview.backgroundColor = UIColor.white

@@ -189,7 +189,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         
         // Add preview
         let pixelPreview = PixelPreview()
-        pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width/2, height: self.tableView.frame.height/2 )
+        pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height )
         pixelPreview.colorsToDraw = drawingsColor[indexPath.row]
         pixelPreview.positionsToDraw = drawingsPosition[indexPath.row]
         pixelPreview.backgroundColor = UIColor.white

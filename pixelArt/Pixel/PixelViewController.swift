@@ -53,7 +53,19 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate, C
         let barButton = UIBarButtonItem.init(customView: playerCountView)
         self.navigationItem.rightBarButtonItem = barButton
         
+        let asked = UserDefaults.standard.bool(forKey: "instructionsShowed")
+        if (asked != true) {
+            UserDefaults.standard.set(true, forKey: "instructionsShowed")
+            showMessage()
+        }
  
+    }
+    
+    func showMessage() {
+        let alert = UIAlertController(title: "Instructions", message: "The dimensions of the world is 800x1220 pixels. If you don't see anything, try zooming in!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
     }
 
     

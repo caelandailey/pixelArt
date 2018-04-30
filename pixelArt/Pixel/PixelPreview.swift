@@ -28,7 +28,7 @@ class PixelPreview: UIView {
     }
     
     
-    var pixelSize: CGFloat = 4
+    var pixelSize: CGFloat = 10
     
     override func draw(_ rect: CGRect) {
         //super.draw(rect)
