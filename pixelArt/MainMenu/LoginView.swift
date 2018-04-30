@@ -11,15 +11,15 @@ import FacebookLogin
 import FBSDKLoginKit
 import FirebaseAuth
 
-class LoginView: UIView, UITextFieldDelegate, LoginButtonDelegate {
-    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
-        
-    }
+protocol LoginViewDelegate: AnyObject {
+    func loginButtonPressed(email: String, password: String)
+    func signupButtonPressed(email: String, password: String)
+}
+
+class LoginView: UIView, UITextFieldDelegate {
+
     
-    func loginButtonDidLogOut(_ loginButton: LoginButton) {
-        
-    }
-    
+    weak var delegate: LoginViewDelegate?
     
     
     let titleLabel: UILabel = {
@@ -42,16 +42,12 @@ class LoginView: UIView, UITextFieldDelegate, LoginButtonDelegate {
         return descriptionLabel
     }()
     
-    let exitButton: UIButton = {
-        let exitButton = UIButton()
-        return exitButton
-    }()
-    
     let usernameTextField: CustomTextField = {
         let usernameTextField = CustomTextField()
         usernameTextField.placeholder = "Username"
         usernameTextField.backgroundColor = .white
         usernameTextField.layer.borderWidth = 1
+        usernameTextField.autocapitalizationType = UITextAutocapitalizationType.none
         let padding = UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 0)
         
         usernameTextField.placeholderRect(forBounds: usernameTextField.bounds)
@@ -64,8 +60,10 @@ class LoginView: UIView, UITextFieldDelegate, LoginButtonDelegate {
         let passwordTextField = CustomTextField()
         passwordTextField.placeholder = "Password"
         passwordTextField.backgroundColor = .white
+        passwordTextField.autocapitalizationType = UITextAutocapitalizationType.none
         passwordTextField.placeholderRect(forBounds: passwordTextField.bounds)
         passwordTextField.layer.borderWidth = 1
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
      
         return passwordTextField
@@ -75,6 +73,7 @@ class LoginView: UIView, UITextFieldDelegate, LoginButtonDelegate {
         let loginButton = UIButton()
         loginButton.setTitle("Log In", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
+        loginButton.reversesTitleShadowWhenHighlighted = true
         loginButton.backgroundColor = UIColor.darkGray
         loginButton.layer.shadowOpacity = 0.4
         loginButton.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -101,19 +100,20 @@ class LoginView: UIView, UITextFieldDelegate, LoginButtonDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        facebookButton.delegate = self
+        
         
         self.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 245/255, alpha: 1.0)
         print("creating loginview")
        
         addSubview(titleLabel)
         addSubview(descriptionLabel)
-        addSubview(exitButton)
         addSubview(usernameTextField)
         addSubview(passwordTextField)
         addSubview(loginButton)
         addSubview(signupButton)
         addSubview(facebookButton)
+        loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        signupButton.addTarget(self, action: #selector(signupButtonPressed), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -125,7 +125,6 @@ class LoginView: UIView, UITextFieldDelegate, LoginButtonDelegate {
         
         titleLabel.frame = CGRect(x: 0, y: self.bounds.height/10, width: self.bounds.width, height: self.bounds.height/10)
         descriptionLabel.frame = CGRect(x: self.bounds.width/5, y: titleLabel.frame.origin.y + titleLabel.frame.height, width: self.bounds.width*3/5, height: self.bounds.height/10)
-        exitButton.frame = CGRect(x: 20, y: 40, width: self.bounds.height/20, height: self.bounds.height/20)
         usernameTextField.frame = CGRect(x: 0, y: descriptionLabel.frame.origin.y+descriptionLabel.frame.height, width: self.bounds.width, height: self.bounds.height/10)
         passwordTextField.frame = CGRect(x: 0, y: usernameTextField.frame.origin.y+usernameTextField.frame.height, width: self.bounds.width, height: self.bounds.height/10)
         loginButton.frame = CGRect( x: 0, y: passwordTextField.frame.origin.y + passwordTextField.frame.height + self.bounds.height/20, width: self.bounds.width, height: self.bounds.height/10)
@@ -135,6 +134,19 @@ class LoginView: UIView, UITextFieldDelegate, LoginButtonDelegate {
         facebookButton.frame.origin = CGPoint(x: facebookButton.frame.origin.x, y: signupButton.frame.origin.y + signupButton.frame.height + self.bounds.height/20)
         facebookButton.frame.size = CGSize(width: self.bounds.width, height: self.bounds.height/10)
         
+    }
+    
+    @objc func loginButtonPressed() {
+        if let username = usernameTextField.text, let password = passwordTextField.text {
+            delegate?.loginButtonPressed(email: username, password: password)
+        }
+        
+    }
+    
+    @objc func signupButtonPressed() {
+        if let username = usernameTextField.text, let password = passwordTextField.text {
+            delegate?.signupButtonPressed(email: username, password: password)
+        }
     }
     
 }

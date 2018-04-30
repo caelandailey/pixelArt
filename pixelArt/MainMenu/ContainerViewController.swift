@@ -6,7 +6,9 @@
 //  Copyright © 2018 Caelan Dailey. All rights reserved.
 
 import UIKit
-
+import FacebookLogin
+import FBSDKLoginKit
+import FirebaseAuth
 import QuartzCore
 
 class ContainerViewController: UIViewController, MainViewControllerDelegate, MenuViewDelegate {
@@ -26,6 +28,33 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
         animateMenuHandler()
     }
     
+    func goToAnimations() {
+        
+        animateMenuHandler()
+    }
+    
+    func logout() {
+        
+        let auth = Auth.auth()
+        if (auth.currentUser != nil) {
+            
+            
+            do {
+                try auth.signOut()
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut()
+                
+                animateMenuHandler()
+                print("user signed out of firebase and facebook")
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        animateMenuHandler()
+        mainNavigationController.pushViewController(LoginViewController(), animated: true)
+    
+        
+    }
     var menuViewController: MenuViewController?
     var mainNavigationController: UINavigationController!
     var mainViewController: MainViewController!

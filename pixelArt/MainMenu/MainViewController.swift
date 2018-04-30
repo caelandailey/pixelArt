@@ -50,22 +50,8 @@ class MainViewController: UIViewController, MainViewDelegate, LoginButtonDelegat
         print("Detail view load")
     }
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-  
-        Auth.auth().signIn(with: credential) { (user, error) in
-            if let error = error {
-                print("user did not login error")
-                return
-            }
-            print("user is signed in")
-        }
+
     
-    }
     
     
 
@@ -74,7 +60,13 @@ class MainViewController: UIViewController, MainViewDelegate, LoginButtonDelegat
         super.viewDidLoad()
         
         viewHolder.delegate = self
+        let asked = UserDefaults.standard.bool(forKey: "askedToLogin")
+        if (Auth.auth().currentUser != nil && asked != true) {
+            UserDefaults.standard.set(true, forKey: "askedToLogin")
+            navigationController?.pushViewController(LoginViewController(), animated: true)
+        }
         
+        /*
         //creating button
         let loginButton = LoginButton(readPermissions: [ .publicProfile ])
         loginButton.center = view.center
@@ -88,6 +80,7 @@ class MainViewController: UIViewController, MainViewDelegate, LoginButtonDelegat
         if let accessToken = FBSDKAccessToken.current(){
             getFBUserData()
         }
+ */
     }
     
     var dict : [String : AnyObject]!

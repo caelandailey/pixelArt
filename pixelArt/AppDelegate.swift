@@ -21,12 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     
         FirebaseApp.configure()
+        // test login
+        /*
+        window!.rootViewController = LoginViewController()
+        window?.makeKeyAndVisible()
+ */
+        // NEW?
         /*
         let viewController = ContainerViewController()
         let navigationController = MainNavigationController(rootViewController: viewController)
-        window?.rootViewController = navigationController
+        window!.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        */
+ */
        
         // CURRENT
         
@@ -34,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window!.rootViewController = containerViewController
         window?.makeKeyAndVisible()
- 
+    
         //return true
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

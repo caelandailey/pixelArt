@@ -8,9 +8,12 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 protocol MenuViewDelegate: AnyObject {
     func goToDrawings()
+    func logout()
+    func goToAnimations()
 }
 
 class MenuView: UIView {
@@ -19,7 +22,12 @@ class MenuView: UIView {
     
     let userImage: UIImageView = {
         let userImage = UIImageView()
-        userImage.image = UIImage(named: "profile_icon")
+        if let image = Auth.auth().currentUser?.photoURL {
+            userImage.downloadedFrom(url: image)
+        } else {
+            userImage.image = UIImage(named: "profile_icon")
+            
+        }
         return userImage
     }()
     let userView: UIView = {
@@ -28,10 +36,17 @@ class MenuView: UIView {
         
         
     }()
+    
+    
+    
     let userLabel: UILabel = {
         let userLabel = UILabel()
         userLabel.adjustsFontSizeToFitWidth = true
-        userLabel.text = "Caelan Dailey"
+        if let name = Auth.auth().currentUser?.displayName {
+            userLabel.text = name
+        } else if let email = Auth.auth().currentUser?.email {
+            userLabel.text = email
+        }
         
         return userLabel
     }()
@@ -72,7 +87,11 @@ class MenuView: UIView {
     
     let logoutButton: UIButton = {
         let logoutButton = UIButton()
-        logoutButton.setTitle("Logout", for: UIControlState.normal)
+        var title = "Log In"
+        if (Auth.auth().currentUser != nil) {
+            title = "Log Out"
+        }
+        logoutButton.setTitle(title, for: UIControlState.normal)
         logoutButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
         logoutButton.contentEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         logoutButton.backgroundColor = .black
@@ -92,6 +111,8 @@ class MenuView: UIView {
         userView.addSubview(userLabel)
         userView.addSubview(userImage)
         drawingsButton.addTarget(self, action: #selector(goToDrawings), for: .touchUpInside)
+
+        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
         self.backgroundColor = UIColor.white
         print("menuView init")
     }
@@ -155,6 +176,10 @@ class MenuView: UIView {
     @objc func goToDrawings() {
         print("button pressed")
         delegate?.goToDrawings()
+    }
+    
+    @objc func logout() {
+        delegate?.logout()
     }
     
 }

@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController{
+    
 
     var viewHolder: MenuView {
         return view as! MenuView
