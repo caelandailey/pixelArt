@@ -61,7 +61,7 @@ class MenuView: UIView {
     }()
     let animationsButton: UIButton = {
         let animationsButton = UIButton()
-        animationsButton.setTitle("Animatons", for: UIControlState.normal)
+        animationsButton.setTitle("Animations", for: UIControlState.normal)
         animationsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
         animationsButton.contentEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         animationsButton.backgroundColor = .black

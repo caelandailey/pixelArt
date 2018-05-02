@@ -69,7 +69,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
             return
         }
         
-        let ref = Database.database().reference().child("\(id)")
+        let ref = Database.database().reference().child("\(id)").child("Drawings")
         
         ref.observe(.value, with: { snapshot in
             print("loading new pixel")

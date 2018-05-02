@@ -75,9 +75,9 @@ class FriendsPixel {
             return
         }
         if (ref == "") {
-            pixelRef = Database.database().reference().child("\(id)").childByAutoId()
+            pixelRef = Database.database().reference().child("\(id)").child("Drawings").childByAutoId()
         } else {
-        pixelRef = Database.database().reference().child("\(id)").child(ref)
+        pixelRef = Database.database().reference().child("\(id)").child("Drawings").child(ref)
             
         }
         
