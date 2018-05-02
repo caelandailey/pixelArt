@@ -67,8 +67,9 @@ class AnimationTableViewController: UITableViewController, PixelDatasetDelegate 
         
         PixelDataset.registerDelegate(self)
         self.navigationItem.rightBarButtonItem = newGameButton
-        self.navigationItem.leftBarButtonItem = refreshListButton
-        self.title = "Online"
+        self.navigationItem.hidesBackButton = false
+        //self.navigationItem.leftBarButtonItem = refreshListButton
+        //self.title = "Online"
         
     }
     
@@ -166,30 +167,17 @@ class AnimationTableViewController: UITableViewController, PixelDatasetDelegate 
         
         // Create and draw
         newGameButton.setTitleTextAttributes(styles, for: UIControlState.normal)
-        newGameButton.action = #selector(goToAlarmView)
+        newGameButton.action = #selector(goToNewAnimation)
         newGameButton.target = self
         return newGameButton
-    }()
-    
-    // Refresh table if buggy
-    lazy var refreshListButton : UIBarButtonItem = {
-        let refreshListButton = UIBarButtonItem()
-        refreshListButton.image = UIImage(named: "refresh_icon")
-        
-        refreshListButton.action = #selector(updateTable)
-        refreshListButton.target = self
-        refreshListButton.style = .plain
-        return refreshListButton
     }()
     
     @objc func updateTable(sender: UIButton) {
         datasetUpdated()
     }
     
-    // Go to new alarm
-    @objc func goToAlarmView(sender: UIBarButtonItem) {
-        
-        //navigationController?.pushViewController(NewGameViewController(), animated: true)
+    @objc func goToNewAnimation() {
+        navigationController?.pushViewController(OnlineAnimationViewController(withRef: ""), animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -276,10 +264,9 @@ class AnimationTableViewController: UITableViewController, PixelDatasetDelegate 
         guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count else {
             return
         }
-        //navigationController?.pushViewController(ProgressViewController(withIndex: indexPath.row), animated: true)
-        let vc: OnlinePixelViewController = OnlinePixelViewController(withRef: drawingsRef[indexPath.row])
-        //vc.pixel.colors = drawingsColor[indexPath.row]
-        //vc.pixel.positions = drawingsPosition[indexPath.row]
+
+        let vc: OnlineAnimationViewController = OnlineAnimationViewController(withRef: drawingsRef[indexPath.row])
+
         vc.pixel.loadNewPixels()
         
         navigationController?.pushViewController(vc, animated: true)

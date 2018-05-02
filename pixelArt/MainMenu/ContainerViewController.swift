@@ -15,6 +15,7 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
     
     func goToDrawings() {
         //mainNavigationController.pushViewController(DrawingsTableViewController(), animated: true)
+        /*
         let tabBarController = UITabBarController()
         tabBarController.tabBar.barTintColor = UIColor.white
         
@@ -23,10 +24,14 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
         drawingsTableViewController.title = "Offline"
         tabBarController.viewControllers = [onlineDrawingsTableViewController, drawingsTableViewController]
         tabBarController.selectedViewController = onlineDrawingsTableViewController
-        
+        tabBarController.navigationItem.rightBarButtonItem = newGameButton
         mainNavigationController.pushViewController(tabBarController, animated: true)
+        //mainNavigationController.pushViewController(OnlineDrawingsTableViewController(), animated: true)
+ */
+        mainNavigationController.pushViewController(DrawingsTabBarController(), animated: true)
         animateMenuHandler()
     }
+
     
     func goToAnimations() {
         mainNavigationController.pushViewController(AnimationTableViewController(), animated: true)

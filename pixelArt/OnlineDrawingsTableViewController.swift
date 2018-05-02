@@ -54,9 +54,9 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         
         loadData()
         
-        PixelDataset.registerDelegate(self)        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: OnlineDrawingsTableViewController.cellReuseIdentifier)
+        PixelDataset.registerDelegate(self)     
         self.navigationItem.rightBarButtonItem = newGameButton
-        self.navigationItem.leftBarButtonItem = refreshListButton
+     
         self.title = "Online"
     }
     
@@ -135,30 +135,13 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         
         // Create and draw
         newGameButton.setTitleTextAttributes(styles, for: UIControlState.normal)
-        newGameButton.action = #selector(goToAlarmView)
+        newGameButton.action = #selector(goToNewOnlineDrawing)
         newGameButton.target = self
         return newGameButton
     }()
     
-    // Refresh table if buggy
-    lazy var refreshListButton : UIBarButtonItem = {
-        let refreshListButton = UIBarButtonItem()
-        refreshListButton.image = UIImage(named: "refresh_icon")
-        
-        refreshListButton.action = #selector(updateTable)
-        refreshListButton.target = self
-        refreshListButton.style = .plain
-        return refreshListButton
-    }()
-    
     @objc func updateTable(sender: UIButton) {
         datasetUpdated()
-    }
-    
-    // Go to new alarm
-    @objc func goToAlarmView(sender: UIBarButtonItem) {
-        
-        //navigationController?.pushViewController(NewGameViewController(), animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -171,7 +154,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
     
     // THIS CREATES THE CELLS
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count else {
+        guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count, indexPath.row < drawingsColor.count, indexPath.row < drawingsPosition.count  else {
             return UITableViewCell()
         }
         let cell: UITableViewCell = UITableViewCell()
@@ -182,6 +165,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         // Add preview
         let pixelPreview = PixelPreview()
         pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height )
+        
         pixelPreview.colorsToDraw = drawingsColor[indexPath.row]
         pixelPreview.positionsToDraw = drawingsPosition[indexPath.row]
         pixelPreview.backgroundColor = UIColor.white
@@ -248,6 +232,10 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         vc.pixel.loadNewPixels()
         
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func goToNewOnlineDrawing() {
+        navigationController?.pushViewController(OnlinePixelViewController(withRef: ""), animated: true)
     }
 
 }

@@ -87,7 +87,7 @@ class OnlineAnimationViewController: UIViewController, PixelViewDelegate, Animat
         viewHolder.pixelView.delegate = self
         viewHolder.colorPickerControl.delegate = self
         
-        
+        self.navigationItem.hidesBackButton = false
         let barButton = UIBarButtonItem.init(customView: playerCountView)
         self.navigationItem.rightBarButtonItem = barButton
     }

@@ -33,7 +33,7 @@ class DrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
         PixelDataset.registerDelegate(self)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: DrawingsTableViewController.cellReuseIdentifier)
         self.navigationItem.rightBarButtonItem = newGameButton
-        self.navigationItem.leftBarButtonItem = refreshListButton
+    
         
     }
     
