@@ -1,8 +1,8 @@
 //
-//  FriendsPixel.swift
+//  AnimationPixel.swift
 //  pixelArt
 //
-//  Created by Caelan Dailey on 4/25/18.
+//  Created by Caelan Dailey on 5/1/18.
 //  Copyright © 2018 Caelan Dailey. All rights reserved.
 //
 
@@ -12,13 +12,13 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-protocol FriendsPixelDelegate: AnyObject {
+protocol AnimationPixelDelegate: AnyObject {
     func pixelsLoaded(_ pos: [CGPoint], color: [UIColor])
     func userCounted(_ val: Int)
 }
-class FriendsPixel {
+class AnimationPixel {
     
-    weak var delegate: FriendsPixelDelegate? = nil
+    weak var delegate: AnimationPixelDelegate? = nil
     var ref: DatabaseReference!
     
     var positions: [CGPoint] = []
@@ -29,17 +29,26 @@ class FriendsPixel {
     private var lastPixelTime = 0
     
     var pixelRef: DatabaseReference?
+    var refString: String = ""
+    var pagePosition = 0
     
     
+    func incPage() {
+        pagePosition = pagePosition + 1
+        lastPixelTime = 0
+    }
     
-  
+    func decPage() {
+        pagePosition = pagePosition - 1
+        lastPixelTime = 0
+    }
     
     func watchUserCount() {
         guard let ref = pixelRef else {
-       
+            
             return
         }
-       
+        
         
         ref.child("ActiveUsers").observe(.value, with: { snapshot in
             print("loading new count")
@@ -66,8 +75,8 @@ class FriendsPixel {
         
     }
     
-    func getRef() -> DatabaseReference? {
-        return pixelRef
+    func getRef() -> String {
+        return refString
     }
     
     func loadRef(_ ref: String) {
@@ -75,9 +84,11 @@ class FriendsPixel {
             return
         }
         if (ref == "") {
-            pixelRef = Database.database().reference().child("\(id)").childByAutoId()
+            pixelRef = Database.database().reference().child("\(id)").child("Animations").childByAutoId().child("\(pagePosition)")
+            refString = pixelRef!.parent!.key
+            
         } else {
-        pixelRef = Database.database().reference().child("\(id)").child(ref)
+            pixelRef = Database.database().reference().child("\(id)").child("Animations").child(ref).child("\(pagePosition)")
             
         }
         
@@ -86,8 +97,10 @@ class FriendsPixel {
         loadNewPixels()
     }
     
+    
+    
     func loadNewPixels() {
-
+        
         guard var ref = pixelRef else {
             return
         }

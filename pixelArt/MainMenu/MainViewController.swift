@@ -97,7 +97,8 @@ class MainViewController: UIViewController, MainViewDelegate, LoginButtonDelegat
     }
     
     func goToAnimation() {
-        delegate?.toggleMenu?()
+      
+        navigationController?.pushViewController(OnlineAnimationViewController(withRef: ""), animated: true)
     }
 
     @objc func loginButtonClicked() {

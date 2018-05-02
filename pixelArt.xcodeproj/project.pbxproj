@@ -37,6 +37,12 @@
 		38A751972095443000314382 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751962095443000314382 /* LoginView.swift */; };
 		38A7519920954FF500314382 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7519820954FF500314382 /* CustomTextField.swift */; };
 		38A7519B20955D5000314382 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7519A20955D5000314382 /* LoginViewController.swift */; };
+		38A751DF20995C2800314382 /* AnimationControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751DE20995C2800314382 /* AnimationControl.swift */; };
+		38A751E1209962D900314382 /* OnlineAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751E0209962D900314382 /* OnlineAnimationViewController.swift */; };
+		38A751E32099637E00314382 /* AnimationsViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751E22099637E00314382 /* AnimationsViewHolder.swift */; };
+		38A751E52099680A00314382 /* AnimationPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751E42099680A00314382 /* AnimationPixel.swift */; };
+		38A751E72099761100314382 /* AnimationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751E62099761100314382 /* AnimationTableViewController.swift */; };
+		38A751EA20997A8100314382 /* AnimationPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751E920997A8100314382 /* AnimationPreview.swift */; };
 		F507F8CCE7948B9CB8CFD413 /* Pods_pixelArt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EAF8C05557DBCAB44C04B2 /* Pods_pixelArt.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +71,6 @@
 		3807073C208BEB1A00CF84AB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3807073E208BEF2D00CF84AB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		38070740208C073100CF84AB /* NewPixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPixelViewController.swift; sourceTree = "<group>"; };
-		38070744208C294300CF84AB /* pixelArt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixelArt-Bridging-Header.h"; sourceTree = "<group>"; };
 		38070784208D38BA00CF84AB /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		3807078E208D44EF00CF84AB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		38070790208D45D800CF84AB /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -95,6 +100,13 @@
 		38A751962095443000314382 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		38A7519820954FF500314382 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		38A7519A20955D5000314382 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		38A751DE20995C2800314382 /* AnimationControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationControl.swift; sourceTree = "<group>"; };
+		38A751E0209962D900314382 /* OnlineAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineAnimationViewController.swift; sourceTree = "<group>"; };
+		38A751E22099637E00314382 /* AnimationsViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsViewHolder.swift; sourceTree = "<group>"; };
+		38A751E42099680A00314382 /* AnimationPixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPixel.swift; sourceTree = "<group>"; };
+		38A751E62099761100314382 /* AnimationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTableViewController.swift; sourceTree = "<group>"; };
+		38A751E82099798400314382 /* pixelArt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixelArt-Bridging-Header.h"; sourceTree = "<group>"; };
+		38A751E920997A8100314382 /* AnimationPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPreview.swift; sourceTree = "<group>"; };
 		67373E901724B2BC6FBB0A89 /* Pods_pixelArtUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1148CA8929761D33679D70 /* Pods-pixelArt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixelArt.release.xcconfig"; path = "Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt.release.xcconfig"; sourceTree = "<group>"; };
 		A61D16E61C60B6614AFCC270 /* Pods_pixelArtTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +160,8 @@
 				38A751962095443000314382 /* LoginView.swift */,
 				38A7519820954FF500314382 /* CustomTextField.swift */,
 				38A7519A20955D5000314382 /* LoginViewController.swift */,
+				38A751E62099761100314382 /* AnimationTableViewController.swift */,
+				38A751E920997A8100314382 /* AnimationPreview.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -164,6 +178,10 @@
 				38A7518E20910F7200314382 /* OnlinePixelViewController.swift */,
 				38A751922094FE6E00314382 /* ProgressPixelViewController.swift */,
 				38A751942095149700314382 /* CountView.swift */,
+				38A751DE20995C2800314382 /* AnimationControl.swift */,
+				38A751E0209962D900314382 /* OnlineAnimationViewController.swift */,
+				38A751E22099637E00314382 /* AnimationsViewHolder.swift */,
+				38A751E42099680A00314382 /* AnimationPixel.swift */,
 			);
 			path = Pixel;
 			sourceTree = "<group>";
@@ -201,9 +219,9 @@
 				38951A2B207E8BB000A890C4 /* GoogleService-Info.plist */,
 				3812E4F5207EBE84001B5800 /* ViewHolder.swift */,
 				383678B7208951B500A3D118 /* ColorPickerControl.swift */,
+				38A751E82099798400314382 /* pixelArt-Bridging-Header.h */,
 				38070738208BD9BA00CF84AB /* Extensions.swift */,
 				3807073A208BEAAC00CF84AB /* MainNavigationController.swift */,
-				38070744208C294300CF84AB /* pixelArt-Bridging-Header.h */,
 				38070792208D5E8E00CF84AB /* DrawingsTableViewController.swift */,
 				38A7518A2091059400314382 /* OnlineDrawingsTableViewController.swift */,
 				38070795208D74FD00CF84AB /* PixelDataset.swift */,
@@ -413,7 +431,10 @@
 				38070798208FB82F00CF84AB /* PixelPreview.swift in Sources */,
 				38951A2A207E891200A890C4 /* Pixel.swift in Sources */,
 				38A751952095149700314382 /* CountView.swift in Sources */,
+				38A751E32099637E00314382 /* AnimationsViewHolder.swift in Sources */,
+				38A751E72099761100314382 /* AnimationTableViewController.swift in Sources */,
 				383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */,
+				38A751E52099680A00314382 /* AnimationPixel.swift in Sources */,
 				3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */,
 				38A7518F20910F7200314382 /* OnlinePixelViewController.swift in Sources */,
 				38A751972095443000314382 /* LoginView.swift in Sources */,
@@ -424,11 +445,14 @@
 				38070796208D74FD00CF84AB /* PixelDataset.swift in Sources */,
 				38437B42207C15D000A7D488 /* PixelViewController.swift in Sources */,
 				3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */,
+				38A751DF20995C2800314382 /* AnimationControl.swift in Sources */,
 				38437B40207C15D000A7D488 /* AppDelegate.swift in Sources */,
+				38A751EA20997A8100314382 /* AnimationPreview.swift in Sources */,
 				38070791208D45D800CF84AB /* MenuView.swift in Sources */,
 				3807078F208D44EF00CF84AB /* MenuViewController.swift in Sources */,
 				38A7518D2091097A00314382 /* FriendsPixel.swift in Sources */,
 				3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */,
+				38A751E1209962D900314382 /* OnlineAnimationViewController.swift in Sources */,
 				38A751932094FE6E00314382 /* ProgressPixelViewController.swift in Sources */,
 				38951A28207E844000A890C4 /* PixelView.swift in Sources */,
 				38070739208BD9BA00CF84AB /* Extensions.swift in Sources */,

@@ -1,8 +1,8 @@
 //
-//  OnlineDrawingsTableViewController.swift
+//  AnimationTableviewController.swift
 //  pixelArt
 //
-//  Created by Caelan Dailey on 4/25/18.
+//  Created by Caelan Dailey on 5/1/18.
 //  Copyright © 2018 Caelan Dailey. All rights reserved.
 //
 
@@ -12,23 +12,29 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
+class AnimationTableViewController: UITableViewController, PixelDatasetDelegate {
     
-    private static var cellReuseIdentifier = "OnlineDrawingsTableViewController.DatasetItemsCellIdentifier"
+    private static var cellReuseIdentifier = "AnimationTableViewController.DatasetItemsCellIdentifier"
     
     let delegateID: String = UIDevice.current.identifierForVendor!.uuidString
     
-    var drawingsColor: [[UIColor]] = [] {
+    var timerCount = 0
+    
+    var animationTimer: Timer!
+    // Array of ANIMATIONS, with array of PAGES, with array of COLORS
+    var drawingsColor: [[[UIColor]]] = [] {
         didSet {
             datasetUpdated()
         }
     }
     
-    var drawingsPosition: [[CGPoint]] = [] {
+    // Array of ANIMATIONS, with array of PAGES, with array of POSITIONS
+    var drawingsPosition: [[[CGPoint]]] = [] {
         didSet {
             datasetUpdated()
         }
     }
+  
     
     var drawingsRef: [String] = []
     
@@ -46,20 +52,32 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadData()
+        animationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerCount), userInfo: nil, repeats: true)
         print("viewdidAppear")
     }
     
+    @objc private func updateTimerCount() {
+        timerCount = timerCount + 1
+        datasetUpdated()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadData()
         
-        PixelDataset.registerDelegate(self)        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: OnlineDrawingsTableViewController.cellReuseIdentifier)
+        PixelDataset.registerDelegate(self)
         self.navigationItem.rightBarButtonItem = newGameButton
         self.navigationItem.leftBarButtonItem = refreshListButton
         self.title = "Online"
+        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        animationTimer.invalidate()
+        
+    }
     private func loadData() {
         
         drawingsColor.removeAll()
@@ -69,57 +87,70 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
             return
         }
         
-        let ref = Database.database().reference().child("\(id)")
+        let ref = Database.database().reference().child("\(id)").child("Animations")
         
         ref.observe(.value, with: { snapshot in
             print("loading new pixel")
             self.count = Int(snapshot.childrenCount)
-           
-       
+            
+            
+            
             for child in snapshot.children {
-                var snap = child as! DataSnapshot
-                self.drawingsRef.append(snap.key)
-                snap = snap.childSnapshot(forPath: "Pixels")
+                
+                var pagesColor: [[UIColor]] = []
                 
                 
-                let enumerator = snap.children
-                var colors: [UIColor] = []
-                var positions: [CGPoint] = []
-                
-                for cells in enumerator.allObjects as! [DataSnapshot] {
-                    //print(cell)
+                var pagesPosition: [[CGPoint]] = []
                     
-                    var x = 0
-                    var y = 0
-                    var colorIntVal = 0
+                let theChild = child as! DataSnapshot
+                for page in theChild.children {
                     
-                    for cell in cells.children.allObjects as! [DataSnapshot] {
-                  
+                    
+                    var snap = page as! DataSnapshot
+                    self.drawingsRef.append(snap.key)
+                    
+                    snap = snap.childSnapshot(forPath: "Pixels")
+                    
+                    let enumerator = snap.children
+                    var colors: [UIColor] = []
+                    var positions: [CGPoint] = []
+                    
+                    for cells in enumerator.allObjects as! [DataSnapshot] {
+                        //print(cell)
                         
+                        var x = 0
+                        var y = 0
+                        var colorIntVal = 0
                         
-                        switch cell.key {
+                        for cell in cells.children.allObjects as! [DataSnapshot] {
                             
-                        case "x": x = cell.value as! Int
-                        case "y": y = cell.value as! Int
-                        case "color": colorIntVal = cell.value as! Int
                             
-                        default: break
+                            
+                            switch cell.key {
+                                
+                            case "x": x = cell.value as! Int
+                            case "y": y = cell.value as! Int
+                            case "color": colorIntVal = cell.value as! Int
+                                
+                            default: break
+                            }
                         }
+                        colors.append(UIColor.init(rgb: colorIntVal))
+                        positions.append(CGPoint(x:x,y:y))
+                        
                     }
-                    colors.append(UIColor.init(rgb: colorIntVal))
-                    positions.append(CGPoint(x:x,y:y))
+                    
+                    pagesColor.append(colors)
+                    pagesPosition.append(positions)
                     
                 }
-                
-                
-                self.drawingsColor.append(colors)
-                self.drawingsPosition.append(positions)
-                
+                self.drawingsColor.append(pagesColor)
+                self.drawingsPosition.append(pagesPosition)
             }
-
+            
         })
         print("finished loading data")
-
+        
     }
     // Create button
     lazy var newGameButton : UIBarButtonItem = {
@@ -180,17 +211,21 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         
         
         // Add preview
+        
         let pixelPreview = PixelPreview()
         pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height )
-        pixelPreview.colorsToDraw = drawingsColor[indexPath.row]
-        pixelPreview.positionsToDraw = drawingsPosition[indexPath.row]
+        let pageCount = drawingsColor[indexPath.row].count
+        pixelPreview.colorsToDraw = drawingsColor[indexPath.row][timerCount % pageCount ]
+        pixelPreview.positionsToDraw = drawingsPosition[indexPath.row][timerCount % pageCount ]
         pixelPreview.backgroundColor = UIColor.white
         pixelPreview.layer.borderWidth = 1
         pixelPreview.layer.borderColor = UIColor.black.cgColor
         cell.addSubview(pixelPreview)
-    
+ 
         return cell
     }
+    
+    
     
     private func convertStringToCGPoint(_ points: [String]) -> [CGPoint] {
         var newPoints: [CGPoint] = []
@@ -249,5 +284,6 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
 }
+

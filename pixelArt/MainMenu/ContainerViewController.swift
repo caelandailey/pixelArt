@@ -29,7 +29,7 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
     }
     
     func goToAnimations() {
-        
+        mainNavigationController.pushViewController(AnimationTableViewController(), animated: true)
         animateMenuHandler()
     }
     

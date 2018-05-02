@@ -113,6 +113,7 @@ class MenuView: UIView {
         drawingsButton.addTarget(self, action: #selector(goToDrawings), for: .touchUpInside)
 
         logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        animationsButton.addTarget(self, action: #selector(goToAnimations), for: .touchUpInside)
         self.backgroundColor = UIColor.white
         print("menuView init")
     }
@@ -180,6 +181,10 @@ class MenuView: UIView {
     
     @objc func logout() {
         delegate?.logout()
+    }
+    
+    @objc func goToAnimations() {
+        delegate?.goToAnimations()
     }
     
 }
