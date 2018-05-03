@@ -173,8 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				38951A27207E844000A890C4 /* PixelView.swift */,
-				38951A29207E891200A890C4 /* Pixel.swift */,
-				38A7518C2091097A00314382 /* FriendsPixel.swift */,
 				38A751942095149700314382 /* CountView.swift */,
 				383678B7208951B500A3D118 /* ColorPickerControl.swift */,
 				38A75203209AA1D300314382 /* MainNavigationController.swift */,
@@ -217,6 +215,7 @@
 				38070783208D38A400CF84AB /* MainMenu */,
 				38A751FE209A976100314382 /* Datasets */,
 				38070794208D654600CF84AB /* Shared */,
+				38A75205209AA38200314382 /* Models */,
 				38437B46207C15D300A7D488 /* Assets.xcassets */,
 				38A751E82099798400314382 /* pixelArt-Bridging-Header.h */,
 				38437B48207C15D300A7D488 /* LaunchScreen.storyboard */,
@@ -255,7 +254,6 @@
 				38A751F1209A691F00314382 /* AnimationsTabBarController.swift */,
 				38A751E62099761100314382 /* AnimationTableViewController.swift */,
 				38A751E0209962D900314382 /* OnlineAnimationViewController.swift */,
-				38A751E42099680A00314382 /* AnimationPixel.swift */,
 				38A751E22099637E00314382 /* AnimationsViewHolder.swift */,
 				38A751DE20995C2800314382 /* AnimationControl.swift */,
 			);
@@ -290,6 +288,16 @@
 				38070795208D74FD00CF84AB /* PixelDataset.swift */,
 			);
 			path = Datasets;
+			sourceTree = "<group>";
+		};
+		38A75205209AA38200314382 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				38951A29207E891200A890C4 /* Pixel.swift */,
+				38A7518C2091097A00314382 /* FriendsPixel.swift */,
+				38A751E42099680A00314382 /* AnimationPixel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		519E85239FE94BBC3812FD7E /* Pods */ = {

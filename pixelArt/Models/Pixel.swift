@@ -32,16 +32,47 @@ class Pixel {
     // Initializer for new games
     init() {
         loadNewPixels()
+        incPlayerCount()
+        watchUserCount()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func watchUserCount() {
+        
+        let ref = Database.database().reference().child("MainWorld/ActiveUsers")
+        
+        ref.observe(.value, with: { snapshot in
+            print("loading new count")
+            let val = Int(snapshot.childrenCount)
+            self.delegate?.userCounted(val)
+        })
+    }
+    
+    func incPlayerCount() {
+        
+        guard let id = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let ref = Database.database().reference().child("MainWorld/ActiveUsers")
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            
+            let userRef = ref.child(id)
+            userRef.setValue("")
+            userRef.onDisconnectRemoveValue()
+            
+        })
+        
+    }
 
     
     func loadNewPixels() {
         
-        let ref = Database.database().reference().child("MainWorld/Pixels")
+        let ref = Database.database().reference().child("MainWorld/ActiveUsers")
 
         ref.observe(.value, with: { snapshot in
             print("loading new pixel")
