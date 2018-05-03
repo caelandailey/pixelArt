@@ -47,6 +47,7 @@
 		38A751F2209A691F00314382 /* AnimationsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751F1209A691F00314382 /* AnimationsTabBarController.swift */; };
 		38A751F4209A69D400314382 /* OfflineAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751F3209A69D400314382 /* OfflineAnimationViewController.swift */; };
 		38A751F6209A81D000314382 /* ProgressOfflineAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751F5209A81D000314382 /* ProgressOfflineAnimationViewController.swift */; };
+		38A75204209AA1D300314382 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A75203209AA1D300314382 /* MainNavigationController.swift */; };
 		F507F8CCE7948B9CB8CFD413 /* Pods_pixelArt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EAF8C05557DBCAB44C04B2 /* Pods_pixelArt.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		38A751F1209A691F00314382 /* AnimationsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsTabBarController.swift; sourceTree = "<group>"; };
 		38A751F3209A69D400314382 /* OfflineAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineAnimationViewController.swift; sourceTree = "<group>"; };
 		38A751F5209A81D000314382 /* ProgressOfflineAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOfflineAnimationViewController.swift; sourceTree = "<group>"; };
+		38A75203209AA1D300314382 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainNavigationController.swift; path = ../../../../.Trash/MainNavigationController.swift; sourceTree = "<group>"; };
 		67373E901724B2BC6FBB0A89 /* Pods_pixelArtUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1148CA8929761D33679D70 /* Pods-pixelArt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixelArt.release.xcconfig"; path = "Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt.release.xcconfig"; sourceTree = "<group>"; };
 		A61D16E61C60B6614AFCC270 /* Pods_pixelArtTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +177,7 @@
 				38A7518C2091097A00314382 /* FriendsPixel.swift */,
 				38A751942095149700314382 /* CountView.swift */,
 				383678B7208951B500A3D118 /* ColorPickerControl.swift */,
+				38A75203209AA1D300314382 /* MainNavigationController.swift */,
 				3812E4F5207EBE84001B5800 /* ViewHolder.swift */,
 				38070738208BD9BA00CF84AB /* Extensions.swift */,
 				38437B3F207C15D000A7D488 /* AppDelegate.swift */,
@@ -520,6 +523,7 @@
 				38951A28207E844000A890C4 /* PixelView.swift in Sources */,
 				38070739208BD9BA00CF84AB /* Extensions.swift in Sources */,
 				38070785208D38BA00CF84AB /* ContainerViewController.swift in Sources */,
+				38A75204209AA1D300314382 /* MainNavigationController.swift in Sources */,
 				38A751EC209A5FEA00314382 /* DrawingsTabBarController.swift in Sources */,
 				38A751F2209A691F00314382 /* AnimationsTabBarController.swift in Sources */,
 				38070741208C073100CF84AB /* NewPixelViewController.swift in Sources */,

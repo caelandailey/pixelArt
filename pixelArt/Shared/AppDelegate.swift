@@ -5,9 +5,61 @@
 //  Created by Caelan Dailey on 4/9/18.
 //  Copyright © 2018 Caelan Dailey. All rights reserved.
 //
+// How it works.
+/*
+ Main View
+ - Open Menu
+ - Go to world
+ - Create drawings
+ - Create animations
+ 
+ Firebase
+ - This app using firebase to store online information and handle users
+ 
+ Pods
+ -Firebase
+ -Facebook
+ - For some reason they pop up a warning, pods are updated and these wont go away.
+ 
+ Menu
+ - Sliding out animation
+ - Go to drawings
+ - Go to animations
+ - Has profile image
+ - Has profile name
+ - Go to login
+ 
+ Login
+ - Log into facebook
+ - Log into email/password
+ 
+ Shared features
+ - Player count
+ - Color control
+ 
+ World
+ - Represents 800x1220 pixel world
+ - Zoom in
+ - Online
+
+ Drawings
+ - Can draw online
+ - Can draw offline
+ - Saves offline drawings
+ - Loads these into a tableview
+ - Tableview has preview
+ - Can eddit drawings
+ 
+ Animations
+ - Same as drawings, but is animation
+ - Extra control to change frames
+ 
+ */
 
 import UIKit
 import Firebase
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,24 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        
-    
+
+        // Configure database
         FirebaseApp.configure()
-        // test login
-        /*
-        window!.rootViewController = LoginViewController()
-        window?.makeKeyAndVisible()
- */
-        // NEW?
-        /*
-        let viewController = ContainerViewController()
-        let navigationController = MainNavigationController(rootViewController: viewController)
-        window!.rootViewController = navigationController
-        window?.makeKeyAndVisible()
- */
-       
-        // CURRENT
-        
+
         let containerViewController = ContainerViewController()
         
         window!.rootViewController = containerViewController
