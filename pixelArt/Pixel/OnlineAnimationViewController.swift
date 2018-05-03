@@ -11,14 +11,17 @@ import Firebase
 import FirebaseDatabase
 
 class OnlineAnimationViewController: UIViewController, PixelViewDelegate, AnimationPixelDelegate, ColorPickerControlDelegate, AnimationControlDelegate {
+    
     func goLeftAnimation() {
         if (pixel.pagePosition == 0) {
             return
         }
+        
         pixel.decPage()
         pixel.colors.removeAll()
         pixel.positions.removeAll()
         
+        //pixel.loadRef(ref)
         pixel.loadRef(pixel.getRef())
         viewHolder.pixelView.colorsToDraw.removeAll()
         viewHolder.pixelView.positionsToDraw.removeAll()

@@ -22,21 +22,24 @@ class MainView: UIView {
     
     let worldButton: UIButton = {
         let worldButton = UIButton()
-       
+        worldButton.layer.shadowOpacity = 0.4
+       worldButton.layer.shadowOffset = CGSize(width: 0, height: 4)
         worldButton.setTitle("Join Drawing", for: UIControlState.normal)
         return worldButton
     }()
     
     let userButton: UIButton = {
         let userButton = UIButton()
-        
+        userButton.layer.shadowOpacity = 0.4
+        userButton.layer.shadowOffset = CGSize(width: 0, height: 4)
         userButton.setTitle("Create Drawing", for: UIControlState.normal)
         return userButton
     }()
     
     let animationButton: UIButton = {
         let animationButton = UIButton()
-       
+        animationButton.layer.shadowOpacity = 0.4
+        animationButton.layer.shadowOffset = CGSize(width: 0, height: 4)
         animationButton.setTitle("Create Animation", for: UIControlState.normal)
         return animationButton
     }()

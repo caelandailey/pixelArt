@@ -156,6 +156,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count, indexPath.row < drawingsColor.count, indexPath.row < drawingsPosition.count  else {
             return UITableViewCell()
+            print("returnedok")
         }
         let cell: UITableViewCell = UITableViewCell()
         

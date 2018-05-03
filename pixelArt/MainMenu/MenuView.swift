@@ -76,6 +76,7 @@ class MenuView: UIView {
         return friendsButton
     }()
     
+    
     let settingsButton: UIButton = {
         let settingsButton = UIButton()
         settingsButton.setTitle("Settings", for: UIControlState.normal)

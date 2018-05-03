@@ -87,8 +87,10 @@ class AnimationPixel {
             pixelRef = Database.database().reference().child("\(id)").child("Animations").childByAutoId().child("\(pagePosition)")
             refString = pixelRef!.parent!.key
             
+            
         } else {
             pixelRef = Database.database().reference().child("\(id)").child("Animations").child(ref).child("\(pagePosition)")
+            refString = pixelRef!.parent!.key
             
         }
         

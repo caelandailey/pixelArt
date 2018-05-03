@@ -45,6 +45,10 @@
 		38A751EA20997A8100314382 /* AnimationPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751E920997A8100314382 /* AnimationPreview.swift */; };
 		38A751EC209A5FEA00314382 /* DrawingsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751EB209A5FEA00314382 /* DrawingsTabBarController.swift */; };
 		38A751EE209A648300314382 /* AnimationDataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751ED209A648300314382 /* AnimationDataset.swift */; };
+		38A751F0209A65F800314382 /* OfflineAnimationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751EF209A65F800314382 /* OfflineAnimationsTableViewController.swift */; };
+		38A751F2209A691F00314382 /* AnimationsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751F1209A691F00314382 /* AnimationsTabBarController.swift */; };
+		38A751F4209A69D400314382 /* OfflineAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751F3209A69D400314382 /* OfflineAnimationViewController.swift */; };
+		38A751F6209A81D000314382 /* ProgressOfflineAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751F5209A81D000314382 /* ProgressOfflineAnimationViewController.swift */; };
 		F507F8CCE7948B9CB8CFD413 /* Pods_pixelArt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EAF8C05557DBCAB44C04B2 /* Pods_pixelArt.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +115,10 @@
 		38A751E920997A8100314382 /* AnimationPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPreview.swift; sourceTree = "<group>"; };
 		38A751EB209A5FEA00314382 /* DrawingsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingsTabBarController.swift; sourceTree = "<group>"; };
 		38A751ED209A648300314382 /* AnimationDataset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationDataset.swift; sourceTree = "<group>"; };
+		38A751EF209A65F800314382 /* OfflineAnimationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineAnimationsTableViewController.swift; sourceTree = "<group>"; };
+		38A751F1209A691F00314382 /* AnimationsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsTabBarController.swift; sourceTree = "<group>"; };
+		38A751F3209A69D400314382 /* OfflineAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineAnimationViewController.swift; sourceTree = "<group>"; };
+		38A751F5209A81D000314382 /* ProgressOfflineAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOfflineAnimationViewController.swift; sourceTree = "<group>"; };
 		67373E901724B2BC6FBB0A89 /* Pods_pixelArtUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1148CA8929761D33679D70 /* Pods-pixelArt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixelArt.release.xcconfig"; path = "Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt.release.xcconfig"; sourceTree = "<group>"; };
 		A61D16E61C60B6614AFCC270 /* Pods_pixelArtTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArtTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +175,7 @@
 				38A751E62099761100314382 /* AnimationTableViewController.swift */,
 				38A751E920997A8100314382 /* AnimationPreview.swift */,
 				38A751EB209A5FEA00314382 /* DrawingsTabBarController.swift */,
+				38A751F1209A691F00314382 /* AnimationsTabBarController.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -187,6 +196,8 @@
 				38A751E0209962D900314382 /* OnlineAnimationViewController.swift */,
 				38A751E22099637E00314382 /* AnimationsViewHolder.swift */,
 				38A751E42099680A00314382 /* AnimationPixel.swift */,
+				38A751F3209A69D400314382 /* OfflineAnimationViewController.swift */,
+				38A751F5209A81D000314382 /* ProgressOfflineAnimationViewController.swift */,
 			);
 			path = Pixel;
 			sourceTree = "<group>";
@@ -231,6 +242,7 @@
 				38A7518A2091059400314382 /* OnlineDrawingsTableViewController.swift */,
 				38070795208D74FD00CF84AB /* PixelDataset.swift */,
 				38A751ED209A648300314382 /* AnimationDataset.swift */,
+				38A751EF209A65F800314382 /* OfflineAnimationsTableViewController.swift */,
 			);
 			path = pixelArt;
 			sourceTree = "<group>";
@@ -436,6 +448,7 @@
 			files = (
 				38070798208FB82F00CF84AB /* PixelPreview.swift in Sources */,
 				38951A2A207E891200A890C4 /* Pixel.swift in Sources */,
+				38A751F4209A69D400314382 /* OfflineAnimationViewController.swift in Sources */,
 				38A751952095149700314382 /* CountView.swift in Sources */,
 				38A751E32099637E00314382 /* AnimationsViewHolder.swift in Sources */,
 				38A751E72099761100314382 /* AnimationTableViewController.swift in Sources */,
@@ -449,6 +462,7 @@
 				38A7518B2091059400314382 /* OnlineDrawingsTableViewController.swift in Sources */,
 				38A7519920954FF500314382 /* CustomTextField.swift in Sources */,
 				3807073F208BEF2D00CF84AB /* MainView.swift in Sources */,
+				38A751F6209A81D000314382 /* ProgressOfflineAnimationViewController.swift in Sources */,
 				38070796208D74FD00CF84AB /* PixelDataset.swift in Sources */,
 				38437B42207C15D000A7D488 /* PixelViewController.swift in Sources */,
 				3812E4F6207EBE84001B5800 /* ViewHolder.swift in Sources */,
@@ -460,11 +474,13 @@
 				38A7518D2091097A00314382 /* FriendsPixel.swift in Sources */,
 				3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */,
 				38A751E1209962D900314382 /* OnlineAnimationViewController.swift in Sources */,
+				38A751F0209A65F800314382 /* OfflineAnimationsTableViewController.swift in Sources */,
 				38A751932094FE6E00314382 /* ProgressPixelViewController.swift in Sources */,
 				38951A28207E844000A890C4 /* PixelView.swift in Sources */,
 				38070739208BD9BA00CF84AB /* Extensions.swift in Sources */,
 				38070785208D38BA00CF84AB /* ContainerViewController.swift in Sources */,
 				38A751EC209A5FEA00314382 /* DrawingsTabBarController.swift in Sources */,
+				38A751F2209A691F00314382 /* AnimationsTabBarController.swift in Sources */,
 				38070741208C073100CF84AB /* NewPixelViewController.swift in Sources */,
 				38A7519B20955D5000314382 /* LoginViewController.swift in Sources */,
 				38A751912093CA1D00314382 /* DrawingSetupViewHolder.swift in Sources */,

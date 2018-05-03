@@ -11,38 +11,31 @@ import FBSDKLoginKit
 import FirebaseAuth
 import QuartzCore
 
+// This class is used for creating the slidable menu view on the mainviewcontroller
+// Is also the destination for the Menuview delegate
 class ContainerViewController: UIViewController, MainViewControllerDelegate, MenuViewDelegate {
     
+    var menuViewController: MenuViewController?
+    var mainNavigationController: UINavigationController!
+    var mainViewController: MainViewController!
+    var menuClosed = true
+    
     func goToDrawings() {
-        //mainNavigationController.pushViewController(DrawingsTableViewController(), animated: true)
-        /*
-        let tabBarController = UITabBarController()
-        tabBarController.tabBar.barTintColor = UIColor.white
-        
-        let onlineDrawingsTableViewController = OnlineDrawingsTableViewController()
-        let drawingsTableViewController = DrawingsTableViewController()
-        drawingsTableViewController.title = "Offline"
-        tabBarController.viewControllers = [onlineDrawingsTableViewController, drawingsTableViewController]
-        tabBarController.selectedViewController = onlineDrawingsTableViewController
-        tabBarController.navigationItem.rightBarButtonItem = newGameButton
-        mainNavigationController.pushViewController(tabBarController, animated: true)
-        //mainNavigationController.pushViewController(OnlineDrawingsTableViewController(), animated: true)
- */
         mainNavigationController.pushViewController(DrawingsTabBarController(), animated: true)
         animateMenuHandler()
     }
-
     
     func goToAnimations() {
-        mainNavigationController.pushViewController(AnimationTableViewController(), animated: true)
+        //mainNavigationController.pushViewController(AnimationTableViewController(), animated: true)
+        mainNavigationController.pushViewController(AnimationsTabBarController(), animated: true)
         animateMenuHandler()
     }
     
+    // Logout of account
     func logout() {
         
         let auth = Auth.auth()
         if (auth.currentUser != nil) {
-            
             
             do {
                 try auth.signOut()
@@ -57,13 +50,8 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
         }
         animateMenuHandler()
         mainNavigationController.pushViewController(LoginViewController(), animated: true)
-    
-        
     }
-    var menuViewController: MenuViewController?
-    var mainNavigationController: UINavigationController!
-    var mainViewController: MainViewController!
-    var menuClosed = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +65,6 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
         mainViewController.navigationItem.leftBarButtonItem?.tintColor = .black
         
         mainViewController.navigationItem.leftBarButtonItem?.imageInsets = UIEdgeInsets(top: 5, left: -35, bottom: 0, right: 0)
-        //mainNavigationController = UINavigationController(rootViewController: mainViewController)
         mainNavigationController = MainNavigationController(rootViewController: mainViewController)
         view.addSubview(mainNavigationController.view)
         addChildViewController(mainNavigationController)
@@ -87,11 +74,10 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
     }
     
     func toggleMenu() {
-
+        
         if menuClosed {
             addMenuViewController()
         }
-        
         animateMenuHandler()
     }
     
@@ -112,13 +98,13 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
     func addMenuViewController(_ menuController: MenuViewController) {
         // Insert above main menu
         view.insertSubview(menuController.view, at: 1)
-        // Set origin
+        
+        // Set position
         menuController.view.frame.origin.x = -self.view.frame.width
-        // Add it
+        
+        // Add
         addChildViewController(menuController)
-        // "It is expected that a container view
-        //controller subclass will make this call after a transition to the new child has completed or, in the
-        //case of no transition, immediately after the call to addChildViewController:"
+
         menuController.didMove(toParentViewController: self)
     }
     
@@ -144,6 +130,7 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
         }, completion: completion)
     }
     
+    // Close the menu if user touches outside of menu
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if (!menuClosed) {
             toggleMenu()

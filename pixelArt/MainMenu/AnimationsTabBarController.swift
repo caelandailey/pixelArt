@@ -1,5 +1,5 @@
 //
-//  DrawingsTabBarController.swift
+//  AnimationsTabBarController.swift
 //  pixelArt
 //
 //  Created by Caelan Dailey on 5/2/18.
@@ -9,24 +9,24 @@
 import Foundation
 import UIKit
 
-class DrawingsTabBarController: UITabBarController, UITabBarControllerDelegate{
+class AnimationsTabBarController: UITabBarController, UITabBarControllerDelegate{
     
     override func viewDidLoad() {
         self.tabBar.barTintColor = UIColor.white
         delegate = self
-        let onlineDrawingsTableViewController = OnlineDrawingsTableViewController()
-        let drawingsTableViewController = DrawingsTableViewController()
+        let onlineDrawingsTableViewController = AnimationTableViewController()
+        let drawingsTableViewController = OfflineAnimationsTableViewController()
         drawingsTableViewController.title = "Offline"
-        
+        onlineDrawingsTableViewController.title = "Online"
         self.viewControllers = [onlineDrawingsTableViewController, drawingsTableViewController]
         self.selectedViewController = onlineDrawingsTableViewController
         self.navigationItem.rightBarButtonItem = newGameButton
     }
+    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         print("Selected view controller")
         
-        isOnlineVC = (viewController is OnlineDrawingsTableViewController)
-        
+        isOnlineVC = (viewController is AnimationTableViewController)
         
     }
     
@@ -43,7 +43,7 @@ class DrawingsTabBarController: UITabBarController, UITabBarControllerDelegate{
         // Create and draw
         newGameButton.setTitleTextAttributes(styles, for: UIControlState.normal)
         
-            newGameButton.action = #selector(goToDrawing)
+        newGameButton.action = #selector(goToDrawing)
         
         newGameButton.target = self
         return newGameButton
@@ -53,12 +53,12 @@ class DrawingsTabBarController: UITabBarController, UITabBarControllerDelegate{
         print("PRESS NEW DRAWING")
         if (isOnlineVC) {
             print("1111111111")
-            navigationController?.pushViewController(OnlinePixelViewController(withRef: ""), animated: true)
+            navigationController?.pushViewController(OnlineAnimationViewController(withRef: ""), animated: true)
         } else {
             print("22222222222")
-            navigationController?.pushViewController(NewPixelViewController(), animated: true)
+            navigationController?.pushViewController(OfflineAnimationViewController(), animated: true)
         }
         
     }
-
+    
 }

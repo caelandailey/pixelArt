@@ -65,7 +65,6 @@ class AnimationTableViewController: UITableViewController, PixelDatasetDelegate 
         
         loadData()
         
-        PixelDataset.registerDelegate(self)
         self.navigationItem.rightBarButtonItem = newGameButton
         self.navigationItem.hidesBackButton = false
         //self.navigationItem.leftBarButtonItem = refreshListButton
@@ -104,11 +103,12 @@ class AnimationTableViewController: UITableViewController, PixelDatasetDelegate 
                 var pagesPosition: [[CGPoint]] = []
                     
                 let theChild = child as! DataSnapshot
+                self.drawingsRef.append(theChild.key)
                 for page in theChild.children {
                     
                     
                     var snap = page as! DataSnapshot
-                    self.drawingsRef.append(snap.key)
+                    
                     
                     snap = snap.childSnapshot(forPath: "Pixels")
                     
@@ -190,7 +190,12 @@ class AnimationTableViewController: UITableViewController, PixelDatasetDelegate 
     
     // THIS CREATES THE CELLS
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count else {
+        guard tableView === self.tableView, indexPath.section == 0 else {
+            return UITableViewCell()
+            
+        }
+        
+        if (drawingsColor.count <= indexPath.row) {
             return UITableViewCell()
         }
         let cell: UITableViewCell = UITableViewCell()
@@ -261,12 +266,13 @@ class AnimationTableViewController: UITableViewController, PixelDatasetDelegate 
     
     // GO TO EDIT
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count else {
+        guard tableView === self.tableView, indexPath.section == 0 else {
             return
         }
 
         let vc: OnlineAnimationViewController = OnlineAnimationViewController(withRef: drawingsRef[indexPath.row])
 
+        print(drawingsRef[indexPath.row])
         vc.pixel.loadNewPixels()
         
         navigationController?.pushViewController(vc, animated: true)
