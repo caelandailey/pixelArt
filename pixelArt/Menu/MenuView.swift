@@ -16,6 +16,7 @@ protocol MenuViewDelegate: AnyObject {
     func goToAnimations()
 }
 
+// View for the menu, pretty standard
 class MenuView: UIView {
     
     weak var delegate: MenuViewDelegate? = nil

@@ -31,7 +31,6 @@
 		38A7518B2091059400314382 /* OnlineDrawingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7518A2091059400314382 /* OnlineDrawingsTableViewController.swift */; };
 		38A7518D2091097A00314382 /* FriendsPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7518C2091097A00314382 /* FriendsPixel.swift */; };
 		38A7518F20910F7200314382 /* OnlinePixelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7518E20910F7200314382 /* OnlinePixelViewController.swift */; };
-		38A751912093CA1D00314382 /* DrawingSetupViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751902093CA1D00314382 /* DrawingSetupViewHolder.swift */; };
 		38A751932094FE6E00314382 /* ProgressPixelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751922094FE6E00314382 /* ProgressPixelViewController.swift */; };
 		38A751952095149700314382 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751942095149700314382 /* CountView.swift */; };
 		38A751972095443000314382 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A751962095443000314382 /* LoginView.swift */; };
@@ -100,7 +99,6 @@
 		38A7518A2091059400314382 /* OnlineDrawingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineDrawingsTableViewController.swift; sourceTree = "<group>"; };
 		38A7518C2091097A00314382 /* FriendsPixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPixel.swift; sourceTree = "<group>"; };
 		38A7518E20910F7200314382 /* OnlinePixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlinePixelViewController.swift; sourceTree = "<group>"; };
-		38A751902093CA1D00314382 /* DrawingSetupViewHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingSetupViewHolder.swift; sourceTree = "<group>"; };
 		38A751922094FE6E00314382 /* ProgressPixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPixelViewController.swift; sourceTree = "<group>"; };
 		38A751942095149700314382 /* CountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
 		38A751962095443000314382 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -166,40 +164,26 @@
 				38070784208D38BA00CF84AB /* ContainerViewController.swift */,
 				3807073C208BEB1A00CF84AB /* MainViewController.swift */,
 				3807073E208BEF2D00CF84AB /* MainView.swift */,
-				3807078E208D44EF00CF84AB /* MenuViewController.swift */,
-				38070790208D45D800CF84AB /* MenuView.swift */,
-				38A751902093CA1D00314382 /* DrawingSetupViewHolder.swift */,
-				38A751962095443000314382 /* LoginView.swift */,
-				38A7519820954FF500314382 /* CustomTextField.swift */,
-				38A7519A20955D5000314382 /* LoginViewController.swift */,
-				38A751E62099761100314382 /* AnimationTableViewController.swift */,
-				38A751E920997A8100314382 /* AnimationPreview.swift */,
 				38A751EB209A5FEA00314382 /* DrawingsTabBarController.swift */,
-				38A751F1209A691F00314382 /* AnimationsTabBarController.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
 		};
-		38070794208D654600CF84AB /* Pixel */ = {
+		38070794208D654600CF84AB /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				38437B41207C15D000A7D488 /* PixelViewController.swift */,
 				38951A27207E844000A890C4 /* PixelView.swift */,
 				38951A29207E891200A890C4 /* Pixel.swift */,
-				38070740208C073100CF84AB /* NewPixelViewController.swift */,
-				38070797208FB82F00CF84AB /* PixelPreview.swift */,
 				38A7518C2091097A00314382 /* FriendsPixel.swift */,
-				38A7518E20910F7200314382 /* OnlinePixelViewController.swift */,
-				38A751922094FE6E00314382 /* ProgressPixelViewController.swift */,
 				38A751942095149700314382 /* CountView.swift */,
-				38A751DE20995C2800314382 /* AnimationControl.swift */,
-				38A751E0209962D900314382 /* OnlineAnimationViewController.swift */,
-				38A751E22099637E00314382 /* AnimationsViewHolder.swift */,
-				38A751E42099680A00314382 /* AnimationPixel.swift */,
-				38A751F3209A69D400314382 /* OfflineAnimationViewController.swift */,
-				38A751F5209A81D000314382 /* ProgressOfflineAnimationViewController.swift */,
+				383678B7208951B500A3D118 /* ColorPickerControl.swift */,
+				38A751E82099798400314382 /* pixelArt-Bridging-Header.h */,
+				3812E4F5207EBE84001B5800 /* ViewHolder.swift */,
+				38070738208BD9BA00CF84AB /* Extensions.swift */,
+				3807073A208BEAAC00CF84AB /* MainNavigationController.swift */,
+				38437B3F207C15D000A7D488 /* AppDelegate.swift */,
 			);
-			path = Pixel;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		38437B33207C15D000A7D488 = {
@@ -226,25 +210,86 @@
 		38437B3E207C15D000A7D488 /* pixelArt */ = {
 			isa = PBXGroup;
 			children = (
+				38A751FB209A969C00314382 /* World */,
+				38A751FA209A969600314382 /* Drawings */,
+				38A751F9209A969000314382 /* Animations */,
+				38A751F8209A963000314382 /* Login */,
+				38A751F7209A961000314382 /* Menu */,
 				38070783208D38A400CF84AB /* MainMenu */,
-				38070794208D654600CF84AB /* Pixel */,
-				38437B3F207C15D000A7D488 /* AppDelegate.swift */,
+				38A751FE209A976100314382 /* Datasets */,
+				38070794208D654600CF84AB /* Shared */,
 				38437B46207C15D300A7D488 /* Assets.xcassets */,
 				38437B48207C15D300A7D488 /* LaunchScreen.storyboard */,
 				38437B4B207C15D300A7D488 /* Info.plist */,
 				38951A2B207E8BB000A890C4 /* GoogleService-Info.plist */,
-				3812E4F5207EBE84001B5800 /* ViewHolder.swift */,
-				383678B7208951B500A3D118 /* ColorPickerControl.swift */,
-				38A751E82099798400314382 /* pixelArt-Bridging-Header.h */,
-				38070738208BD9BA00CF84AB /* Extensions.swift */,
-				3807073A208BEAAC00CF84AB /* MainNavigationController.swift */,
-				38070792208D5E8E00CF84AB /* DrawingsTableViewController.swift */,
-				38A7518A2091059400314382 /* OnlineDrawingsTableViewController.swift */,
-				38070795208D74FD00CF84AB /* PixelDataset.swift */,
-				38A751ED209A648300314382 /* AnimationDataset.swift */,
-				38A751EF209A65F800314382 /* OfflineAnimationsTableViewController.swift */,
 			);
 			path = pixelArt;
+			sourceTree = "<group>";
+		};
+		38A751F7209A961000314382 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				3807078E208D44EF00CF84AB /* MenuViewController.swift */,
+				38070790208D45D800CF84AB /* MenuView.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		38A751F8209A963000314382 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				38A7519A20955D5000314382 /* LoginViewController.swift */,
+				38A7519820954FF500314382 /* CustomTextField.swift */,
+				38A751962095443000314382 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		38A751F9209A969000314382 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				38A751EF209A65F800314382 /* OfflineAnimationsTableViewController.swift */,
+				38A751E920997A8100314382 /* AnimationPreview.swift */,
+				38A751F1209A691F00314382 /* AnimationsTabBarController.swift */,
+				38A751E62099761100314382 /* AnimationTableViewController.swift */,
+				38A751F3209A69D400314382 /* OfflineAnimationViewController.swift */,
+				38A751F5209A81D000314382 /* ProgressOfflineAnimationViewController.swift */,
+				38A751E0209962D900314382 /* OnlineAnimationViewController.swift */,
+				38A751E42099680A00314382 /* AnimationPixel.swift */,
+				38A751E22099637E00314382 /* AnimationsViewHolder.swift */,
+				38A751DE20995C2800314382 /* AnimationControl.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		38A751FA209A969600314382 /* Drawings */ = {
+			isa = PBXGroup;
+			children = (
+				38070792208D5E8E00CF84AB /* DrawingsTableViewController.swift */,
+				38070797208FB82F00CF84AB /* PixelPreview.swift */,
+				38070740208C073100CF84AB /* NewPixelViewController.swift */,
+				38A7518A2091059400314382 /* OnlineDrawingsTableViewController.swift */,
+				38A7518E20910F7200314382 /* OnlinePixelViewController.swift */,
+				38A751922094FE6E00314382 /* ProgressPixelViewController.swift */,
+			);
+			path = Drawings;
+			sourceTree = "<group>";
+		};
+		38A751FB209A969C00314382 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				38437B41207C15D000A7D488 /* PixelViewController.swift */,
+			);
+			path = World;
+			sourceTree = "<group>";
+		};
+		38A751FE209A976100314382 /* Datasets */ = {
+			isa = PBXGroup;
+			children = (
+				38A751ED209A648300314382 /* AnimationDataset.swift */,
+				38070795208D74FD00CF84AB /* PixelDataset.swift */,
+			);
+			path = Datasets;
 			sourceTree = "<group>";
 		};
 		519E85239FE94BBC3812FD7E /* Pods */ = {
@@ -483,7 +528,6 @@
 				38A751F2209A691F00314382 /* AnimationsTabBarController.swift in Sources */,
 				38070741208C073100CF84AB /* NewPixelViewController.swift in Sources */,
 				38A7519B20955D5000314382 /* LoginViewController.swift in Sources */,
-				38A751912093CA1D00314382 /* DrawingSetupViewHolder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

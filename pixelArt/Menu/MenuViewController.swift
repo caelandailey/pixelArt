@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// View controller for the menu
 class MenuViewController: UIViewController{
     
 

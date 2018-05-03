@@ -16,6 +16,8 @@ protocol MainViewDelegate: AnyObject {
     func goToNewDrawing()
     func goToAnimation()
 }
+
+// The view that holds the actual MAIN screen view. Pretty standard
 class MainView: UIView {
     
     weak var delegate: MainViewDelegate? = nil

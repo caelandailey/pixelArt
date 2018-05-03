@@ -21,8 +21,6 @@ class MainViewController: UIViewController, MainViewDelegate {
     
      var delegate: MainViewControllerDelegate?
     
-
-    
     private var viewHolder: MainView {
         return view as! MainView
     }

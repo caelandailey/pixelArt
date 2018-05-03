@@ -31,7 +31,7 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
         animateMenuHandler()
     }
     
-    // Logout of account
+    // Logout of account is placed here in order to push the viewcontroller
     func logout() {
         
         let auth = Auth.auth()
@@ -66,15 +66,13 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, Men
         
         mainViewController.navigationItem.leftBarButtonItem?.imageInsets = UIEdgeInsets(top: 5, left: -35, bottom: 0, right: 0)
         mainNavigationController = MainNavigationController(rootViewController: mainViewController)
+        
         view.addSubview(mainNavigationController.view)
         addChildViewController(mainNavigationController)
-        
         mainNavigationController.didMove(toParentViewController: self)
-    
     }
     
     func toggleMenu() {
-        
         if menuClosed {
             addMenuViewController()
         }
