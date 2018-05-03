@@ -16,11 +16,11 @@ protocol LoginViewDelegate: AnyObject {
     func signupButtonPressed(email: String, password: String)
 }
 
+// View for the login
 class LoginView: UIView, UITextFieldDelegate {
 
     
     weak var delegate: LoginViewDelegate?
-    
     
     let titleLabel: UILabel = {
         let titleLabel = UILabel()

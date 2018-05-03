@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		38070739208BD9BA00CF84AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070738208BD9BA00CF84AB /* Extensions.swift */; };
-		3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073A208BEAAC00CF84AB /* MainNavigationController.swift */; };
 		3807073D208BEB1A00CF84AB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073C208BEB1A00CF84AB /* MainViewController.swift */; };
 		3807073F208BEF2D00CF84AB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807073E208BEF2D00CF84AB /* MainView.swift */; };
 		38070741208C073100CF84AB /* NewPixelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38070740208C073100CF84AB /* NewPixelViewController.swift */; };
@@ -72,7 +71,6 @@
 		29EAF8C05557DBCAB44C04B2 /* Pods_pixelArt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixelArt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		352059FFA09E49F597E4A37B /* Pods-pixelArt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixelArt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pixelArt/Pods-pixelArt.debug.xcconfig"; sourceTree = "<group>"; };
 		38070738208BD9BA00CF84AB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		3807073A208BEAAC00CF84AB /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		3807073C208BEB1A00CF84AB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3807073E208BEF2D00CF84AB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		38070740208C073100CF84AB /* NewPixelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPixelViewController.swift; sourceTree = "<group>"; };
@@ -177,10 +175,8 @@
 				38A7518C2091097A00314382 /* FriendsPixel.swift */,
 				38A751942095149700314382 /* CountView.swift */,
 				383678B7208951B500A3D118 /* ColorPickerControl.swift */,
-				38A751E82099798400314382 /* pixelArt-Bridging-Header.h */,
 				3812E4F5207EBE84001B5800 /* ViewHolder.swift */,
 				38070738208BD9BA00CF84AB /* Extensions.swift */,
-				3807073A208BEAAC00CF84AB /* MainNavigationController.swift */,
 				38437B3F207C15D000A7D488 /* AppDelegate.swift */,
 			);
 			path = Shared;
@@ -219,6 +215,7 @@
 				38A751FE209A976100314382 /* Datasets */,
 				38070794208D654600CF84AB /* Shared */,
 				38437B46207C15D300A7D488 /* Assets.xcassets */,
+				38A751E82099798400314382 /* pixelArt-Bridging-Header.h */,
 				38437B48207C15D300A7D488 /* LaunchScreen.storyboard */,
 				38437B4B207C15D300A7D488 /* Info.plist */,
 				38951A2B207E8BB000A890C4 /* GoogleService-Info.plist */,
@@ -249,11 +246,11 @@
 			isa = PBXGroup;
 			children = (
 				38A751EF209A65F800314382 /* OfflineAnimationsTableViewController.swift */,
+				38A751F3209A69D400314382 /* OfflineAnimationViewController.swift */,
+				38A751F5209A81D000314382 /* ProgressOfflineAnimationViewController.swift */,
 				38A751E920997A8100314382 /* AnimationPreview.swift */,
 				38A751F1209A691F00314382 /* AnimationsTabBarController.swift */,
 				38A751E62099761100314382 /* AnimationTableViewController.swift */,
-				38A751F3209A69D400314382 /* OfflineAnimationViewController.swift */,
-				38A751F5209A81D000314382 /* ProgressOfflineAnimationViewController.swift */,
 				38A751E0209962D900314382 /* OnlineAnimationViewController.swift */,
 				38A751E42099680A00314382 /* AnimationPixel.swift */,
 				38A751E22099637E00314382 /* AnimationsViewHolder.swift */,
@@ -499,7 +496,6 @@
 				38A751E72099761100314382 /* AnimationTableViewController.swift in Sources */,
 				383678B8208951B500A3D118 /* ColorPickerControl.swift in Sources */,
 				38A751E52099680A00314382 /* AnimationPixel.swift in Sources */,
-				3807073B208BEAAC00CF84AB /* MainNavigationController.swift in Sources */,
 				38A7518F20910F7200314382 /* OnlinePixelViewController.swift in Sources */,
 				38A751EE209A648300314382 /* AnimationDataset.swift in Sources */,
 				38A751972095443000314382 /* LoginView.swift in Sources */,

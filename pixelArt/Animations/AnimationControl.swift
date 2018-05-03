@@ -14,6 +14,8 @@ protocol AnimationControlDelegate: AnyObject {
     func goRightAnimation()
 }
 
+// Animation control
+// Go left or go right
 class AnimationControl: UIView {
     
     weak var delegate: AnimationControlDelegate?

@@ -11,10 +11,9 @@ import UIKit
 
 class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerControlDelegate {
     
+    // Update if set
     var positions: [CGPoint] = [] {
         didSet {
-            
-            
             viewHolder.pixelView.positionsToDraw = positions
         }
     }
@@ -39,42 +38,42 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
     
     // Load view
     override func viewDidLoad() {
+        // Navigation settings
         self.navigationItem.hidesBackButton = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.done, target: self, action: #selector(backHandler))
   
+        // Set delegates
         viewHolder.pixelView.delegate = self
         viewHolder.colorPickerControl.delegate = self
         
     }
     
     func cellTouchesBegan(_ pos: CGPoint) {
-        print("Updating model")
+
         // Update model
         let position = CGPoint(x: Int(pos.x), y: Int(pos.y))
+        
+        // Add to storage
         positions.append(position)
         colors.append(currentColor)
+        
+        // Update view
         viewHolder.pixelView.positionsToDraw = positions
         viewHolder.pixelView.colorsToDraw = colors
-
-    }
-    
-    func cellTouchesEnded() {
-        
     }
 
+    // Choosing a color
     func colorChosen(_ color: UIColor) {
         currentColor = color
-        print("Color chosen!")
-
     }
     
     func alertYesButton(action: UIAlertAction) {
         print("SAVE")
         saveDrawing()
         self.navigationController?.popViewController(animated: true)
-
     }
     
+    // Saves a drawing
     private func saveDrawing() {
         let entry = PixelDataset.Entry(
             pixelPositions: convertCGPointToString(positions),
@@ -84,6 +83,7 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
        PixelDataset.appendEntry(entry)
     }
     
+    // Converting to cgpoint to string, needed because dataset is in STRING form
     private func convertCGPointToString(_ points: [CGPoint]) -> [String] {
         var newPoints: [String] = []
         
@@ -93,6 +93,7 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
         return newPoints
     }
     
+    // Convert uicolor to int. Needed because dataset is in INT
     private func convertColorToInt(_ colors: [UIColor]) -> [Int] {
         var newColors: [Int] = []
         
@@ -103,12 +104,13 @@ class NewPixelViewController: UIViewController, PixelViewDelegate, ColorPickerCo
         return newColors
     }
     
+    // Alert
     func alertNoButton(action: UIAlertAction) {
         print("dont save")
         self.navigationController?.popViewController(animated: true)
-
     }
     
+    // Handler for backing
     @objc func backHandler() {
         let alert = UIAlertController(title: "Saving", message: "Do you want to save?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: alertYesButton))

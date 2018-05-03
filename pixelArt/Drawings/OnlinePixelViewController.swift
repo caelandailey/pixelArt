@@ -10,17 +10,20 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+// Viewcontroller for online drawings. Saves everything into the database
 class OnlinePixelViewController: UIViewController, PixelViewDelegate, FriendsPixelDelegate, ColorPickerControlDelegate {
     
+    // Count users
     func userCounted(_ val: Int) {
         playerCountView.title.text = String(val)
         playerCountView.setNeedsDisplay()
     }
     
-    
+    // Model
     let pixel = FriendsPixel()
     var ref = ""
     
+    // Count view
     let playerCountView: CountView = {
         let view = CountView()
         view.frame = CGRect(x: -20, y: -20, width: 40, height: 40)
@@ -34,6 +37,9 @@ class OnlinePixelViewController: UIViewController, PixelViewDelegate, FriendsPix
         return view as! ViewHolder
     }
     
+    // The ref
+    // "" = new
+    // "-9gdfg8FGfH9dd" etc = existing drawing
     init(withRef: String) {
 
        // drawingRef = withRef
@@ -103,7 +109,8 @@ class OnlinePixelViewController: UIViewController, PixelViewDelegate, FriendsPix
         guard let id = Auth.auth().currentUser?.uid else {
             return
         }
-        print(ref)
+        
+        // remove listenrs and player count
         let userRef = Database.database().reference().child("\(id)/\(ref)/ActiveUsers/\(id)")
         userRef.removeValue()
         Database.database().reference().removeAllObservers()

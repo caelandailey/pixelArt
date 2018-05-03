@@ -32,56 +32,16 @@ class DrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
         super.viewDidLoad()
         PixelDataset.registerDelegate(self)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: DrawingsTableViewController.cellReuseIdentifier)
-        self.navigationItem.rightBarButtonItem = newGameButton
-    
-        
     }
-    
-    // Create button
-    lazy var newGameButton : UIBarButtonItem = {
-        let newGameButton = UIBarButtonItem()
-        newGameButton.title = "+"
-        let style = NSMutableParagraphStyle()
-        style.alignment = .center
-        var styles: [NSAttributedStringKey: Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue): style]
-        styles[NSAttributedStringKey.font] = UIFont(name: "DINCondensed-Bold", size: 40 )
-        
-        // set string
-        let zone:String = "Days"
-        
-        // Create and draw
-        newGameButton.setTitleTextAttributes(styles, for: UIControlState.normal)
-        newGameButton.action = #selector(goToAlarmView)
-        newGameButton.target = self
-        return newGameButton
-    }()
-    
-    // Refresh table if buggy
-    lazy var refreshListButton : UIBarButtonItem = {
-        let refreshListButton = UIBarButtonItem()
-        refreshListButton.image = UIImage(named: "refresh_icon")
-        
-        refreshListButton.action = #selector(updateTable)
-        refreshListButton.target = self
-        refreshListButton.style = .plain
-        return refreshListButton
-    }()
-    
+
     @objc func updateTable(sender: UIButton) {
         datasetUpdated()
-    }
-    
-    // Go to new alarm
-    @objc func goToAlarmView(sender: UIBarButtonItem) {
-        
-        //navigationController?.pushViewController(NewGameViewController(), animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard tableView == self.tableView, section == 0 else {
             return 0
         }
-        
         return PixelDataset.count
     }
     
@@ -94,26 +54,35 @@ class DrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
         
         cell.backgroundColor = UIColor.groupTableViewBackground
         
-        //Add text
+        //Add data
         let pixelData = PixelDataset.entry(atIndex: indexPath.row)
-        //cell.textLabel?.text = String(pixelData.pixelColors.first!)
         
         // Add preview
         let pixelPreview = PixelPreview()
-        //pixelPreview.frame = CGRect(x: 5, y: 5, width: 100, height: 200)
-        pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height )
+        
+        // Set frame
+        pixelPreview.frame = CGRect(x: 0,
+                                    y: 0,
+                                    width: self.tableView.frame.width,
+                                    height: self.tableView.frame.height )
+        
+        // Convert
         pixelPreview.colorsToDraw = convertIntToColor(pixelData.pixelColors)
         pixelPreview.positionsToDraw = convertStringToCGPoint(pixelData.pixelPositions)
+        
+        // Make it look pretty
         pixelPreview.backgroundColor = UIColor.white
         pixelPreview.layer.borderWidth = 1
         pixelPreview.layer.borderColor = UIColor.black.cgColor
         
-        //cell.accessoryView = pixelPreview
+        // Add
         cell.addSubview(pixelPreview)
 
         return cell
     }
     
+    // Convert string array to cgpoint array
+    // Needed because dataset is stored as string
     private func convertStringToCGPoint(_ points: [String]) -> [CGPoint] {
         var newPoints: [CGPoint] = []
         
@@ -123,6 +92,8 @@ class DrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
         return newPoints
     }
     
+    // Convert int array to color array
+    // Needed because the dataset is stored as int
     private func convertIntToColor(_ colors: [Int]) -> [UIColor] {
         var newColors: [UIColor] = []
         
@@ -163,15 +134,18 @@ class DrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
         guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count else {
             return
         }
-        
-        //navigationController?.pushViewController(ProgressViewController(withIndex: indexPath.row), animated: true)
+
+        // Get view
         let pixelViewController = ProgressPixelViewController(withIndex: indexPath.row)
         
+        // Get data
         let pixelData = PixelDataset.entry(atIndex: indexPath.row)
-        //cell.textLabel?.text = String(pixelData.pixelColors.first!)
+
+        // Set data in view
         pixelViewController.colors = convertIntToColor(pixelData.pixelColors)
         pixelViewController.positions = convertStringToCGPoint(pixelData.pixelPositions)
   
+        // Push view
         navigationController?.pushViewController(pixelViewController, animated: true)
     }
 }

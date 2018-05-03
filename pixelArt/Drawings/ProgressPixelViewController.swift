@@ -8,13 +8,11 @@
 
 import UIKit
 
-
+// This class handles EDITING existing drawings
 class ProgressPixelViewController: UIViewController, PixelViewDelegate, ColorPickerControlDelegate {
     
     var positions: [CGPoint] = [] {
         didSet {
-            
-            
             viewHolder.pixelView.positionsToDraw = positions
         }
     }
@@ -32,21 +30,16 @@ class ProgressPixelViewController: UIViewController, PixelViewDelegate, ColorPic
         return view as! ViewHolder
     }
     
+    // Index to know which one were editing
     init(withIndex: Int) {
-        // Position in table
-        //index = withIndex
-        
-        //FinishedDataset.sortData(index: FinishedDataset.count-1)
-        
         index = withIndex
         super.init(nibName: nil, bundle: nil)
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     // Loads the view
     override func loadView() {
         view = ViewHolder(frame: UIScreen.main.bounds, sizeFactor: 1)
@@ -59,30 +52,25 @@ class ProgressPixelViewController: UIViewController, PixelViewDelegate, ColorPic
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.done, target: self, action: #selector(backHandler))
         
+        // Delegates
         viewHolder.pixelView.delegate = self
         viewHolder.colorPickerControl.delegate = self
         
     }
     
     func cellTouchesBegan(_ pos: CGPoint) {
-        print("Updating model")
+    
         // Update model
         let position = CGPoint(x: Int(pos.x), y: Int(pos.y))
         positions.append(position)
         colors.append(currentColor)
         viewHolder.pixelView.positionsToDraw = positions
         viewHolder.pixelView.colorsToDraw = colors
-        
     }
-    
-    func cellTouchesEnded() {
-        
-    }
-    
+ 
     func colorChosen(_ color: UIColor) {
         currentColor = color
         print("Color chosen!")
-        
     }
     
     func alertYesButton(action: UIAlertAction) {

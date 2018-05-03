@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// View holder for animations
 class AnimationsViewHolder: UIView, UIScrollViewDelegate {
     
     let pixelViewSizeFactor: CGFloat = 5

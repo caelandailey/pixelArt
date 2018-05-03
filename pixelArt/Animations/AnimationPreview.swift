@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// preview on the tableview of the animation
 class AnimationPreview: UIView {
     
     var colorsToDraw: [UIColor] = []
@@ -27,24 +28,14 @@ class AnimationPreview: UIView {
         }
     }
     
-    
-    
-    
     var pixelSize: CGFloat = 10
     
     override func draw(_ rect: CGRect) {
-        //super.draw(rect)
-        
-        
-        print("Attempting to draw")
-        print(colorsToDraw)
-        print(positionsToDraw)
-        
-        print("before context")
+
         guard let context: CGContext = UIGraphicsGetCurrentContext() else {
             return
         }
-        print("Drawing view")
+
         // Check error
         if (colorsToDraw.count != positionsToDraw.count) {
             print("ERROR count doesnt match")
@@ -57,15 +48,6 @@ class AnimationPreview: UIView {
             let frame = CGRect(x: positionsToDraw[i].x * pixelSize, y: positionsToDraw[i].y * pixelSize, width: pixelSize, height: pixelSize)
             context.fill(frame)
         }
-        
-        
-        
-        //colorsToDraw.removeAll()
-        //positionsToDraw.removeAll()
-        
-        
-        
         print("Updated view")
-        
     }
 }

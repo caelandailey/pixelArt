@@ -15,6 +15,8 @@ protocol PixelDelegate: AnyObject {
     func pixelsLoaded(_ pos: [CGPoint], color: [UIColor])
     func userCounted(_ val: Int)
 }
+
+// Model for MAIN open world
 class Pixel {
     
     weak var delegate: PixelDelegate? = nil
@@ -30,60 +32,13 @@ class Pixel {
     // Initializer for new games
     init() {
         loadNewPixels()
-        incPlayerCount()
-        watchUserCount()
     }
     
-    func watchUserCount() {
-        
-        let ref = Database.database().reference().child("MainWorld/ActiveUsers")
-        
-        ref.observe(.value, with: { snapshot in
-            print("loading new count")
-            let val = Int(snapshot.childrenCount)
-            self.delegate?.userCounted(val)
-            })
-    }
-    
-    func incPlayerCount() {
-        guard let id = Auth.auth().currentUser?.uid else {
-            return
-        }
-        
-        let ref = Database.database().reference().child("MainWorld/ActiveUsers")
-    
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            
-                let userRef = ref.child(id)
-                userRef.setValue("")
-                userRef.onDisconnectRemoveValue()
-                
-            })
-
-    }
-    
-    func decPlayerCount() {
-        let ref = Database.database().reference().child("MainWorld/Count")
-        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
-            if let val = currentData.value as? Int {
-                
-                // Set value and report transaction success
-                currentData.value = val - 1
-                
-                return TransactionResult.success(withValue: currentData)
-            }
-            currentData.value = 1
-            return TransactionResult.success(withValue: currentData)
-        }) { (error, committed, snapshot) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    
     func loadNewPixels() {
         
         let ref = Database.database().reference().child("MainWorld/Pixels")
@@ -98,7 +53,6 @@ class Pixel {
                 print(snapshot.childrenCount)
                 for child in snapshot.children {
                     let snap = child as! DataSnapshot
-                    print(snap.value)
                     
                     
                     var x = 0
@@ -126,25 +80,21 @@ class Pixel {
                             return
                         }
                     }
-             
                     
                     self.positions.append(CGPoint(x:x, y:y))
-                    
                     self.colors.append(color)
-                    
                     self.delegate?.pixelsLoaded(self.positions, color: self.colors)
-                    
                 }
             })
-            
         })
-        
     }
     
+    // Used becuase we only want to load data we havent seen yet
     var timestamp: Int {
         return Int(NSDate().timeIntervalSince1970 * 1000)
     }
     
+    // Uploads a pixel
     func uploadNewPixel(pos: CGPoint) {
         
         let x = Int(pos.x)

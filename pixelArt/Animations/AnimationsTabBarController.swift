@@ -9,28 +9,36 @@
 import Foundation
 import UIKit
 
+
+// Tab bar for the animation tableviews
 class AnimationsTabBarController: UITabBarController, UITabBarControllerDelegate{
     
+    // Which viewcontroller were on variable
+    var isOnlineVC = true
+    
     override func viewDidLoad() {
+        
         self.tabBar.barTintColor = UIColor.white
         delegate = self
+        
         let onlineDrawingsTableViewController = AnimationTableViewController()
         let drawingsTableViewController = OfflineAnimationsTableViewController()
+        
         drawingsTableViewController.title = "Offline"
         onlineDrawingsTableViewController.title = "Online"
+        
         self.viewControllers = [onlineDrawingsTableViewController, drawingsTableViewController]
         self.selectedViewController = onlineDrawingsTableViewController
+        
         self.navigationItem.rightBarButtonItem = newGameButton
     }
     
+    // Handles which viewcontroller were currently looking at
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("Selected view controller")
-        
+
         isOnlineVC = (viewController is AnimationTableViewController)
-        
     }
     
-    var isOnlineVC = true
     // Create button
     lazy var newGameButton : UIBarButtonItem = {
         let newGameButton = UIBarButtonItem()
@@ -49,13 +57,14 @@ class AnimationsTabBarController: UITabBarController, UITabBarControllerDelegate
         return newGameButton
     }()
     
+    // When we go to a drawing we want to go to the correct one
     @objc func goToDrawing() {
-        print("PRESS NEW DRAWING")
+   
         if (isOnlineVC) {
-            print("1111111111")
+
             navigationController?.pushViewController(OnlineAnimationViewController(withRef: ""), animated: true)
         } else {
-            print("22222222222")
+   
             navigationController?.pushViewController(OfflineAnimationViewController(), animated: true)
         }
         

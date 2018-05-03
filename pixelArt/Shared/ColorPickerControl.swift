@@ -13,6 +13,7 @@ protocol ColorPickerControlDelegate: AnyObject {
     func colorChosen(_ color: UIColor)
 }
 
+// Control for picking a color
 class ColorPickerControl: UIControl {
     
     let cols = 5

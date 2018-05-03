@@ -12,10 +12,13 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
+
 protocol FriendsPixelDelegate: AnyObject {
     func pixelsLoaded(_ pos: [CGPoint], color: [UIColor])
     func userCounted(_ val: Int)
 }
+
+// Class is the MODEL for drawings
 class FriendsPixel {
     
     weak var delegate: FriendsPixelDelegate? = nil
@@ -29,11 +32,7 @@ class FriendsPixel {
     private var lastPixelTime = 0
     
     var pixelRef: DatabaseReference?
-    
-    
-    
-  
-    
+
     func watchUserCount() {
         guard let ref = pixelRef else {
        

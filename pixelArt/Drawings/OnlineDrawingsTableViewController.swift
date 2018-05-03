@@ -12,12 +12,10 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDelegate {
+// Tableview for drawings that are ONLINE
+class OnlineDrawingsTableViewController: UITableViewController{
     
-    private static var cellReuseIdentifier = "OnlineDrawingsTableViewController.DatasetItemsCellIdentifier"
-    
-    let delegateID: String = UIDevice.current.identifierForVendor!.uuidString
-    
+
     var drawingsColor: [[UIColor]] = [] {
         didSet {
             datasetUpdated()
@@ -53,15 +51,17 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         super.viewDidLoad()
         
         loadData()
-        
-        PixelDataset.registerDelegate(self)     
-        self.navigationItem.rightBarButtonItem = newGameButton
-     
+
+        // For the tab bar
         self.title = "Online"
     }
     
+    // Loads all the information for the online drawings for the specific user
+    // Will be very confusing without knowing what database looks like
+    // Users->DrawingsList->Drawing->Pixels->
     private func loadData() {
         
+        // Loading all data so remove if any
         drawingsColor.removeAll()
         drawingsPosition.removeAll()
         
@@ -69,33 +69,37 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
             return
         }
         
+        // Get ref
         let ref = Database.database().reference().child("\(id)").child("Drawings")
         
         ref.observe(.value, with: { snapshot in
-            print("loading new pixel")
+
+            // get count of drawings
             self.count = Int(snapshot.childrenCount)
            
-       
+            // GO through drawings
             for child in snapshot.children {
                 var snap = child as! DataSnapshot
-                self.drawingsRef.append(snap.key)
-                snap = snap.childSnapshot(forPath: "Pixels")
                 
+                // Add ref of drawing so we can edit drawing if needed
+                self.drawingsRef.append(snap.key)
+                
+                // Go to pixels and not onlineUSERS or anything else
+                snap = snap.childSnapshot(forPath: "Pixels")
                 
                 let enumerator = snap.children
                 var colors: [UIColor] = []
                 var positions: [CGPoint] = []
                 
+                // Go through cells
                 for cells in enumerator.allObjects as! [DataSnapshot] {
-                    //print(cell)
                     
                     var x = 0
                     var y = 0
                     var colorIntVal = 0
                     
+                    // Go through single cell for each value
                     for cell in cells.children.allObjects as! [DataSnapshot] {
-                  
-                        
                         
                         switch cell.key {
                             
@@ -110,35 +114,11 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
                     positions.append(CGPoint(x:x,y:y))
                     
                 }
-                
-                
                 self.drawingsColor.append(colors)
                 self.drawingsPosition.append(positions)
-                
             }
-
         })
-        print("finished loading data")
-
     }
-    // Create button
-    lazy var newGameButton : UIBarButtonItem = {
-        let newGameButton = UIBarButtonItem()
-        newGameButton.title = "+"
-        let style = NSMutableParagraphStyle()
-        style.alignment = .center
-        var styles: [NSAttributedStringKey: Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue): style]
-        styles[NSAttributedStringKey.font] = UIFont(name: "DINCondensed-Bold", size: 40 )
-        
-        // set string
-        let zone:String = "Days"
-        
-        // Create and draw
-        newGameButton.setTitleTextAttributes(styles, for: UIControlState.normal)
-        newGameButton.action = #selector(goToNewOnlineDrawing)
-        newGameButton.target = self
-        return newGameButton
-    }()
     
     @objc func updateTable(sender: UIButton) {
         datasetUpdated()
@@ -154,14 +134,13 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
     
     // THIS CREATES THE CELLS
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count, indexPath.row < drawingsColor.count, indexPath.row < drawingsPosition.count  else {
+        guard tableView === self.tableView, indexPath.section == 0, indexPath.row < drawingsColor.count, indexPath.row < drawingsPosition.count  else {
             return UITableViewCell()
-            print("returnedok")
+            print("returned")
         }
         let cell: UITableViewCell = UITableViewCell()
         
         cell.backgroundColor = UIColor.groupTableViewBackground
-        
         
         // Add preview
         let pixelPreview = PixelPreview()
@@ -177,6 +156,7 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
         return cell
     }
     
+    // Conversion because the dataset has different format
     private func convertStringToCGPoint(_ points: [String]) -> [CGPoint] {
         var newPoints: [CGPoint] = []
         
@@ -223,20 +203,15 @@ class OnlineDrawingsTableViewController: UITableViewController, PixelDatasetDele
     
     // GO TO EDIT
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard tableView === self.tableView, indexPath.section == 0, indexPath.row < PixelDataset.count else {
+        guard tableView === self.tableView, indexPath.section == 0 else {
             return
         }
-        //navigationController?.pushViewController(ProgressViewController(withIndex: indexPath.row), animated: true)
+ 
         let vc: OnlinePixelViewController = OnlinePixelViewController(withRef: drawingsRef[indexPath.row])
-        //vc.pixel.colors = drawingsColor[indexPath.row]
-        //vc.pixel.positions = drawingsPosition[indexPath.row]
+
         vc.pixel.loadNewPixels()
         
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @objc private func goToNewOnlineDrawing() {
-        navigationController?.pushViewController(OnlinePixelViewController(withRef: ""), animated: true)
     }
 
 }

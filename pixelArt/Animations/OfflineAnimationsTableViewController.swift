@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// Tableview for OFFLINE animations
 class OfflineAnimationsTableViewController: UITableViewController, PixelDatasetDelegate {
     
     private static var cellReuseIdentifier = "OfflineAnimationsTableViewController.DatasetItemsCellIdentifier"
@@ -16,8 +17,12 @@ class OfflineAnimationsTableViewController: UITableViewController, PixelDatasetD
     let delegateID: String = UIDevice.current.identifierForVendor!.uuidString
     var timerCount = 0
     
+    // Time to create animation
     var animationTimer: Timer!
     
+    // Update value
+    // Later on we access a position in an array based on timerCount
+    // We travel through an array with this
     @objc private func updateTimerCount() {
         print("updated timer")
         timerCount = timerCount + 1
@@ -31,6 +36,8 @@ class OfflineAnimationsTableViewController: UITableViewController, PixelDatasetD
             self.tableView.setNeedsDisplay()
         }
     }
+    
+    // Cancel timer
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -38,25 +45,19 @@ class OfflineAnimationsTableViewController: UITableViewController, PixelDatasetD
         
     }
     
+    // Set timer
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
          animationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerCount), userInfo: nil, repeats: true)
         datasetUpdated()
     }
     
+    // Get data
     override func viewDidLoad() {
         super.viewDidLoad()
         AnimationDataset.registerDelegate(self)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: OfflineAnimationsTableViewController.cellReuseIdentifier)
-        //self.navigationItem.rightBarButtonItem = newGameButton
-        
-        
     }
-
-    @objc func updateTable(sender: UIButton) {
-        datasetUpdated()
-    }
-
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard tableView == self.tableView, section == 0 else {
@@ -77,30 +78,36 @@ class OfflineAnimationsTableViewController: UITableViewController, PixelDatasetD
         
         //Add text
         let pixelData = AnimationDataset.entry(atIndex: indexPath.row)
-        //cell.textLabel?.text = String(pixelData.pixelColors.first!)
-        
+
         // Add preview
         let pixelPreview = PixelPreview()
-        //pixelPreview.frame = CGRect(x: 5, y: 5, width: 100, height: 200)
+
         pixelPreview.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height )
-       // pixelPreview.colorsToDraw = convertIntToColor(pixelData.pixelColors)
-       // pixelPreview.positionsToDraw = convertStringToCGPoint(pixelData.pixelPositions)
-       // let pageCount = drawingsColor[indexPath.row].count
+
+        // Get values
         let pageCount = pixelData.pixelColors.count
         let colors = convertIntToColor(pixelData.pixelColors)
         let positions = convertStringToCGPoint(pixelData.pixelPositions)
+        
+        // Add them
         pixelPreview.colorsToDraw = colors[timerCount % pageCount]
         pixelPreview.positionsToDraw = positions[timerCount % pageCount]
+        
+        // Make look pretty
         pixelPreview.backgroundColor = UIColor.white
         pixelPreview.layer.borderWidth = 1
         pixelPreview.layer.borderColor = UIColor.black.cgColor
         
-        //cell.accessoryView = pixelPreview
+        // Add
         cell.addSubview(pixelPreview)
         
         return cell
     }
     
+    // How this works
+    // Goes through 1st position and adds to array
+    // Then adds that array to 2nd array
+    // Repeat for each position
     private func convertStringToCGPoint(_ points: [[String]]) -> [[CGPoint]] {
 
         var pointsD1: [CGPoint] = []
@@ -165,22 +172,20 @@ class OfflineAnimationsTableViewController: UITableViewController, PixelDatasetD
         guard tableView === self.tableView, indexPath.section == 0, indexPath.row < AnimationDataset.count else {
             return
         }
-        
-        //navigationController?.pushViewController(ProgressViewController(withIndex: indexPath.row), animated: true)
+        // Get values
         let pixelViewController = ProgressOfflineAnimationViewController(withIndex: indexPath.row)
         
         let pixelData = AnimationDataset.entry(atIndex: indexPath.row)
-        //cell.textLabel?.text = String(pixelData.pixelColors.first!)
-        //pixelViewController.colors = convertIntToColor(pixel)
-        //pixelViewController.positions = convertStringToCGPoint(pixelData.pixelPositions[indexPath.row])
-        //pixelViewController.colors = convertIntToColor(pixelData.pixelColors[0])
-        //pixelViewController.positions = convertStringToCGPoint(pixelData.pixelPositions[0])
+
         let colors = convertIntToColor(pixelData.pixelColors)
         let positions = convertStringToCGPoint(pixelData.pixelPositions)
+        
+        // Set
         pixelViewController.pagePositions = positions
         pixelViewController.pageColors = colors
         pixelViewController.positions = positions[0]
         pixelViewController.colors = colors[0]
+        
         navigationController?.pushViewController(pixelViewController, animated: true)
     }
 }

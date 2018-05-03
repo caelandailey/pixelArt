@@ -10,25 +10,12 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+// Used for the open world
+
 class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate, ColorPickerControlDelegate {
-    func userCounted(_ val: Int) {
-        playerCountView.title.text = String(val)
-        playerCountView.setNeedsDisplay()
-    }
-    
     
     let pixel = Pixel()
     
-    private var viewHolder: ViewHolder {
-        return view as! ViewHolder
-    }
-
-    // Loads the view
-    override func loadView() {
-        view = ViewHolder(frame: UIScreen.main.bounds, sizeFactor: 5)
-        
-        print("Detail view load")
-    }
     
     let playerCountView: CountView = {
         let view = CountView()
@@ -39,15 +26,41 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate, C
         return view
     }()
     
+    
+    private var viewHolder: ViewHolder {
+        return view as! ViewHolder
+    }
+    
+    // OVERLOADS: ______________________________________
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        guard let id = Auth.auth().currentUser?.uid else {
+            return
+        }
+        let ref = Database.database().reference().child("MainWorld/ActiveUsers/\(id)")
+        ref.removeValue()
+        Database.database().reference().removeAllObservers()
+    }
+    
+    // Loads the view
+    override func loadView() {
+        view = ViewHolder(frame: UIScreen.main.bounds, sizeFactor: 5)
+        
+        print("Detail view load")
+    }
+    
+    
     // Load view
     override func viewDidLoad() {
         
         // Set delegates
         pixel.delegate = self
- 
+        
         viewHolder.pixelView.delegate = self
         viewHolder.colorPickerControl.delegate = self
-       
+        
         
         
         let barButton = UIBarButtonItem.init(customView: playerCountView)
@@ -58,20 +71,26 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate, C
             UserDefaults.standard.set(true, forKey: "instructionsShowed")
             showMessage()
         }
- 
+        
     }
     
+    // Set the player count text
+    func userCounted(_ val: Int) {
+        playerCountView.title.text = String(val)
+        playerCountView.setNeedsDisplay()
+    }
+    
+    // Show instructions on how to play
     func showMessage() {
         let alert = UIAlertController(title: "Instructions", message: "The dimensions of the world is 800x1220 pixels. If you don't see anything, try zooming in!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
     }
-
     
+    //Updates the model
     func cellTouchesBegan(_ pos: CGPoint) {
-        print("Updating model")
-        // Update model
+
         let position = CGPoint(x: Int(pos.x), y: Int(pos.y))
         pixel.positions.append(position)
         pixel.colors.append(pixel.currentColor)
@@ -79,10 +98,6 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate, C
         viewHolder.pixelView.colorsToDraw = pixel.colors
 
         pixel.uploadNewPixel(pos: position)
-    }
-    
-    func cellTouchesEnded() {
-       // viewHolder.isScrollEnabled = true
     }
     
     func pixelsLoaded(_ pos: [CGPoint], color: [UIColor]) {
@@ -98,16 +113,6 @@ class PixelViewController: UIViewController, PixelViewDelegate, PixelDelegate, C
         print(color)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        guard let id = Auth.auth().currentUser?.uid else {
-            return
-        }
-        let ref = Database.database().reference().child("MainWorld/ActiveUsers/\(id)")
-        ref.removeValue()
-        Database.database().reference().removeAllObservers()
-    }
     
 }
 

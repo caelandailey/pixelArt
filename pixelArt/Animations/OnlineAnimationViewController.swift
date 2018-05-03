@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+// View controller for online animations
+// Loads information from database
 class OnlineAnimationViewController: UIViewController, PixelViewDelegate, AnimationPixelDelegate, ColorPickerControlDelegate, AnimationControlDelegate {
     
     func goLeftAnimation() {
@@ -17,12 +19,18 @@ class OnlineAnimationViewController: UIViewController, PixelViewDelegate, Animat
             return
         }
         
+        // Decrease page
         pixel.decPage()
+        
+        // Clear
         pixel.colors.removeAll()
         pixel.positions.removeAll()
         
-        //pixel.loadRef(ref)
+        // Get ref
+        // and Load
         pixel.loadRef(pixel.getRef())
+        
+        // Clear
         viewHolder.pixelView.colorsToDraw.removeAll()
         viewHolder.pixelView.positionsToDraw.removeAll()
     }
@@ -38,7 +46,7 @@ class OnlineAnimationViewController: UIViewController, PixelViewDelegate, Animat
         viewHolder.pixelView.positionsToDraw.removeAll()
     }
     
-    
+    // User counter
     func userCounted(_ val: Int) {
         playerCountView.title.text = String(val)
         playerCountView.setNeedsDisplay()
@@ -47,6 +55,7 @@ class OnlineAnimationViewController: UIViewController, PixelViewDelegate, Animat
     
     let pixel = AnimationPixel()
     var ref = ""
+    
     let playerCountView: CountView = {
         let view = CountView()
         view.frame = CGRect(x: -20, y: -20, width: 40, height: 40)
@@ -60,14 +69,12 @@ class OnlineAnimationViewController: UIViewController, PixelViewDelegate, Animat
         return view as! AnimationsViewHolder
     }
     
+    // FOr database
     init(withRef: String) {
         
-        // drawingRef = withRef
         super.init(nibName: nil, bundle: nil)
         pixel.loadRef(withRef)
         ref = withRef
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -129,7 +136,8 @@ class OnlineAnimationViewController: UIViewController, PixelViewDelegate, Animat
         guard let id = Auth.auth().currentUser?.uid else {
             return
         }
-        print(ref)
+
+        // Clear listeners and player count
         let userRef = Database.database().reference().child("\(id)/\(ref)/ActiveUsers/\(id)")
         userRef.removeValue()
         Database.database().reference().removeAllObservers()

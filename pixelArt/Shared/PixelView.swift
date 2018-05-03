@@ -11,7 +11,6 @@ import UIKit
 
 protocol PixelViewDelegate: AnyObject {
     func cellTouchesBegan(_ pos: CGPoint)
-    func cellTouchesEnded()
 }
 
 class PixelView: UIView {
@@ -32,24 +31,17 @@ class PixelView: UIView {
         }
     }
    
-    
     var pixelSize: CGFloat = 2
     
     weak var delegate: PixelViewDelegate? = nil
     
     override func draw(_ rect: CGRect) {
-        //super.draw(rect)
-        
-        
-        print("Attempting to draw")
- 
-        
-        print("before context")
+
         guard let context: CGContext = UIGraphicsGetCurrentContext() else {
             return
         }
         
-    print("Drawing view")
+
         // Check error
         if (colorsToDraw.count != positionsToDraw.count) {
             print("ERROR count doesnt match")
@@ -82,15 +74,6 @@ class PixelView: UIView {
             context.fill(frame)
         }
         
-      
-        
-        //colorsToDraw.removeAll()
-        //positionsToDraw.removeAll()
-        
-        
-        
-        print("Updated view")
-
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -102,17 +85,6 @@ class PixelView: UIView {
         let updatedPos = CGPoint(x: pos.x/pixelSize, y: pos.y/pixelSize)
         
         
-        
         delegate?.cellTouchesBegan(updatedPos)
     }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        
-        delegate?.cellTouchesEnded()
-        
-    }
-    
-    
-    
 }

@@ -9,7 +9,10 @@
 import Foundation
 import UIKit
 
+// Tab bar for drawings
 class DrawingsTabBarController: UITabBarController, UITabBarControllerDelegate{
+    
+    var isOnlineVC = true
     
     override func viewDidLoad() {
         self.tabBar.barTintColor = UIColor.white
@@ -30,7 +33,6 @@ class DrawingsTabBarController: UITabBarController, UITabBarControllerDelegate{
         
     }
     
-    var isOnlineVC = true
     // Create button
     lazy var newGameButton : UIBarButtonItem = {
         let newGameButton = UIBarButtonItem()

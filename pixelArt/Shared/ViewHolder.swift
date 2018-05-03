@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// View holder for the world
 class ViewHolder: UIView, UIScrollViewDelegate {
     
     let pixelViewSizeFactor: CGFloat = 5

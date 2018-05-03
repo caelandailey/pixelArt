@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// View for counting users
 class CountView: UIView {
     
     let image: UIImageView = {

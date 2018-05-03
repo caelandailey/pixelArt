@@ -16,6 +16,8 @@ protocol AnimationPixelDelegate: AnyObject {
     func pixelsLoaded(_ pos: [CGPoint], color: [UIColor])
     func userCounted(_ val: Int)
 }
+
+// MODEL for animations
 class AnimationPixel {
     
     weak var delegate: AnimationPixelDelegate? = nil
@@ -115,7 +117,7 @@ class AnimationPixel {
             queryRef.observeSingleEvent(of: .value, with: { snapshot in
                 for child in snapshot.children {
                     let snap = child as! DataSnapshot
-                    print(snap.value)
+        
                     
                     
                     var x = 0

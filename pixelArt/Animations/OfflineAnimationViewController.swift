@@ -7,7 +7,10 @@
 //
 
 
+// Viewcontroller for offline animations
 class OfflineAnimationViewController: UIViewController, PixelViewDelegate, ColorPickerControlDelegate, AnimationControlDelegate {
+    
+    // Handles going left in animation FRAMES
     func goLeftAnimation() {
         if (pagePosition == 0) {
             return
@@ -20,11 +23,17 @@ class OfflineAnimationViewController: UIViewController, PixelViewDelegate, Color
         viewHolder.pixelView.positionsToDraw.removeAll()
     }
     
+    // Handles going right in animation FRAMES
     func goRightAnimation() {
-        print("went right animation")
-        pagePositions.append(positions)
-        pageColors.append(colors)
-        
+        if (pagePositions.count > pagePosition)
+        {
+            pagePositions[pagePosition] = positions
+            pageColors[pagePosition] = colors
+            
+        } else {
+            pagePositions.append(positions)
+            pageColors.append(colors)
+        }
         colors.removeAll()
         positions.removeAll()
         

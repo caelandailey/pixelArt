@@ -11,6 +11,7 @@ import UIKit
 
 class PixelPreview: UIView {
     
+    // Update if set
     var colorsToDraw: [UIColor] = []
     {
         didSet {
@@ -27,23 +28,15 @@ class PixelPreview: UIView {
         }
     }
     
-    
+    // Size of the pixels
     var pixelSize: CGFloat = 10
     
     override func draw(_ rect: CGRect) {
-        //super.draw(rect)
-        
-        
-        print("Attempting to draw")
-        print(colorsToDraw)
-        print(positionsToDraw)
-        
-        print("before context")
         guard let context: CGContext = UIGraphicsGetCurrentContext() else {
             return
         }
-        print("Drawing view")
-        // Check error
+  
+        // If not same then dont draw
         if (colorsToDraw.count != positionsToDraw.count) {
             print("ERROR count doesnt match")
             return
@@ -55,15 +48,6 @@ class PixelPreview: UIView {
             let frame = CGRect(x: positionsToDraw[i].x * pixelSize, y: positionsToDraw[i].y * pixelSize, width: pixelSize, height: pixelSize)
             context.fill(frame)
         }
-        
-        
-        
-        //colorsToDraw.removeAll()
-        //positionsToDraw.removeAll()
-        
-        
-        
-        print("Updated view")
         
     }
 }
